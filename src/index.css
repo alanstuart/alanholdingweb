@@ -9,7 +9,7 @@
   --dark-surface: #1e1e1e;
   --light-bg: #e6f3ff;
   --light-surface: #ffffff;
-  --text-light: #f0f0f0;
+  --text-light: #0072ff;
   --text-dark: #0072ff;
   --accent-color: #000000;
   --transition-fast: 0.3s ease;
@@ -93,7 +93,7 @@ body.light-theme {
 }
 
 .dark-theme .btn-secondary {
-  @apply bg-gray-800 hover:bg-gray-700 text-white;
+  @apply bg-gray-800 hover:bg-gray-700 text-blue-400;
 }
 
 .light-theme .btn-secondary {
