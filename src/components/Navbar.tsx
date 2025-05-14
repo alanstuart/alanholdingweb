@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { useLanguage } from '../context/LanguageContext';
 
 interface NavbarProps {
   isScrolled: boolean;
@@ -9,6 +10,7 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const { language, toggleLanguage } = useLanguage();
   
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -36,10 +38,18 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
         
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
-          <a href="#services" className="nav-link">Services</a>
-          <a href="#projects" className="nav-link">Projects</a>
-          <a href="#testimonials" className="nav-link">Testimonials</a>
-          <a href="#contact" className="nav-link">Contact</a>
+          <a href="#services" className="nav-link">{language === 'en' ? 'Services' : 'Servicios'}</a>
+          <a href="#projects" className="nav-link">{language === 'en' ? 'Projects' : 'Proyectos'}</a>
+          <a href="#testimonials" className="nav-link">{language === 'en' ? 'Testimonials' : 'Testimonios'}</a>
+          <a href="#contact" className="nav-link">{language === 'en' ? 'Contact' : 'Contacto'}</a>
+          <button 
+            onClick={toggleLanguage}
+            className="p-2 rounded-full bg-gray-800 text-white hover:bg-gray-700 transition-colors"
+            aria-label="Toggle language"
+          >
+            <Globe size={20} />
+            <span className="ml-1">{language.toUpperCase()}</span>
+          </button>
           <button 
             onClick={toggleTheme}
             className="p-2 rounded-full bg-gray-800 text-white hover:bg-gray-700 transition-colors"
@@ -51,6 +61,13 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
         
         {/* Mobile Navigation Toggle */}
         <div className="md:hidden flex items-center">
+          <button 
+            onClick={toggleLanguage}
+            className="p-2 mr-2 rounded-full bg-gray-800 text-white hover:bg-gray-700 transition-colors"
+            aria-label="Toggle language"
+          >
+            <Globe size={20} />
+          </button>
           <button 
             onClick={toggleTheme}
             className="p-2 mr-2 rounded-full bg-gray-800 text-white hover:bg-gray-700 transition-colors"
@@ -72,10 +89,18 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
       {isOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-black bg-opacity-95 backdrop-blur-md shadow-lg py-4 border-t border-gray-800">
           <div className="container mx-auto px-4 flex flex-col space-y-4">
-            <a href="#services" className="py-2 px-4 hover:bg-gray-800 rounded-md transition-colors" onClick={() => setIsOpen(false)}>Services</a>
-            <a href="#projects" className="py-2 px-4 hover:bg-gray-800 rounded-md transition-colors" onClick={() => setIsOpen(false)}>Projects</a>
-            <a href="#testimonials" className="py-2 px-4 hover:bg-gray-800 rounded-md transition-colors" onClick={() => setIsOpen(false)}>Testimonials</a>
-            <a href="#contact" className="py-2 px-4 hover:bg-gray-800 rounded-md transition-colors" onClick={() => setIsOpen(false)}>Contact</a>
+            <a href="#services" className="py-2 px-4 hover:bg-gray-800 rounded-md transition-colors" onClick={() => setIsOpen(false)}>
+              {language === 'en' ? 'Services' : 'Servicios'}
+            </a>
+            <a href="#projects" className="py-2 px-4 hover:bg-gray-800 rounded-md transition-colors" onClick={() => setIsOpen(false)}>
+              {language === 'en' ? 'Projects' : 'Proyectos'}
+            </a>
+            <a href="#testimonials" className="py-2 px-4 hover:bg-gray-800 rounded-md transition-colors" onClick={() => setIsOpen(false)}>
+              {language === 'en' ? 'Testimonials' : 'Testimonios'}
+            </a>
+            <a href="#contact" className="py-2 px-4 hover:bg-gray-800 rounded-md transition-colors" onClick={() => setIsOpen(false)}>
+              {language === 'en' ? 'Contact' : 'Contacto'}
+            </a>
           </div>
         </div>
       )}
