@@ -33,7 +33,9 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
               <rect x="75" y="60" width="35" height="10" fill="#222" opacity="0.7" />
             </g>
           </svg>
-          <span className="text-xl font-bold tracking-tight">Alan Holding</span>
+          <span className={`text-xl font-bold tracking-tight ${theme === 'light' ? 'text-blue-600' : 'text-white'}`}>
+            Alan Holding
+          </span>
         </div>
         
         {/* Desktop Navigation */}
@@ -47,7 +49,7 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
             className={`p-2 rounded-full transition-colors ${
               theme === 'dark' 
                 ? 'bg-gray-800 text-white hover:bg-gray-700' 
-                : 'bg-white text-gray-800 hover:bg-gray-100'
+                : 'bg-white text-blue-600 hover:bg-gray-100'
             }`}
             aria-label="Toggle language"
           >
@@ -59,7 +61,7 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
             className={`p-2 rounded-full transition-colors ${
               theme === 'dark' 
                 ? 'bg-gray-800 text-white hover:bg-gray-700' 
-                : 'bg-white text-gray-800 hover:bg-gray-100'
+                : 'bg-white text-blue-600 hover:bg-gray-100'
             }`}
             aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
           >
@@ -74,7 +76,7 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
             className={`p-2 mr-2 rounded-full transition-colors ${
               theme === 'dark' 
                 ? 'bg-gray-800 text-white hover:bg-gray-700' 
-                : 'bg-white text-gray-800 hover:bg-gray-100'
+                : 'bg-white text-blue-600 hover:bg-gray-100'
             }`}
             aria-label="Toggle language"
           >
@@ -85,7 +87,7 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
             className={`p-2 mr-2 rounded-full transition-colors ${
               theme === 'dark' 
                 ? 'bg-gray-800 text-white hover:bg-gray-700' 
-                : 'bg-white text-gray-800 hover:bg-gray-100'
+                : 'bg-white text-blue-600 hover:bg-gray-100'
             }`}
             aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
           >
@@ -96,7 +98,7 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
             className={`p-2 rounded-md transition-colors ${
               theme === 'dark' 
                 ? 'text-white hover:bg-gray-800' 
-                : 'text-gray-800 hover:bg-gray-100'
+                : 'text-blue-600 hover:bg-gray-100'
             }`}
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
           >
@@ -109,8 +111,8 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
       {isOpen && (
         <div className={`md:hidden absolute top-full left-0 right-0 py-4 border-t ${
           theme === 'dark'
-            ? 'bg-black bg-opacity-95 backdrop-blur-md border-gray-800'
-            : 'bg-white bg-opacity-95 backdrop-blur-md border-gray-200'
+            ? 'bg-black bg-opacity-95 backdrop-blur-md border-gray-800 text-white'
+            : 'bg-white bg-opacity-95 backdrop-blur-md border-gray-200 text-blue-600'
         }`}>
           <div className="container mx-auto px-4 flex flex-col space-y-4">
             <a href="#services" className={`py-2 px-4 rounded-md transition-colors ${

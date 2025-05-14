@@ -10,7 +10,7 @@
   --light-bg: #e6f3ff;
   --light-surface: #ffffff;
   --text-light: #f0f0f0;
-  --text-dark: #333333;
+  --text-dark: #0072ff;
   --accent-color: #000000;
   --transition-fast: 0.3s ease;
 }
@@ -97,7 +97,7 @@ body.light-theme {
 }
 
 .light-theme .btn-secondary {
-  @apply bg-white hover:bg-gray-100 text-gray-800 border border-gray-200;
+  @apply bg-white hover:bg-gray-100 text-blue-600 border border-gray-200;
 }
 
 /* Cards and containers */
