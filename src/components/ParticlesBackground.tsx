@@ -17,10 +17,10 @@ const ParticlesBackground = () => {
           enable: true,
           zIndex: -1
         },
-        fpsLimit: 120,
+        fpsLimit: 60,
         particles: {
           number: {
-            value: 160,
+            value: 80,
             density: {
               enable: true,
               value_area: 800
@@ -37,7 +37,7 @@ const ParticlesBackground = () => {
             random: true,
             anim: {
               enable: true,
-              speed: 1,
+              speed: 0.5,
               opacity_min: 0.1,
               sync: false
             }
@@ -47,7 +47,7 @@ const ParticlesBackground = () => {
             random: true,
             anim: {
               enable: true,
-              speed: 2,
+              speed: 1,
               size_min: 0.1,
               sync: false
             }
@@ -61,7 +61,7 @@ const ParticlesBackground = () => {
           },
           move: {
             enable: true,
-            speed: 2,
+            speed: 1,
             direction: "none",
             random: true,
             straight: false,
@@ -75,11 +75,11 @@ const ParticlesBackground = () => {
           }
         },
         interactivity: {
-          detect_on: "canvas",
+          detect_on: "window",
           events: {
             onhover: {
               enable: true,
-              mode: "repulse"
+              mode: "grab"
             },
             onclick: {
               enable: true,
@@ -88,12 +88,14 @@ const ParticlesBackground = () => {
             resize: true
           },
           modes: {
-            repulse: {
-              distance: 100,
-              duration: 0.4
+            grab: {
+              distance: 200,
+              line_linked: {
+                opacity: 0.8
+              }
             },
             push: {
-              particles_nb: 4
+              particles_nb: 2
             }
           }
         },
