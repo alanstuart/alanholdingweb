@@ -7,6 +7,8 @@
   --primary-dark: #0072ff;
   --dark-bg: #121212;
   --dark-surface: #1e1e1e;
+  --light-bg: #e6f3ff;
+  --light-surface: #ffffff;
   --text-light: #f0f0f0;
   --text-dark: #333333;
   --accent-color: #000000;
@@ -20,7 +22,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-theme {
   background: linear-gradient(to bottom right, #000000, #1a1a2e);
+  color: var(--text-light);
+}
+
+body.light-theme {
+  background: linear-gradient(to bottom right, #e6f3ff, #ffffff);
+  color: var(--text-dark);
 }
 
 .min-h-screen {
@@ -48,47 +60,82 @@ body {
 
 /* Tech badge */
 .tech-badge {
-  @apply flex items-center justify-center w-12 h-12 rounded-full bg-gray-800 text-blue-400 transition-all duration-300;
+  @apply flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300;
+}
+
+.dark-theme .tech-badge {
+  @apply bg-gray-800 text-blue-400;
   box-shadow: 0 0 15px rgba(0, 198, 255, 0.3);
 }
 
-.tech-badge:hover {
-  @apply bg-gray-700 transform scale-110;
-  box-shadow: 0 0 25px rgba(0, 198, 255, 0.5);
+.light-theme .tech-badge {
+  @apply bg-white text-blue-600;
+  box-shadow: 0 0 15px rgba(0, 114, 255, 0.2);
 }
 
 /* Buttons */
 .btn-primary {
-  @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1;
+  @apply font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1;
+}
+
+.dark-theme .btn-primary {
+  @apply bg-blue-600 hover:bg-blue-700 text-white;
   box-shadow: 0 0 20px rgba(0, 198, 255, 0.3);
 }
 
-.btn-primary:hover {
-  box-shadow: 0 0 30px rgba(0, 198, 255, 0.5);
+.light-theme .btn-primary {
+  @apply bg-blue-500 hover:bg-blue-600 text-white;
+  box-shadow: 0 0 20px rgba(0, 114, 255, 0.2);
 }
 
 .btn-secondary {
-  @apply bg-gray-800 hover:bg-gray-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1;
+  @apply font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1;
+}
+
+.dark-theme .btn-secondary {
+  @apply bg-gray-800 hover:bg-gray-700 text-white;
+}
+
+.light-theme .btn-secondary {
+  @apply bg-white hover:bg-gray-100 text-gray-800 border border-gray-200;
 }
 
 /* Cards and containers */
 .service-card, .project-card, .testimonial-card {
   backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.dark-theme .service-card, 
+.dark-theme .project-card, 
+.dark-theme .testimonial-card {
   background: rgba(30, 30, 46, 0.6);
   border: 1px solid rgba(0, 198, 255, 0.1);
   box-shadow: 0 0 20px rgba(0, 198, 255, 0.1);
 }
 
-.service-card:hover, .project-card:hover, .testimonial-card:hover {
-  border-color: rgba(0, 198, 255, 0.3);
-  box-shadow: 0 0 30px rgba(0, 198, 255, 0.2);
+.light-theme .service-card, 
+.light-theme .project-card, 
+.light-theme .testimonial-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 114, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 114, 255, 0.1);
 }
 
 /* Navigation */
 .nav-link {
   position: relative;
+  transition: color 0.3s ease;
+}
+
+.dark-theme .nav-link {
   color: var(--text-light);
   text-shadow: 0 0 10px rgba(0, 198, 255, 0.3);
+}
+
+.light-theme .nav-link {
+  color: var(--text-dark);
+  text-shadow: none;
 }
 
 .nav-link::after {
@@ -100,7 +147,14 @@ body {
   height: 2px;
   background: linear-gradient(to right, var(--primary-light), var(--primary-dark));
   transition: width 0.3s ease;
+}
+
+.dark-theme .nav-link::after {
   box-shadow: 0 0 10px rgba(0, 198, 255, 0.5);
+}
+
+.light-theme .nav-link::after {
+  box-shadow: 0 0 10px rgba(0, 114, 255, 0.3);
 }
 
 .nav-link:hover::after {

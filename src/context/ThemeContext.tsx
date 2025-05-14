@@ -18,22 +18,17 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [theme, setTheme] = useState<Theme>('dark');
   
   useEffect(() => {
-    // Check if a theme is stored in localStorage
     const savedTheme = localStorage.getItem('theme') as Theme | null;
     if (savedTheme) {
       setTheme(savedTheme);
     } else {
-      // Check user's preferred color scheme
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       setTheme(prefersDark ? 'dark' : 'light');
     }
   }, []);
   
   useEffect(() => {
-    // Apply theme to body
-    document.body.className = theme === 'dark' ? 'dark-theme' : 'light-theme';
-    
-    // Save theme to localStorage
+    document.body.className = `${theme}-theme`;
     localStorage.setItem('theme', theme);
   }, [theme]);
   

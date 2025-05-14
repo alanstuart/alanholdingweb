@@ -11,9 +11,11 @@ import Chatbot from './components/Chatbot';
 import ParticlesBackground from './components/ParticlesBackground';
 import { ThemeProvider } from './context/ThemeContext';
 import { LanguageProvider } from './context/LanguageContext';
+import { useTheme } from './context/ThemeContext';
 
-function App() {
+function AppContent() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,34 +27,44 @@ function App() {
   }, []);
 
   return (
+    <div className={`min-h-screen relative overflow-x-hidden ${
+      theme === 'dark' 
+        ? 'text-white' 
+        : 'text-gray-800'
+    }`}>
+      {/* Background elements */}
+      <ParticlesBackground />
+      <div className="grid-overlay fixed inset-0 z-0 opacity-10"></div>
+      
+      {/* Content */}
+      <div className="relative z-10">
+        <Navbar isScrolled={isScrolled} />
+        <Hero />
+        <SpecialOffer />
+        <Services />
+        <Projects />
+        <Testimonials />
+        <Contact />
+        <Footer />
+      </div>
+      
+      <Chatbot />
+      <button 
+        className="back-to-top-btn"
+        aria-label="Back to top"
+      >
+        <span className="sr-only">Back to top</span>
+        ↑
+      </button>
+    </div>
+  );
+}
+
+function App() {
+  return (
     <ThemeProvider>
       <LanguageProvider>
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white relative overflow-x-hidden">
-          {/* Background elements */}
-          <ParticlesBackground />
-          <div className="grid-overlay fixed inset-0 z-0 opacity-10"></div>
-          
-          {/* Content */}
-          <div className="relative z-10">
-            <Navbar isScrolled={isScrolled} />
-            <Hero />
-            <SpecialOffer />
-            <Services />
-            <Projects />
-            <Testimonials />
-            <Contact />
-            <Footer />
-          </div>
-          
-          <Chatbot />
-          <button 
-            className="back-to-top-btn"
-            aria-label="Back to top"
-          >
-            <span className="sr-only">Back to top</span>
-            ↑
-          </button>
-        </div>
+        <AppContent />
       </LanguageProvider>
     </ThemeProvider>
   );
