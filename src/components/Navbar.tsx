@@ -44,7 +44,11 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
           <a href="#contact" className="nav-link">{language === 'en' ? 'Contact' : 'Contacto'}</a>
           <button 
             onClick={toggleLanguage}
-            className="p-2 rounded-full bg-gray-800 text-white hover:bg-gray-700 transition-colors"
+            className={`p-2 rounded-full transition-colors ${
+              theme === 'dark' 
+                ? 'bg-gray-800 text-white hover:bg-gray-700' 
+                : 'bg-white text-gray-800 hover:bg-gray-100'
+            }`}
             aria-label="Toggle language"
           >
             <Globe size={20} />
@@ -52,7 +56,11 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
           </button>
           <button 
             onClick={toggleTheme}
-            className="p-2 rounded-full bg-gray-800 text-white hover:bg-gray-700 transition-colors"
+            className={`p-2 rounded-full transition-colors ${
+              theme === 'dark' 
+                ? 'bg-gray-800 text-white hover:bg-gray-700' 
+                : 'bg-white text-gray-800 hover:bg-gray-100'
+            }`}
             aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
           >
             {theme === 'dark' ? '☀️' : '🌙'}
@@ -63,21 +71,33 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
         <div className="md:hidden flex items-center">
           <button 
             onClick={toggleLanguage}
-            className="p-2 mr-2 rounded-full bg-gray-800 text-white hover:bg-gray-700 transition-colors"
+            className={`p-2 mr-2 rounded-full transition-colors ${
+              theme === 'dark' 
+                ? 'bg-gray-800 text-white hover:bg-gray-700' 
+                : 'bg-white text-gray-800 hover:bg-gray-100'
+            }`}
             aria-label="Toggle language"
           >
             <Globe size={20} />
           </button>
           <button 
             onClick={toggleTheme}
-            className="p-2 mr-2 rounded-full bg-gray-800 text-white hover:bg-gray-700 transition-colors"
+            className={`p-2 mr-2 rounded-full transition-colors ${
+              theme === 'dark' 
+                ? 'bg-gray-800 text-white hover:bg-gray-700' 
+                : 'bg-white text-gray-800 hover:bg-gray-100'
+            }`}
             aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
           >
             {theme === 'dark' ? '☀️' : '🌙'}
           </button>
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="p-2 rounded-md text-white hover:bg-gray-800 transition-colors"
+            className={`p-2 rounded-md transition-colors ${
+              theme === 'dark' 
+                ? 'text-white hover:bg-gray-800' 
+                : 'text-gray-800 hover:bg-gray-100'
+            }`}
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -87,18 +107,30 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
       
       {/* Mobile Navigation Menu */}
       {isOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-black bg-opacity-95 backdrop-blur-md shadow-lg py-4 border-t border-gray-800">
+        <div className={`md:hidden absolute top-full left-0 right-0 py-4 border-t ${
+          theme === 'dark'
+            ? 'bg-black bg-opacity-95 backdrop-blur-md border-gray-800'
+            : 'bg-white bg-opacity-95 backdrop-blur-md border-gray-200'
+        }`}>
           <div className="container mx-auto px-4 flex flex-col space-y-4">
-            <a href="#services" className="py-2 px-4 hover:bg-gray-800 rounded-md transition-colors" onClick={() => setIsOpen(false)}>
+            <a href="#services" className={`py-2 px-4 rounded-md transition-colors ${
+              theme === 'dark' ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
+            }`} onClick={() => setIsOpen(false)}>
               {language === 'en' ? 'Services' : 'Servicios'}
             </a>
-            <a href="#projects" className="py-2 px-4 hover:bg-gray-800 rounded-md transition-colors" onClick={() => setIsOpen(false)}>
+            <a href="#projects" className={`py-2 px-4 rounded-md transition-colors ${
+              theme === 'dark' ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
+            }`} onClick={() => setIsOpen(false)}>
               {language === 'en' ? 'Projects' : 'Proyectos'}
             </a>
-            <a href="#testimonials" className="py-2 px-4 hover:bg-gray-800 rounded-md transition-colors" onClick={() => setIsOpen(false)}>
+            <a href="#testimonials" className={`py-2 px-4 rounded-md transition-colors ${
+              theme === 'dark' ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
+            }`} onClick={() => setIsOpen(false)}>
               {language === 'en' ? 'Testimonials' : 'Testimonios'}
             </a>
-            <a href="#contact" className="py-2 px-4 hover:bg-gray-800 rounded-md transition-colors" onClick={() => setIsOpen(false)}>
+            <a href="#contact" className={`py-2 px-4 rounded-md transition-colors ${
+              theme === 'dark' ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
+            }`} onClick={() => setIsOpen(false)}>
               {language === 'en' ? 'Contact' : 'Contacto'}
             </a>
           </div>
