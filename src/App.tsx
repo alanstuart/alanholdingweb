@@ -7,7 +7,6 @@ import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import SpecialOffer from './components/SpecialOffer';
-import Chatbot from './components/Chatbot';
 import ParticlesBackground from './components/ParticlesBackground';
 import { ThemeProvider } from './context/ThemeContext';
 import { LanguageProvider } from './context/LanguageContext';
@@ -48,7 +47,6 @@ function AppContent() {
         <Footer />
       </div>
       
-      <Chatbot />
       <button 
         className="back-to-top-btn"
         aria-label="Back to top"
