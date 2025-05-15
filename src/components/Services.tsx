@@ -157,7 +157,7 @@ const Services: React.FC = () => {
           <span className="badge bg-gradient-to-r from-blue-600 to-blue-400 text-white text-xs uppercase tracking-widest px-3 py-1 rounded-full">Services</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-4 mb-6">Expert Digital Solutions</h2>
           <p className="text-gray-400 max-w-xl mx-auto">
-            Transform your online presence with our comprehensive range of digital services. Each service is tailored to deliver maximum value and ROI for your business.
+            As an AI Automated Agency (AAA), we transform your online presence with our comprehensive range of digital services. Each service is tailored to deliver maximum value and ROI for your business through the power of automation and artificial intelligence.
           </p>
         </div>
         
