@@ -15,6 +15,7 @@ import { useTheme } from './context/ThemeContext';
 
 function AppContent() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDocumentReady, setIsDocumentReady] = useState(false);
   const { theme } = useTheme();
 
   useEffect(() => {
@@ -23,7 +24,17 @@ function AppContent() {
     };
     
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    // Check document ready state
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      setIsDocumentReady(true);
+    } else {
+      document.addEventListener('DOMContentLoaded', () => setIsDocumentReady(true));
+    }
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (
@@ -48,7 +59,7 @@ function AppContent() {
         <Footer />
       </div>
       
-      <BotpressChat />
+      {isDocumentReady && <BotpressChat />}
       
       <button 
         className="back-to-top-btn"

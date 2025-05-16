@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 declare global {
   interface Window {
@@ -9,34 +9,59 @@ declare global {
 }
 
 const BotpressChat = () => {
+  const [isDOMReady, setIsDOMReady] = useState(false);
+
   useEffect(() => {
-    // Initialize Botpress chat when component mounts
+    // Function to load Botpress script
+    const loadBotpressScript = () => {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.botpress.cloud/webchat/v2.4/inject.js';
+      script.async = true;
+      document.body.appendChild(script);
+    };
+
+    // Function to initialize chat
     const initializeChat = () => {
-      // Ensure body element exists before initialization
       if (window.botpressWebChat && document.body) {
-        setTimeout(() => {
-          window.botpressWebChat.init({
-            // The configuration will be loaded from the external script
-            // We don't need to specify any config here as it's in the HLJBJRKW.js file
-          });
-        }, 100); // Small delay to ensure DOM is fully loaded
+        window.botpressWebChat.init({
+          composerPlaceholder: "Chat with us",
+          botConversationDescription: "This is a bot",
+          botId: "HLJBJRKW",
+          hostUrl: "https://cdn.botpress.cloud/webchat/v2.4",
+          messagingUrl: "https://messaging.botpress.cloud",
+          clientId: "HLJBJRKW",
+          webhookId: "HLJBJRKW",
+          lazySocket: true,
+          themeName: "prism",
+          frontendVersion: "v2.4",
+          showPoweredBy: false,
+          theme: "prism",
+          themeColor: "#2563eb"
+        });
       }
     };
 
-    // Check if Botpress is already loaded
-    if (window.botpressWebChat) {
-      initializeChat();
+    // Check if DOM is ready
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      setIsDOMReady(true);
+      loadBotpressScript();
     } else {
-      // If not loaded yet, wait for it
-      window.addEventListener('botpress.ready', initializeChat);
+      document.addEventListener('DOMContentLoaded', () => {
+        setIsDOMReady(true);
+        loadBotpressScript();
+      });
     }
+
+    // Initialize chat when script is loaded
+    window.addEventListener('botpress.ready', initializeChat);
 
     return () => {
       window.removeEventListener('botpress.ready', initializeChat);
     };
   }, []);
 
-  // Return a div that will be present in the DOM
+  if (!isDOMReady) return null;
+
   return <div id="botpress-webchat-container" />;
 };
 
