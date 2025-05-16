@@ -8,6 +8,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import SpecialOffer from './components/SpecialOffer';
 import ParticlesBackground from './components/ParticlesBackground';
+import BotpressChat from './components/BotpressChat';
 import { ThemeProvider } from './context/ThemeContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { useTheme } from './context/ThemeContext';
@@ -46,6 +47,8 @@ function AppContent() {
         <Contact />
         <Footer />
       </div>
+      
+      <BotpressChat />
       
       <button 
         className="back-to-top-btn"
