@@ -36,14 +36,14 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
       {pricing && (
         <div className="space-y-4 mt-4">
           <div className="p-4 bg-gray-900 rounded-lg">
-            <h4 className="font-bold mb-2">Basic Package - {pricing.basic}</h4>
+            <h4 className="font-bold mb-2">Basic Package {pricing.basic}</h4>
             <ul className="text-sm text-gray-400 space-y-2">
               {title === "Web Development" && (
                 <>
-                  <li>• 5-page responsive website</li>
+                  <li>• 5 page responsive website</li>
                   <li>• Basic SEO setup</li>
                   <li>• Contact form integration</li>
-                  <li>• Mobile-friendly design</li>
+                  <li>• Mobile friendly design</li>
                   <li>• 2 rounds of revisions</li>
                   <li>• 1 month of support</li>
                 </>
@@ -72,8 +72,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
           </div>
           
           <div className="p-4 bg-gray-900 rounded-lg border border-blue-500 relative">
-            <div className="absolute -top-3 right-4 bg-blue-500 text-xs px-2 py-1 rounded-full">Most Popular</div>
-            <h4 className="font-bold mb-2">Standard Package - {pricing.standard}</h4>
+            <div className="absolute top-3 right-4 bg-blue-500 text-xs px-2 py-1 rounded-full">Most Popular</div>
+            <h4 className="font-bold mb-2">Standard Package {pricing.standard}</h4>
             <ul className="text-sm text-gray-400 space-y-2">
               {title === "Web Development" && (
                 <>
@@ -87,8 +87,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
               )}
               {title === "AI Chatbots" && (
                 <>
-                  <li>• Intelligent multi-functional chatbot</li>
-                  <li>• Multi-platform integration</li>
+                  <li>• Intelligent multi functional chatbot</li>
+                  <li>• Multi platform integration</li>
                   <li>• 10 custom conversation flows</li>
                   <li>• Advanced analytics & reporting</li>
                   <li>• Basic training session</li>
@@ -109,13 +109,13 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
           </div>
           
           <div className="p-4 bg-gray-900 rounded-lg">
-            <h4 className="font-bold mb-2">Premium Package - {pricing.premium}</h4>
+            <h4 className="font-bold mb-2">Premium Package {pricing.premium}</h4>
             <ul className="text-sm text-gray-400 space-y-2">
               {title === "Web Development" && (
                 <>
                   <li>• Unlimited pages</li>
                   <li>• Full SEO suite & strategy</li>
-                  <li>• E-commerce functionality</li>
+                  <li>• E commerce functionality</li>
                   <li>• Custom animations</li>
                   <li>• Unlimited revisions</li>
                   <li>• 6 months of support</li>
@@ -124,7 +124,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
               {title === "AI Chatbots" && (
                 <>
                   <li>• Advanced AI system with learning capabilities</li>
-                  <li>• Full multi-platform integration</li>
+                  <li>• Full multi platform integration</li>
                   <li>• Unlimited conversation flows</li>
                   <li>• Custom analytics dashboard</li>
                   <li>• Full team training</li>
@@ -165,11 +165,11 @@ const Services: React.FC = () => {
           <ServiceCard 
             icon={<Code size={40} />} 
             title="Web Development" 
-            description="Custom-built websites that combine stunning design with powerful functionality. Each site is optimized for performance, user experience, and conversion."
+            description="Custom built websites that combine stunning design with powerful functionality. Each site is optimized for performance, user experience, and conversion."
             features={[
               "Responsive design for all devices",
               "Fast loading speeds",
-              "SEO-friendly structure",
+              "SEO friendly structure",
               "Secure & scalable architecture"
             ]}
             pricing={{
@@ -185,7 +185,7 @@ const Services: React.FC = () => {
             description="Intelligent chatbots that transform your customer service. Available 24/7, they handle inquiries, qualify leads, and boost engagement automatically."
             features={[
               "Natural language processing",
-              "Multi-platform integration",
+              "Multi platform integration",
               "Custom conversation flows",
               "Analytics & performance tracking"
             ]}
@@ -201,8 +201,8 @@ const Services: React.FC = () => {
             title="Copywriting" 
             description="Strategic content that converts visitors into customers. From website copy to blogs, we create engaging content that ranks and resonates."
             features={[
-              "SEO-optimized content",
-              "Conversion-focused copy",
+              "SEO optimized content",
+              "Conversion focused copy",
               "Brand voice consistency",
               "Regular content updates"
             ]}
@@ -216,10 +216,10 @@ const Services: React.FC = () => {
           <ServiceCard 
             icon={<Search size={40} />} 
             title="SEO Services" 
-            description="Data-driven SEO strategies that improve your search rankings and drive organic traffic to your website."
+            description="Data driven SEO strategies that improve your search rankings and drive organic traffic to your website."
             features={[
               "Keyword research & analysis",
-              "On-page optimization",
+              "On page optimization",
               "Technical SEO improvements",
               "Monthly performance reports"
             ]}
@@ -240,7 +240,7 @@ const Services: React.FC = () => {
           <ServiceCard 
             icon={<Lock size={40} />} 
             title="Maintenance & Support" 
-            description="Keep your digital assets secure and up-to-date with our comprehensive maintenance and support services."
+            description="Keep your digital assets secure and up to date with our comprehensive maintenance and support services."
             features={[
               "Regular security updates",
               "Performance monitoring",

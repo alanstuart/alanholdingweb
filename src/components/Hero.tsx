@@ -5,7 +5,6 @@ const Hero: React.FC = () => {
   const typewriterRef = useRef<HTMLSpanElement>(null);
   
   useEffect(() => {
-    // Simple typewriter effect
     if (!typewriterRef.current) return;
     
     const phrases = [
@@ -28,24 +27,22 @@ const Hero: React.FC = () => {
           typewriterRef.current.textContent = currentPhrase.substring(0, charIndex - 1);
           charIndex--;
         }
-        typingSpeed = 50; // faster when deleting
+        typingSpeed = 50;
       } else {
         if (typewriterRef.current) {
           typewriterRef.current.textContent = currentPhrase.substring(0, charIndex + 1);
           charIndex++;
         }
-        typingSpeed = 150; // slower when typing
+        typingSpeed = 150;
       }
       
       if (!isDeleting && charIndex === currentPhrase.length) {
-        // Pause at end of phrase
         isDeleting = true;
-        typingSpeed = 1500; // pause before deleting
+        typingSpeed = 1500;
       } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
-        // Move to next phrase
         phraseIndex = (phraseIndex + 1) % phrases.length;
-        typingSpeed = 500; // pause before typing new phrase
+        typingSpeed = 500;
       }
       
       setTimeout(type, typingSpeed);
@@ -56,7 +53,6 @@ const Hero: React.FC = () => {
   
   return (
     <section id="home" className="min-h-screen flex items-center justify-center pt-20 pb-10 px-4 relative overflow-hidden">
-      {/* Tech-inspired background elements */}
       <div className="absolute inset-0 z-0">
         <div className="code-rain"></div>
         <div className="circuit-pattern"></div>
@@ -76,7 +72,7 @@ const Hero: React.FC = () => {
               <span className="cursor">|</span>
             </h2>
             <p className="text-lg text-gray-300 mb-8 max-w-lg">
-              Not just websites that look good—but digital solutions engineered to deliver real business results. 
+              Not just websites that look good but digital solutions engineered to deliver real business results. 
               From site architecture to conversion copywriting, every aspect is optimized for performance.
             </p>
             
@@ -129,11 +125,11 @@ const Hero: React.FC = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="stats-card absolute -bottom-5 -left-5 bg-black bg-opacity-80 backdrop-blur-md p-4 rounded-lg border border-gray-800 shadow-lg">
+              <div className="stats-card absolute bottom-5 left-5 bg-black bg-opacity-80 backdrop-blur-md p-4 rounded-lg border border-gray-800 shadow-lg">
                 <div className="text-sm text-gray-400">Projects Delivered</div>
                 <div className="text-2xl font-bold">50+</div>
               </div>
-              <div className="stats-card absolute -top-5 -right-5 bg-black bg-opacity-80 backdrop-blur-md p-4 rounded-lg border border-gray-800 shadow-lg">
+              <div className="stats-card absolute top-5 right-5 bg-black bg-opacity-80 backdrop-blur-md p-4 rounded-lg border border-gray-800 shadow-lg">
                 <div className="text-sm text-gray-400">Client Satisfaction</div>
                 <div className="text-2xl font-bold">100%</div>
               </div>
