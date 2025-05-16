@@ -12,11 +12,14 @@ const BotpressChat = () => {
   useEffect(() => {
     // Initialize Botpress chat when component mounts
     const initializeChat = () => {
-      if (window.botpressWebChat) {
-        window.botpressWebChat.init({
-          // The configuration will be loaded from the external script
-          // We don't need to specify any config here as it's in the HLJBJRKW.js file
-        });
+      // Ensure body element exists before initialization
+      if (window.botpressWebChat && document.body) {
+        setTimeout(() => {
+          window.botpressWebChat.init({
+            // The configuration will be loaded from the external script
+            // We don't need to specify any config here as it's in the HLJBJRKW.js file
+          });
+        }, 100); // Small delay to ensure DOM is fully loaded
       }
     };
 
@@ -33,7 +36,8 @@ const BotpressChat = () => {
     };
   }, []);
 
-  return null;
+  // Return a div that will be present in the DOM
+  return <div id="botpress-webchat-container" />;
 };
 
 export default BotpressChat;
