@@ -9,12 +9,23 @@ const SpecialOffer: React.FC = () => {
     seconds: 0
   });
 
-  // Set end date to 30 days from now
   useEffect(() => {
-    const calculateTimeLeft = () => {
-      const endDate = new Date();
-      endDate.setDate(endDate.getDate() + 30);
+    // Get or set end date in localStorage
+    const getEndDate = () => {
+      const savedEndDate = localStorage.getItem('offerEndDate');
+      if (savedEndDate) {
+        return new Date(savedEndDate);
+      }
       
+      // If no saved date, set to 30 days from now
+      const newEndDate = new Date();
+      newEndDate.setDate(newEndDate.getDate() + 30);
+      localStorage.setItem('offerEndDate', newEndDate.toISOString());
+      return newEndDate;
+    };
+
+    const calculateTimeLeft = () => {
+      const endDate = getEndDate();
       const difference = +endDate - +new Date();
       
       if (difference > 0) {
@@ -24,6 +35,10 @@ const SpecialOffer: React.FC = () => {
           minutes: Math.floor((difference / 1000 / 60) % 60),
           seconds: Math.floor((difference / 1000) % 60)
         });
+      } else {
+        // Offer has expired
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        localStorage.removeItem('offerEndDate'); // Clear expired date
       }
     };
     
@@ -74,19 +89,19 @@ const SpecialOffer: React.FC = () => {
               
               <div className="grid grid-cols-4 gap-2 text-center">
                 <div className="bg-gray-900 p-3 rounded-lg">
-                  <div className="text-2xl font-bold">{timeLeft.days}</div>
+                  <div className="text-2xl font-bold">{String(timeLeft.days).padStart(2, '0')}</div>
                   <div className="text-xs text-gray-400">Days</div>
                 </div>
                 <div className="bg-gray-900 p-3 rounded-lg">
-                  <div className="text-2xl font-bold">{timeLeft.hours}</div>
+                  <div className="text-2xl font-bold">{String(timeLeft.hours).padStart(2, '0')}</div>
                   <div className="text-xs text-gray-400">Hours</div>
                 </div>
                 <div className="bg-gray-900 p-3 rounded-lg">
-                  <div className="text-2xl font-bold">{timeLeft.minutes}</div>
+                  <div className="text-2xl font-bold">{String(timeLeft.minutes).padStart(2, '0')}</div>
                   <div className="text-xs text-gray-400">Mins</div>
                 </div>
                 <div className="bg-gray-900 p-3 rounded-lg">
-                  <div className="text-2xl font-bold">{timeLeft.seconds}</div>
+                  <div className="text-2xl font-bold">{String(timeLeft.seconds).padStart(2, '0')}</div>
                   <div className="text-xs text-gray-400">Secs</div>
                 </div>
               </div>
