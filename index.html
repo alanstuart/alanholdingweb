@@ -11,8 +11,19 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     <script>
-      window.addEventListener('DOMContentLoaded', function() {
-        window.botpressWebChat.init({
+      // Function to check if Botpress is loaded
+      function checkBotpressLoaded() {
+        if (typeof window.botpress !== 'undefined') {
+          initializeBotpress();
+        } else {
+          // Check again in 100ms
+          setTimeout(checkBotpressLoaded, 100);
+        }
+      }
+      
+      // Function to initialize Botpress
+      function initializeBotpress() {
+        window.botpress.init({
           "botId": "c23553ca-8e78-494d-9cc1-b5d6341c54f5",
           "configuration": {
             "botName": "Oliver",
@@ -32,21 +43,26 @@
           },
           "clientId": "618d8e6d-457b-449e-b895-4cf79049220d"
         });
-
-        window.botpressWebChat.onEvent(
-          'webchatReady',
-          () => {
-            window.botpressWebChat.sendEvent({ type: 'show' });
-            
-            setTimeout(() => {
-              window.botpressWebChat.sendMessage({
-                type: 'text',
-                text: 'Welcome to Alan Holding Digital Solutions! I\'m Oliver, your personal digital advisor. How can I help you today?'
-              });
-            }, 1000);
-          },
-          true
-        );
+        
+        // Listen for when webchat is ready
+        window.botpress.on("webchat:ready", function() {
+          // Open the chat automatically
+          window.botpress.open();
+          
+          // Send welcome message after a delay
+          setTimeout(function() {
+            window.botpress.sendPayload({
+              type: 'text',
+              text: 'Welcome to Alan Holding Digital Solutions! I\'m Oliver, your personal digital advisor. How can I help you today?'
+            });
+          }, 1000);
+        });
+      }
+      
+      // Wait until document is fully loaded
+      document.addEventListener('DOMContentLoaded', function() {
+        // Start checking if Botpress is loaded
+        setTimeout(checkBotpressLoaded, 500);
       });
     </script>
   </body>
