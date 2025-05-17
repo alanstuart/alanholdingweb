@@ -10,23 +10,24 @@ const SpecialOffer: React.FC = () => {
   });
 
   useEffect(() => {
-    // Get or set end date in localStorage
-    const getEndDate = () => {
-      const savedEndDate = localStorage.getItem('offerEndDate');
-      if (savedEndDate) {
-        return new Date(savedEndDate);
+    // Get or set start date in localStorage
+    const getStartDate = () => {
+      const savedStartDate = localStorage.getItem('offerStartDate');
+      if (savedStartDate) {
+        return new Date(savedStartDate);
       }
       
-      // If no saved date, set to 30 days from now
-      const newEndDate = new Date();
-      newEndDate.setDate(newEndDate.getDate() + 30);
-      localStorage.setItem('offerEndDate', newEndDate.toISOString());
-      return newEndDate;
+      // If no saved date, set to current date
+      const newStartDate = new Date();
+      localStorage.setItem('offerStartDate', newStartDate.toISOString());
+      return newStartDate;
     };
 
     const calculateTimeLeft = () => {
-      const endDate = getEndDate();
-      const difference = +endDate - +new Date();
+      const startDate = getStartDate();
+      const endDate = new Date(startDate.getTime() + (30 * 24 * 60 * 60 * 1000)); // 30 days from start
+      const now = new Date();
+      const difference = +endDate - +now;
       
       if (difference > 0) {
         setTimeLeft({
@@ -38,7 +39,7 @@ const SpecialOffer: React.FC = () => {
       } else {
         // Offer has expired
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-        localStorage.removeItem('offerEndDate'); // Clear expired date
+        localStorage.removeItem('offerStartDate'); // Clear expired date
       }
     };
     
@@ -53,7 +54,6 @@ const SpecialOffer: React.FC = () => {
       <div className="container mx-auto">
         <div className="bg-gradient-to-r from-gray-900 to-black border border-gray-800 rounded-xl overflow-hidden">
           <div className="special-offer-grid p-6 md:p-8 relative">
-            {/* Black corner ribbon replacing orange */}
             <div className="absolute top-0 right-0">
               <div className="bg-black text-white font-bold py-1 px-8 text-xs uppercase tracking-wider transform rotate-45 translate-x-5 translate-y-4 shadow-md">
                 Limited Offer
