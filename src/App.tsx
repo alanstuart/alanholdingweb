@@ -8,14 +8,12 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import SpecialOffer from './components/SpecialOffer';
 import ParticlesBackground from './components/ParticlesBackground';
-import BotpressChat from './components/BotpressChat';
 import { ThemeProvider } from './context/ThemeContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { useTheme } from './context/ThemeContext';
 
 function AppContent() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isDocumentReady, setIsDocumentReady] = useState(false);
   const { theme } = useTheme();
 
   useEffect(() => {
@@ -24,13 +22,6 @@ function AppContent() {
     };
     
     window.addEventListener('scroll', handleScroll);
-
-    // Check document ready state
-    if (document.readyState === 'complete' || document.readyState === 'interactive') {
-      setIsDocumentReady(true);
-    } else {
-      document.addEventListener('DOMContentLoaded', () => setIsDocumentReady(true));
-    }
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -58,8 +49,6 @@ function AppContent() {
         <Contact />
         <Footer />
       </div>
-      
-      {isDocumentReady && <BotpressChat />}
       
       <button 
         className="back-to-top-btn"
