@@ -12,39 +12,41 @@
     <script type="module" src="/src/main.tsx"></script>
     <script>
       window.addEventListener('DOMContentLoaded', function() {
-        setTimeout(() => {
-          window.botpress.init({
-            "botId": "c23553ca-8e78-494d-9cc1-b5d6341c54f5",
-            "configuration": {
-              "botName": "Oliver",
-              "website": {},
-              "email": {},
-              "phone": {},
-              "termsOfService": {},
-              "privacyPolicy": {},
-              "color": "#5eb1ef",
-              "variant": "solid",
-              "themeMode": "dark",
-              "fontFamily": "inter",
-              "radius": 2.5,
-              "showConversationStart": true,
-              "enableWelcome": true,
-              "hideWidget": false
-            },
-            "clientId": "618d8e6d-457b-449e-b895-4cf79049220d"
-          });
-          
-          window.botpress.on("webchat:ready", () => {
-            window.botpress.open();
+        window.botpressWebChat.init({
+          "botId": "c23553ca-8e78-494d-9cc1-b5d6341c54f5",
+          "configuration": {
+            "botName": "Oliver",
+            "website": {},
+            "email": {},
+            "phone": {},
+            "termsOfService": {},
+            "privacyPolicy": {},
+            "color": "#5eb1ef",
+            "variant": "solid",
+            "themeMode": "dark",
+            "fontFamily": "inter",
+            "radius": 2.5,
+            "showConversationStart": true,
+            "enableWelcome": true,
+            "hideWidget": false
+          },
+          "clientId": "618d8e6d-457b-449e-b895-4cf79049220d"
+        });
+
+        window.botpressWebChat.onEvent(
+          'webchatReady',
+          () => {
+            window.botpressWebChat.sendEvent({ type: 'show' });
             
             setTimeout(() => {
-              window.botpress.sendPayload({
+              window.botpressWebChat.sendMessage({
                 type: 'text',
                 text: 'Welcome to Alan Holding Digital Solutions! I\'m Oliver, your personal digital advisor. How can I help you today?'
               });
             }, 1000);
-          });
-        }, 500);
+          },
+          true
+        );
       });
     </script>
   </body>
