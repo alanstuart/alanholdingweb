@@ -64,8 +64,8 @@ const Hero: React.FC = () => {
             <div className="badge text-xs uppercase tracking-widest mb-4 inline-block px-3 py-1 rounded-full bg-gradient-to-r from-blue-600 to-blue-400">
               Professional Web Solutions
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
-              Transforming Ideas into Digital Reality
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600">
+              Transformando ideas en experiencias digitales que atraen clientes
             </h1>
             <h2 className="text-xl md:text-2xl text-blue-300 mb-6 font-light">
               <span ref={typewriterRef} className="typewriter"></span>
