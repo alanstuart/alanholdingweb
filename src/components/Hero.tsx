@@ -65,7 +65,7 @@ const Hero: React.FC = () => {
               Professional Web Solutions
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600">
-              Transformando ideas en experiencias digitales que atraen clientes
+              Transforming Ideas into Digital Experiences that Drive Growth
             </h1>
             <h2 className="text-xl md:text-2xl text-blue-300 mb-6 font-light">
               <span ref={typewriterRef} className="typewriter"></span>
