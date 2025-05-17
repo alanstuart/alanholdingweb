@@ -13,39 +13,53 @@
     <script>
       function waitForBotpress() {
         if (typeof window.botpress !== 'undefined') {
-          // Initialize Botpress
+          // Initialize with configuration
           window.botpress.init({
             "botId": "c23553ca-8e78-494d-9cc1-b5d6341c54f5",
             "configuration": {
               "botName": "Oliver",
-              "website": {},
-              "email": {},
-              "phone": {},
-              "termsOfService": {},
-              "privacyPolicy": {},
               "color": "#5eb1ef",
               "variant": "solid",
               "themeMode": "dark",
               "fontFamily": "inter",
               "radius": 2.5,
+              
+              // Welcome message settings
               "showConversationStart": true,
-              "welcomeMessage": "Welcome to Alan Holding Digital Solutions! I'm Oliver, your personal digital advisor. How can I help you today?"
+              "enableWelcome": true,
+              "welcomeMessage": "Welcome to Alan Holding Digital Solutions! I'm Oliver, your personal digital advisor. How can I help you today?",
+              
+              // Force conversation to start
+              "conversationDuration": 0,
+              "disableAnimations": true,
+              "forceOpen": true
             },
             "clientId": "618d8e6d-457b-449e-b895-4cf79049220d"
           });
           
-          // Listen for the webchat:ready event
+          // When webchat is ready, manually show it and trigger conversation
           window.botpress.on("webchat:ready", function() {
-            // Open the chat window
-            window.botpress.open();
+            // First show the webchat
+            window.botpress.sendEvent({ type: 'show' });
+            
+            // Force a new conversation reset after a short delay
+            setTimeout(function() {
+              window.botpress.sendEvent({ type: 'conversation_reset', value: true });
+              
+              // Small additional delay to allow reset to complete
+              setTimeout(function() {
+                // This forces Botpress to reload the conversation, which should trigger the welcome message
+                window.botpress.sendEvent({ type: 'view', value: 'information' });
+                window.botpress.sendEvent({ type: 'view', value: 'chat' });
+              }, 300);
+            }, 700);
           });
         } else {
-          // Wait and check again
           setTimeout(waitForBotpress, 250);
         }
       }
       
-      // Start checking when the page is loaded
+      // Start the process when the page loads
       window.addEventListener('DOMContentLoaded', function() {
         setTimeout(waitForBotpress, 500);
       });
