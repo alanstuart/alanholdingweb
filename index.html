@@ -11,58 +11,43 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     <script>
-      // Function to check if Botpress is loaded
-      function checkBotpressLoaded() {
+      function waitForBotpress() {
         if (typeof window.botpress !== 'undefined') {
-          initializeBotpress();
+          // Initialize Botpress
+          window.botpress.init({
+            "botId": "c23553ca-8e78-494d-9cc1-b5d6341c54f5",
+            "configuration": {
+              "botName": "Oliver",
+              "website": {},
+              "email": {},
+              "phone": {},
+              "termsOfService": {},
+              "privacyPolicy": {},
+              "color": "#5eb1ef",
+              "variant": "solid",
+              "themeMode": "dark",
+              "fontFamily": "inter",
+              "radius": 2.5,
+              "showConversationStart": true,
+              "welcomeMessage": "Welcome to Alan Holding Digital Solutions! I'm Oliver, your personal digital advisor. How can I help you today?"
+            },
+            "clientId": "618d8e6d-457b-449e-b895-4cf79049220d"
+          });
+          
+          // Listen for the webchat:ready event
+          window.botpress.on("webchat:ready", function() {
+            // Open the chat window
+            window.botpress.open();
+          });
         } else {
-          // Check again in 100ms
-          setTimeout(checkBotpressLoaded, 100);
+          // Wait and check again
+          setTimeout(waitForBotpress, 250);
         }
       }
       
-      // Function to initialize Botpress
-      function initializeBotpress() {
-        window.botpress.init({
-          "botId": "c23553ca-8e78-494d-9cc1-b5d6341c54f5",
-          "configuration": {
-            "botName": "Oliver",
-            "website": {},
-            "email": {},
-            "phone": {},
-            "termsOfService": {},
-            "privacyPolicy": {},
-            "color": "#5eb1ef",
-            "variant": "solid",
-            "themeMode": "dark",
-            "fontFamily": "inter",
-            "radius": 2.5,
-            "showConversationStart": true,
-            "enableWelcome": true,
-            "hideWidget": false
-          },
-          "clientId": "618d8e6d-457b-449e-b895-4cf79049220d"
-        });
-        
-        // Listen for when webchat is ready
-        window.botpress.on("webchat:ready", function() {
-          // Open the chat automatically
-          window.botpress.open();
-          
-          // Send welcome message after a delay
-          setTimeout(function() {
-            window.botpress.sendPayload({
-              type: 'text',
-              text: 'Welcome to Alan Holding Digital Solutions! I\'m Oliver, your personal digital advisor. How can I help you today?'
-            });
-          }, 1000);
-        });
-      }
-      
-      // Wait until document is fully loaded
-      document.addEventListener('DOMContentLoaded', function() {
-        // Start checking if Botpress is loaded
-        setTimeout(checkBotpressLoaded, 500);
+      // Start checking when the page is loaded
+      window.addEventListener('DOMContentLoaded', function() {
+        setTimeout(waitForBotpress, 500);
       });
     </script>
   </body>
