@@ -1,5 +1,5 @@
 import React from 'react';
-import { Code, Globe, Search, Cpu, BarChart, Lock, MessageSquare, PenTool } from 'lucide-react';
+import { Code, Globe, Search, Cpu, BarChart, Lock } from 'lucide-react';
 
 interface ServiceCardProps {
   icon: React.ReactNode;
@@ -48,26 +48,6 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
                   <li>• 1 month of support</li>
                 </>
               )}
-              {title === "AI Chatbots" && (
-                <>
-                  <li>• Simple customer service chatbot</li>
-                  <li>• Website or WhatsApp integration</li>
-                  <li>• 5 predefined conversation flows</li>
-                  <li>• Basic analytics dashboard</li>
-                  <li>• 1 revision included</li>
-                  <li>• Email support</li>
-                </>
-              )}
-              {title === "Copywriting" && (
-                <>
-                  <li>• 5 website pages</li>
-                  <li>• Basic SEO optimization</li>
-                  <li>• Meta descriptions</li>
-                  <li>• 2 revisions per page</li>
-                  <li>• Brand voice guide</li>
-                  <li>• 2 weeks delivery</li>
-                </>
-              )}
             </ul>
           </div>
           
@@ -83,26 +63,6 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
                   <li>• Social media integration</li>
                   <li>• 4 rounds of revisions</li>
                   <li>• 3 months of support</li>
-                </>
-              )}
-              {title === "AI Chatbots" && (
-                <>
-                  <li>• Intelligent multi functional chatbot</li>
-                  <li>• Multi platform integration</li>
-                  <li>• 10 custom conversation flows</li>
-                  <li>• Advanced analytics & reporting</li>
-                  <li>• Basic training session</li>
-                  <li>• 2 months of support</li>
-                </>
-              )}
-              {title === "Copywriting" && (
-                <>
-                  <li>• 10 website pages</li>
-                  <li>• Keyword research & implementation</li>
-                  <li>• 4 blog posts</li>
-                  <li>• 3 revisions per piece</li>
-                  <li>• Content calendar</li>
-                  <li>• 3 weeks delivery</li>
                 </>
               )}
             </ul>
@@ -121,26 +81,6 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
                   <li>• 6 months of support</li>
                 </>
               )}
-              {title === "AI Chatbots" && (
-                <>
-                  <li>• Advanced AI system with learning capabilities</li>
-                  <li>• Full multi platform integration</li>
-                  <li>• Unlimited conversation flows</li>
-                  <li>• Custom analytics dashboard</li>
-                  <li>• Full team training</li>
-                  <li>• 6 months of support</li>
-                </>
-              )}
-              {title === "Copywriting" && (
-                <>
-                  <li>• Complete website content</li>
-                  <li>• Full SEO content strategy</li>
-                  <li>• 8 monthly blog posts</li>
-                  <li>• Social media content pack</li>
-                  <li>• Unlimited revisions</li>
-                  <li>• Priority support</li>
-                </>
-              )}
             </ul>
           </div>
         </div>
@@ -157,7 +97,7 @@ const Services: React.FC = () => {
           <span className="badge bg-gradient-to-r from-blue-600 to-blue-400 text-white text-xs uppercase tracking-widest px-3 py-1 rounded-full">Services</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-4 mb-6">Expert Digital Solutions</h2>
           <p className="text-gray-400 max-w-xl mx-auto">
-            As an AI Automated Agency (AAA), we transform your online presence with our comprehensive range of digital services. Each service is tailored to deliver maximum value and ROI for your business through the power of automation and artificial intelligence.
+            Transform your online presence with our comprehensive range of digital services. Each service is tailored to deliver maximum value and ROI for your business.
           </p>
         </div>
         
@@ -176,40 +116,6 @@ const Services: React.FC = () => {
               basic: "£497",
               standard: "£997",
               premium: "£1,997"
-            }}
-          />
-          
-          <ServiceCard 
-            icon={<MessageSquare size={40} />} 
-            title="AI Chatbots" 
-            description="Intelligent chatbots that transform your customer service. Available 24/7, they handle inquiries, qualify leads, and boost engagement automatically."
-            features={[
-              "Natural language processing",
-              "Multi platform integration",
-              "Custom conversation flows",
-              "Analytics & performance tracking"
-            ]}
-            pricing={{
-              basic: "£497",
-              standard: "£997",
-              premium: "£1,997"
-            }}
-          />
-          
-          <ServiceCard 
-            icon={<PenTool size={40} />} 
-            title="Copywriting" 
-            description="Strategic content that converts visitors into customers. From website copy to blogs, we create engaging content that ranks and resonates."
-            features={[
-              "SEO optimized content",
-              "Conversion focused copy",
-              "Brand voice consistency",
-              "Regular content updates"
-            ]}
-            pricing={{
-              basic: "£297",
-              standard: "£597",
-              premium: "£997"
             }}
           />
           
