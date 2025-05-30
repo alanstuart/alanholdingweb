@@ -1,7 +1,16 @@
 import React from 'react';
 import { Phone, MessageSquare, Calendar, Clock, Globe, UserCheck } from 'lucide-react';
+import TypeWriter from './TypeWriter';
 
 const Hero: React.FC = () => {
+  const typingPhrases = [
+    "Handling Business Like a Pro...",
+    "Turning Missed Calls into Booked Clients...",
+    "Speaking Fluent English and Spanish...",
+    "Your AI Receptionist at Work...",
+    "No Breaks. No Excuses. Just Results..."
+  ];
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center pt-20 pb-10 px-4 relative overflow-hidden">
       <div className="absolute inset-0 z-0">
@@ -18,6 +27,10 @@ const Hero: React.FC = () => {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600">
             Your Business Is Losing Sales by Missing Calls Let AI Handle Them 24/7
           </h1>
+
+          <div className="mb-8">
+            <TypeWriter phrases={typingPhrases} />
+          </div>
           
           <p className="text-xl text-blue-300 mb-12">
             AI voice and chat agents can speak English and Spanish, answer calls, book appointments, and collect leads all with the professionalism of a human assistant.
