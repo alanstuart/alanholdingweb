@@ -23,7 +23,7 @@ const Services: React.FC = () => {
             
             <h3 className="text-xl font-bold mb-4">AI Voice Agents</h3>
             <p className="text-gray-400 leading-relaxed">
-              Automate phone calls with intelligent agents that answer, book appointments, and capture leads 24/7 — in English and Spanish.
+              Automate phone calls with intelligent agents that answer, book appointments, and capture leads 24/7 in English and Spanish.
             </p>
           </div>
 
@@ -35,7 +35,7 @@ const Services: React.FC = () => {
             
             <h3 className="text-xl font-bold mb-4">Smart Chatbots</h3>
             <p className="text-gray-400 leading-relaxed">
-              Engage website visitors instantly using chatbots that qualify leads, answer FAQs, and drive conversions — even while you sleep.
+              Engage website visitors instantly using chatbots that qualify leads, answer FAQs, and drive conversions even while you sleep.
             </p>
           </div>
 
