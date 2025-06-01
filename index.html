@@ -1,21 +1,27 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alan Holding Digital Solutions | Web Development & AI Chatbots</title>
+    <title>Alan Holding Digital Solutions</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+  <body class="bg-gray-900 text-white font-sans text-center p-8">
+    <div class="max-w-xl mx-auto space-y-6">
+      <h1 class="text-3xl font-bold text-cyan-400">Alan Holding Digital Solutions</h1>
+      <p class="text-lg">
+        AI voice and chat agents that answer calls 24/7, speak English & Spanish,
+        book appointments, and close leads like a pro.
+      </p>
+      <p class="text-sm text-gray-300">Click the mic button below to speak with Oliver.</p>
 
-    <!-- Custom button for VAPI fallback -->
-    <button id="start-vapi" class="fixed bottom-8 right-8 px-6 py-3 bg-cyan-600 rounded-full text-white font-semibold hover:bg-cyan-500 shadow-lg z-50">
-      🎤 Talk to Oliver
-    </button>
-    
-    <!-- VAPI Voice Assistant -->
+      <!-- Botón personalizado si el flotante no responde -->
+      <button id="start-vapi" class="mt-4 px-6 py-3 bg-cyan-600 rounded-full text-white font-semibold hover:bg-cyan-500">
+        🎤 Talk to Oliver Now
+      </button>
+    </div>
+
+    <!-- ✅ Vapi Script (con fallback personalizado) -->
     <script>
       const assistant = "0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c";
       const apiKey = "7b4db2a3-2750-4601-b8f1-14f21ca44044";
@@ -57,9 +63,9 @@
             }
           });
 
-          // Link to manual button
+          // Enlace al botón manual
           document.getElementById("start-vapi").addEventListener("click", () => {
-            if (vapiInstance) vapiInstance.start();
+            if (vapiInstance) vapiInstance.startConversation();
             else alert("Vapi not ready yet. Please wait a few seconds and try again.");
           });
         };
