@@ -5,65 +5,37 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alan Holding Digital Solutions | Web Development & AI Chatbots</title>
-    <link rel="stylesheet" href="/assets/index.css" />
   </head>
-
   <body>
     <div id="root"></div>
 
-    <!-- ✅ Vapi Web Widget Integration -->
-    <script>
-      var vapiInstance = null;
+    <!-- Your Vite App -->
+    <script type="module" src="/src/main.tsx"></script>
 
-      const assistant = "0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c"; // Your Vapi assistant ID
-      const apiKey = "7b4db2a3-2750-4601-b8f1-14f21ca44044"; // Your Vapi public API key
-
-      const buttonConfig = {
-        position: "bottom-right",
-        offset: "24px",
-        width: "60px",
-        height: "60px",
-        idle: {
-          color: "#12A594",
-          type: "pill",
-          title: "Speak with Oliver",
-          subtitle: "Your AI voice assistant",
-          icon: "https://unpkg.com/lucide-static@0.321.0/icons/mic.svg"
-        },
-        loading: {
-          color: "#ccc",
-          type: "pill",
-          title: "Connecting...",
-          subtitle: "Please wait",
-          icon: "https://unpkg.com/lucide-static@0.321.0/icons/loader-2.svg"
-        },
-        active: {
-          color: "#FF0000",
-          type: "pill",
-          title: "Oliver is listening",
-          subtitle: "End call",
-          icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg"
-        }
-      };
-
-      (function (d, t) {
-        var g = document.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-        g.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
-        g.defer = true;
-        g.async = true;
-        s.parentNode.insertBefore(g, s);
-        g.onload = function () {
-          vapiInstance = window.vapiSDK.run({
-            apiKey: apiKey,
-            assistant: assistant,
-            config: buttonConfig,
-          });
-        };
-      })(document, "script");
+    <!-- Vapi Voice Assistant -->
+    <script 
+      src="https://widget.vapi.ai/script.js" 
+      data-assistant-id="0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c">
     </script>
 
-    <!-- Your app’s entry script -->
-    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          window.vapi?.showDefaultWidget?.();
+        }, 500);
+      });
+    </script>
+
+    <style>
+      .vapi-widget-button {
+        position: fixed !important;
+        bottom: 24px !important;
+        right: 24px !important;
+        z-index: 9999 !important;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+    </style>
   </body>
 </html>
