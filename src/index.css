@@ -188,6 +188,12 @@ body.light-theme {
   bottom: 24px !important;
   right: 24px !important;
   position: fixed !important;
+  transform: scale(1) !important;
+  transition: transform 0.3s ease !important;
+}
+
+.vapi-widget-button:hover {
+  transform: scale(1.05) !important;
 }
 
 /* Custom Vapi trigger button */

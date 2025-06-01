@@ -20,15 +20,20 @@
         },
         theme: {
           primaryColor: "#2563eb",
-          buttonBackground: "#2563eb"
+          buttonBackground: "#2563eb",
+          textColor: "#ffffff"
         },
-        autoOpen: true
+        autoOpen: true,
+        widgetTitle: "Talk to Oliver",
+        widgetSubtitle: "Your AI Assistant"
       };
     </script>
     <script src="https://widget.vapi.ai/script.js"></script>
     <script>
       window.addEventListener("load", () => {
-        window.vapi?.showDefaultWidget?.();
+        setTimeout(() => {
+          window.vapi?.showDefaultWidget?.();
+        }, 1000);
       });
     </script>
   </body>
