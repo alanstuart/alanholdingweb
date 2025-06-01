@@ -2,39 +2,52 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alan Holding Digital Solutions | Web Development & AI Chatbots</title>
+    <title>Alan Holding Digital Solutions</title>
+
     <style>
       body {
         margin: 0;
-        font-family: sans-serif;
+        font-family: "Inter", sans-serif;
         background-color: #000d1a;
-        color: white;
+        color: #fff;
         text-align: center;
         padding: 2rem;
       }
+
       h1 {
         color: #00c6ff;
+        font-size: 2.5rem;
+      }
+
+      .content {
+        max-width: 600px;
+        margin: auto;
+        line-height: 1.6;
       }
     </style>
   </head>
   <body>
-    <h1>Alan Holding Digital Solutions</h1>
-    <p>
-      AI voice and chat agents that answer calls 24/7, speak English & Spanish,
-      book appointments, and close leads like a pro.
-    </p>
-    <p>Click the mic button at the bottom right to speak with Oliver.</p>
+    <div class="content">
+      <h1>Alan Holding Digital Solutions</h1>
+      <p>
+        AI voice and chat agents that answer calls 24/7, speak English & Spanish,
+        book appointments, and close leads like a pro.
+      </p>
+      <p>
+        Click the mic button at the bottom right to speak with Oliver.
+      </p>
+    </div>
 
-    <!-- ✅ Vapi voice assistant widget script -->
+    <!-- ✅ Vapi Widget Script -->
     <script>
       const assistant = "0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c";
-      const apiKey = "7b4db2a3-2750-4601-b8f1-14f21ca44044"; // Public key
+      const apiKey = "7b4db2a3-2750-4601-b8f1-14f21ca44044";
 
       const buttonConfig = {
         position: "bottom-right",
-        offset: "20px",
+        offset: "32px",
         width: "60px",
         height: "60px",
         idle: {
@@ -54,19 +67,20 @@
         }
       };
 
-      var vapiInstance = null;
+      let vapiInstance = null;
+
       (function (d, t) {
-        var g = document.createElement(t),
+        const g = d.createElement(t),
           s = d.getElementsByTagName(t)[0];
         g.src =
-          "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@v1.0.6/dist/assets/index.js";
+          "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
         g.defer = true;
         g.async = true;
         s.parentNode.insertBefore(g, s);
         g.onload = function () {
           vapiInstance = window.vapiSDK.run({
-            apiKey: apiKey,
-            assistant: assistant,
+            apiKey,
+            assistant,
             config: buttonConfig
           });
         };
