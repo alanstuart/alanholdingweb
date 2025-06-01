@@ -22,10 +22,8 @@
     </script>
     <script src="https://widget.vapi.ai/script.js"></script>
     <script>
-      window.addEventListener('load', function() {
-        if (window.vapi && window.vapi.showDefaultWidget) {
-          window.vapi.showDefaultWidget();
-        }
+      window.addEventListener("load", () => {
+        window.vapi?.showDefaultWidget?.();
       });
     </script>
   </body>

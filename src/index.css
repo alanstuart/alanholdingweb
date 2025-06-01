@@ -181,13 +181,13 @@ body.light-theme {
 
 /* Vapi Widget Styling */
 .vapi-widget-button {
-  z-index: 9999 !important;
-  position: fixed !important;
-  bottom: 24px !important;
-  right: 24px !important;
   display: block !important;
   opacity: 1 !important;
   visibility: visible !important;
+  z-index: 9999 !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  position: fixed !important;
 }
 
 /* Custom Vapi trigger button */
