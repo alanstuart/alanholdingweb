@@ -2,61 +2,55 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alan Holding Digital Solutions | Web Development & AI Chatbots</title>
-    <!-- ✅ Optional: Favicon replacement -->
-    <!-- <link rel="icon" href="/your-icon.png" /> -->
   </head>
   <body>
-    <!-- Root element for React app (optional if not using React) -->
     <div id="root"></div>
 
-    <!-- ✅ Vapi Script Integration -->
-    <script>
-      var vapiInstance = null;
-      const assistant = "0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c"; // Replace with your assistant ID
-      const apiKey = "7b4db2a3-2750-4601-b8f1-14f21ca44044"; // Replace with your public API key
+    <!-- Mount your app (React/Vite) -->
+    <script type="module" src="/src/main.tsx"></script>
 
+    <!-- ✅ Vapi Voice Assistant Widget Script -->
+    <script>
+      const assistantId = "0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c";
+      const apiKey = "7b4db2a3-2750-4601-b8f1-14f21ca44044";
       const buttonConfig = {
         position: "bottom-right",
-        offset: "20px",
+        offset: "40px",
         width: "60px",
         height: "60px",
         idle: {
           color: "#00c6ff",
-          type: "pill",
-          title: "Speak with Oliver",
-          subtitle: "Your AI voice assistant",
-          icon: "https://unpkg.com/lucide-static@0.321.0/icons/mic.svg"
+          type: "round",
+          icon: "https://unpkg.com/lucide-static@0.321.0/icons/mic.svg",
         },
         loading: {
-          color: "#999",
-          type: "pill",
-          title: "Connecting...",
-          subtitle: "Please wait",
-          icon: "https://unpkg.com/lucide-static@0.321.0/icons/loader-2.svg"
+          color: "#ccc",
+          type: "round",
+          icon: "https://unpkg.com/lucide-static@0.321.0/icons/loader-2.svg",
         },
         active: {
           color: "#ff0000",
-          type: "pill",
-          title: "Call in Progress",
-          subtitle: "End the call",
-          icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg"
-        }
+          type: "round",
+          icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg",
+        },
       };
 
       (function (d, t) {
-        var g = document.createElement(t),
-            s = d.getElementsByTagName(t)[0];
-        g.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@v1.0.2/dist/assets/index.js";
+        const g = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+        g.src =
+          "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
         g.defer = true;
         g.async = true;
         s.parentNode.insertBefore(g, s);
         g.onload = function () {
-          vapiInstance = window.vapiSDK.run({
-            apiKey,
-            assistant,
-            config: buttonConfig
+          window.vapiSDK.run({
+            apiKey: apiKey,
+            assistant: assistantId,
+            config: buttonConfig,
           });
         };
       })(document, "script");
