@@ -12,18 +12,9 @@ import { ThemeProvider } from './context/ThemeContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { useTheme } from './context/ThemeContext';
 
-declare global {
-  interface Window {
-    vapi?: {
-      startConversation: () => void;
-    };
-  }
-}
-
 function AppContent() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { theme } = useTheme();
-  const [vapiLoaded, setVapiLoaded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,25 +23,10 @@ function AppContent() {
     
     window.addEventListener('scroll', handleScroll);
 
-    // Check for Vapi initialization
-    const checkVapi = setInterval(() => {
-      if (window.vapi) {
-        setVapiLoaded(true);
-        clearInterval(checkVapi);
-      }
-    }, 500);
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      clearInterval(checkVapi);
     };
   }, []);
-
-  const startVapiConversation = () => {
-    if (window.vapi) {
-      window.vapi.startConversation();
-    }
-  };
 
   return (
     <div className={`min-h-screen relative overflow-x-hidden ${
@@ -73,18 +49,14 @@ function AppContent() {
         <Contact />
         <Footer />
       </div>
-
-      {/* Vapi Trigger Button */}
-      {vapiLoaded && (
-        <button
-          onClick={startVapiConversation}
-          className="vapi-trigger-btn fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full shadow-lg transition-all duration-300 z-[9999] flex items-center gap-2 font-semibold"
-          aria-label="Start voice conversation with Oliver"
-        >
-          <span role="img" aria-label="microphone">🎙️</span>
-          Talk to Oliver
-        </button>
-      )}
+      
+      <button 
+        className="back-to-top-btn"
+        aria-label="Back to top"
+      >
+        <span className="sr-only">Back to top</span>
+        ↑
+      </button>
     </div>
   );
 }
