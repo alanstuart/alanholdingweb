@@ -11,9 +11,22 @@
     <script type="module" src="/src/main.tsx"></script>
     <script>
       window.vapiSettings = {
-        assistantId: "0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c"
+        assistantId: "0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c",
+        showWidget: true,
+        position: "bottom-right",
+        offset: {
+          bottom: "24px",
+          right: "24px"
+        }
       };
     </script>
     <script src="https://widget.vapi.ai/script.js"></script>
+    <script>
+      window.addEventListener('load', function() {
+        if (window.vapi && window.vapi.showDefaultWidget) {
+          window.vapi.showDefaultWidget();
+        }
+      });
+    </script>
   </body>
 </html>
