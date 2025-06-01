@@ -1,19 +1,105 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <title>Alan Holding Digital Solutions</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alan Holding Digital Solutions | Web Development & AI Chatbots</title>
-    <script src="https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js"></script>
+    <link rel="icon" href="https://alanholding.co.uk/favicon.ico" type="image/x-icon" />
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        background-color: #000d1a;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        text-align: center;
+        padding: 2rem;
+      }
+
+      h1 {
+        color: #00c6ff;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        line-height: 1.6;
+      }
+
+      footer {
+        margin-top: 2rem;
+        font-size: 0.85rem;
+        color: #888;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
-    <vapi-agent
-      client-id="vapi_GWXxXXXXXXXXXXXXXXXXXXXX"
-      agent-id="ag_XXXXXXXXXXXXXXXXXXXXXXXX"
-      style="position: fixed; bottom: 20px; right: 20px;"
-    ></vapi-agent>
-    <script type="module" src="/src/main.tsx"></script>
+    <h1>Alan Holding Digital Solutions</h1>
+    <p>
+      AI voice and chat agents that answer calls 24/7, speak English & Spanish,
+      book appointments, and close leads like a pro.
+    </p>
+    <p>
+      Click the mic button at the bottom right to speak with Oliver.
+    </p>
+
+    <footer>© 2025 Alan Holding. All rights reserved.</footer>
+
+    <!-- ✅ Vapi Assistant Script -->
+    <script>
+      const assistant = "0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c";
+      const apiKey = "7b4db2a3-2750-4601-b8f1-14f21ca44044";
+
+      const buttonConfig = {
+        position: "bottom-right",
+        offset: "32px",
+        width: "64px",
+        height: "64px",
+        idle: {
+          color: "#00c6ff",
+          type: "round",
+          icon: "https://unpkg.com/lucide-static@0.321.0/icons/mic.svg"
+        },
+        loading: {
+          color: "#12a594",
+          type: "round",
+          icon: "https://unpkg.com/lucide-static@0.321.0/icons/loader-2.svg"
+        },
+        active: {
+          color: "#ff4d4f",
+          type: "round",
+          icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg"
+        }
+      };
+
+      let vapiInstance = null;
+
+      (function (d, t) {
+        const g = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+        g.src =
+          "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
+        g.defer = true;
+        g.async = true;
+        s.parentNode.insertBefore(g, s);
+        g.onload = function () {
+          vapiInstance = window.vapiSDK.run({
+            apiKey,
+            assistant,
+            config: buttonConfig
+          });
+
+          // Optional: Listen for voice events
+          vapiInstance.on("call-start", () => console.log("🔊 Call started"));
+          vapiInstance.on("call-end", () => console.log("📴 Call ended"));
+        };
+      })(document, "script");
+    </script>
   </body>
 </html>
