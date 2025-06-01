@@ -5,55 +5,43 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alan Holding Digital Solutions | Web Development & AI Chatbots</title>
-    <script src="https://cdn.botpress.cloud/webchat/v2.4/inject.js"></script>
   </head>
   <body>
     <div id="root"></div>
-    <div id="webchat" style="width: 500px; height: 500px;"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
     <!-- ✅ VAPI WIDGET -->
     <script>
-      var vapiInstance = null;
-      const assistant = "0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c";
-      const apiKey = "7b4db2a3-2750-4601-b8f1-14f21ca44044";
-      const buttonConfig = {
-        position: "bottom-right",
-        offset: "32px",
-        width: "60px",
-        height: "60px",
-        idle: {
-          color: "#00c6ff",
-          type: "round",
-          icon: "https://unpkg.com/lucide-static@0.321.0/icons/mic.svg",
-        },
-        loading: {
-          color: "#12a594",
-          type: "round",
-          icon: "https://unpkg.com/lucide-static@0.321.0/icons/loader-2.svg",
-        },
-        active: {
-          color: "#00c6ff",
-          type: "round",
-          icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg",
-        },
+      window.VAPI_CONFIG = {
+        assistant: "0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c",
+        apiKey: "7b4db2a3-2750-4601-b8f1-14f21ca44044",
+        buttonConfig: {
+          position: "bottom-right",
+          offset: "32px",
+          width: "60px",
+          height: "60px",
+          idle: {
+            color: "#00c6ff",
+            type: "round",
+            icon: "https://unpkg.com/lucide-static@0.321.0/icons/mic.svg",
+          },
+          loading: {
+            color: "#12a594",
+            type: "round",
+            icon: "https://unpkg.com/lucide-static@0.321.0/icons/loader-2.svg",
+          },
+          active: {
+            color: "#00c6ff",
+            type: "round",
+            icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg",
+          },
+        }
       };
-
-      (function (d, t) {
-        const g = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-        g.src =
-          "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
-        g.defer = true;
-        g.async = true;
-        s.parentNode.insertBefore(g, s);
-        g.onload = function () {
-          vapiInstance = window.vapiSDK.run({
-            apiKey,
-            assistant,
-            config: buttonConfig,
-          });
-        };
-      })(document, "script");
     </script>
+    <script 
+      src="https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js"
+      defer
+      async
+    ></script>
   </body>
 </html>
