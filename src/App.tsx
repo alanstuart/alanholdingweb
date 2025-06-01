@@ -12,6 +12,14 @@ import { ThemeProvider } from './context/ThemeContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { useTheme } from './context/ThemeContext';
 
+declare global {
+  interface Window {
+    vapi?: {
+      startConversation: () => void;
+    };
+  }
+}
+
 function AppContent() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { theme } = useTheme();
@@ -53,7 +61,7 @@ function AppContent() {
       {/* Manual Vapi Trigger Button */}
       <button 
         onClick={() => window.vapi?.startConversation()} 
-        className="fixed bottom-24 right-24 bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg transition-all duration-300 z-50 flex items-center gap-2"
+        className="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full shadow-lg transition-all duration-300 z-50 flex items-center gap-2 font-semibold"
         aria-label="Start voice conversation"
       >
         <span role="img" aria-label="microphone">🎙️</span>
