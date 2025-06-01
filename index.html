@@ -1,75 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alan Holding Digital Solutions</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Alan Holding Digital Solutions | Web Development & AI Chatbots</title>
+    <script src="https://cdn.botpress.cloud/webchat/v2.4/inject.js"></script>
   </head>
-  <body class="bg-gray-900 text-white font-sans text-center p-8">
-    <div class="max-w-xl mx-auto space-y-6">
-      <h1 class="text-3xl font-bold text-cyan-400">Alan Holding Digital Solutions</h1>
-      <p class="text-lg">
-        AI voice and chat agents that answer calls 24/7, speak English & Spanish,
-        book appointments, and close leads like a pro.
-      </p>
-      <p class="text-sm text-gray-300">Click the mic button below to speak with Oliver.</p>
-
-      <!-- Botón personalizado si el flotante no responde -->
-      <button id="start-vapi" class="mt-4 px-6 py-3 bg-cyan-600 rounded-full text-white font-semibold hover:bg-cyan-500">
-        🎤 Talk to Oliver Now
-      </button>
-    </div>
-
-    <!-- ✅ Vapi Script (con fallback personalizado) -->
+  <body>
+    <div id="root"></div>
+    <div id="webchat" style="width: 500px; height: 500px;"></div>
+    <script type="module" src="/src/main.tsx"></script>
     <script>
-      const assistant = "0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c";
-      const apiKey = "7b4db2a3-2750-4601-b8f1-14f21ca44044";
-
-      let vapiInstance = null;
-
-      (function (d, t) {
-        const g = d.createElement(t),
-              s = d.getElementsByTagName(t)[0];
-        g.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
-        g.defer = true;
-        g.async = true;
-        s.parentNode.insertBefore(g, s);
-
-        g.onload = function () {
-          vapiInstance = window.vapiSDK.run({
-            apiKey,
-            assistant,
-            config: {
-              position: "bottom-right",
-              offset: "24px",
-              width: "60px",
-              height: "60px",
-              idle: {
-                color: "#00c6ff",
-                type: "round",
-                icon: "https://unpkg.com/lucide-static@0.321.0/icons/mic.svg",
-              },
-              loading: {
-                color: "#12a594",
-                type: "round",
-                icon: "https://unpkg.com/lucide-static@0.321.0/icons/loader-2.svg",
-              },
-              active: {
-                color: "#00c6ff",
-                type: "round",
-                icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg",
-              }
-            }
-          });
-
-          // Enlace al botón manual
-          document.getElementById("start-vapi").addEventListener("click", () => {
-            if (vapiInstance) vapiInstance.startConversation();
-            else alert("Vapi not ready yet. Please wait a few seconds and try again.");
-          });
-        };
-      })(document, "script");
+      window.botpress.init({
+        "botId": "c23553ca-8e78-494d-9cc1-b5d6341c54f5",
+        "configuration": {
+          "website": {},
+          "email": {},
+          "phone": {},
+          "termsOfService": {},
+          "privacyPolicy": {},
+          "botName": "Oliver",
+          "color": "#5eb1ef",
+          "variant": "solid",
+          "themeMode": "dark",
+          "fontFamily": "inter",
+          "radius": 2.5,
+          "welcomeMessage": "Hello! 👋 Welcome to Alan Holding Digital Solutions. I'm Oliver, your AI assistant. How can I help you today?"
+        },
+        "clientId": "618d8e6d-457b-449e-b895-4cf79049220d",
+        "selector": "#webchat"
+      });
+      window.botpress.on("webchat:ready", () => {
+        window.botpress.open();
+      });
     </script>
   </body>
 </html>
