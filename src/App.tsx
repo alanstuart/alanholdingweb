@@ -49,14 +49,6 @@ function AppContent() {
         <Contact />
         <Footer />
       </div>
-      
-      <button 
-        className="back-to-top-btn"
-        aria-label="Back to top"
-      >
-        <span className="sr-only">Back to top</span>
-        ↑
-      </button>
     </div>
   );
 }

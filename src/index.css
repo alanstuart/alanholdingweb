@@ -181,10 +181,10 @@ body.light-theme {
 
 /* Vapi Assistant Styling */
 #vapi-widget-root {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000;
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 1000 !important;
 }
 
 #vapi-widget-root button {
@@ -194,6 +194,11 @@ body.light-theme {
   background: linear-gradient(135deg, var(--primary-light), var(--primary-dark)) !important;
   box-shadow: 0 4px 12px rgba(0, 198, 255, 0.3) !important;
   transition: all 0.3s ease !important;
+  border: none !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 #vapi-widget-root button:hover {
