@@ -180,36 +180,12 @@ body.light-theme {
 }
 
 /* Vapi Assistant Styling */
-#vapi-widget-root {
+.vapi-widget-button {
+  z-index: 9999 !important;
   position: fixed !important;
-  bottom: 20px !important;
-  right: 20px !important;
-  z-index: 1000 !important;
-}
-
-#vapi-widget-root button {
-  width: 60px !important;
-  height: 60px !important;
-  border-radius: 50% !important;
-  background: linear-gradient(135deg, var(--primary-light), var(--primary-dark)) !important;
-  box-shadow: 0 4px 12px rgba(0, 198, 255, 0.3) !important;
-  transition: all 0.3s ease !important;
-  border: none !important;
-  padding: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-#vapi-widget-root button:hover {
-  transform: scale(1.1) !important;
-  box-shadow: 0 6px 16px rgba(0, 198, 255, 0.4) !important;
-}
-
-.dark-theme #vapi-widget-root button {
-  box-shadow: 0 4px 12px rgba(0, 198, 255, 0.3) !important;
-}
-
-.light-theme #vapi-widget-root button {
-  box-shadow: 0 4px 12px rgba(0, 114, 255, 0.2) !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
