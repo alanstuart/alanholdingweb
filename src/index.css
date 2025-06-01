@@ -195,3 +195,14 @@ body.light-theme {
 .vapi-widget-button:hover {
   transform: scale(1.05) !important;
 }
+
+/* Custom Vapi trigger button */
+.vapi-trigger-btn {
+  transform: scale(1);
+  transition: all 0.3s ease;
+}
+
+.vapi-trigger-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 114, 255, 0.3);
+}

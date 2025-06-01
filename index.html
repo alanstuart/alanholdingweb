@@ -14,8 +14,20 @@
       window.addEventListener("load", () => {
         setTimeout(() => {
           window.vapi?.showDefaultWidget?.();
-        }, 500);
+        }, 1000); // Increased timeout for better reliability
       });
     </script>
+    <style>
+      .vapi-widget-button {
+        position: fixed !important;
+        bottom: 24px !important;
+        right: 24px !important;
+        z-index: 9999 !important;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: scale(1) !important;
+      }
+    </style>
   </body>
 </html>
