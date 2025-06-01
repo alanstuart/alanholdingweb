@@ -49,6 +49,16 @@ function AppContent() {
         <Contact />
         <Footer />
       </div>
+
+      {/* Manual Vapi Trigger Button */}
+      <button 
+        onClick={() => window.vapi?.startConversation()} 
+        className="fixed bottom-24 right-24 bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg transition-all duration-300 z-50 flex items-center gap-2"
+        aria-label="Start voice conversation"
+      >
+        <span role="img" aria-label="microphone">🎙️</span>
+        Talk to Oliver
+      </button>
     </div>
   );
 }
