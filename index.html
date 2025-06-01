@@ -5,24 +5,49 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alan Holding Digital Solutions | Web Development & AI Chatbots</title>
+    <script src="https://cdn.botpress.cloud/webchat/v2.4/inject.js"></script>
   </head>
   <body>
     <div id="root"></div>
-
-    <!-- Your Vite App -->
+    <div id="webchat" style="width: 500px; height: 500px;"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      window.botpress.init({
+        "botId": "c23553ca-8e78-494d-9cc1-b5d6341c54f5",
+        "configuration": {
+          "website": {},
+          "email": {},
+          "phone": {},
+          "termsOfService": {},
+          "privacyPolicy": {},
+          "botName": "Oliver",
+          "color": "#5eb1ef",
+          "variant": "solid",
+          "themeMode": "dark",
+          "fontFamily": "inter",
+          "radius": 2.5,
+          "welcomeMessage": "Hello! 👋 Welcome to Alan Holding Digital Solutions. I'm Oliver, your AI assistant. How can I help you today?"
+        },
+        "clientId": "618d8e6d-457b-449e-b895-4cf79049220d",
+        "selector": "#webchat"
+      });
+      window.botpress.on("webchat:ready", () => {
+        window.botpress.open();
+      });
+    </script>
 
     <!-- Vapi Voice Assistant -->
     <script 
       src="https://widget.vapi.ai/script.js" 
-      data-assistant-id="0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c">
-    </script>
+      data-assistant-id="0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c"
+      defer
+    ></script>
 
     <script>
       window.addEventListener("load", () => {
         setTimeout(() => {
           window.vapi?.showDefaultWidget?.();
-        }, 500);
+        }, 1000);
       });
     </script>
 
@@ -35,6 +60,12 @@
         display: block !important;
         opacity: 1 !important;
         visibility: visible !important;
+        transform: scale(1) !important;
+        transition: transform 0.3s ease !important;
+      }
+
+      .vapi-widget-button:hover {
+        transform: scale(1.05) !important;
       }
     </style>
   </body>
