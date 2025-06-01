@@ -2,63 +2,63 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alan Holding Digital Solutions | Web Development & AI Chatbots</title>
-    <link rel="icon" href="/vite.svg" />
-    <!-- Optional: Global styles if needed -->
-    <!-- <link rel="stylesheet" href="/style.css"> -->
+    <style>
+      /* Optional: smooth fade-in for the mic */
+      .vapi-btn {
+        transition: opacity 0.3s ease-in-out;
+      }
+    </style>
   </head>
   <body>
-    <!-- This is where your React app mounts -->
     <div id="root"></div>
-
-    <!-- ✅ Vite App Entry -->
     <script type="module" src="/src/main.tsx"></script>
 
-    <!-- ✅ Vapi Voice Assistant Widget -->
+    <!-- Vapi Voice Assistant Widget Script -->
     <script>
-      const assistantId = "0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c";
-      const apiKey = "7b4db2a3-2750-4601-b8f1-14f21ca44044";
+      let vapiInstance = null;
+
+      const apiKey = "7b4db2a3-2750-4601-b8f1-14f21ca44044"; // Your public Vapi API key
+      const assistant = "0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c"; // Oliver's assistant ID
 
       const buttonConfig = {
         position: "bottom-right",
-        offset: "24px",
+        offset: "40px",
         width: "60px",
         height: "60px",
         idle: {
-          color: "#00c6ff",
           type: "round",
-          icon: "https://unpkg.com/lucide-static@0.321.0/icons/mic.svg",
+          color: "#00c6ff",
+          icon: "https://unpkg.com/lucide-static@0.321.0/icons/mic.svg"
         },
         loading: {
-          color: "#cccccc",
           type: "round",
-          icon: "https://unpkg.com/lucide-static@0.321.0/icons/loader-2.svg",
+          color: "#999999",
+          icon: "https://unpkg.com/lucide-static@0.321.0/icons/loader-2.svg"
         },
         active: {
-          color: "#ff0000",
           type: "round",
-          icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg",
-        },
+          color: "#ff3333",
+          icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg"
+        }
       };
 
       (function (d, t) {
-        const g = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
+        var g = document.createElement(t),
+            s = d.getElementsByTagName(t)[0];
         g.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
         g.defer = true;
         g.async = true;
         s.parentNode.insertBefore(g, s);
+
         g.onload = function () {
-          if (window.vapiSDK) {
-            window.vapiSDK.run({
-              apiKey,
-              assistant: assistantId,
-              config: buttonConfig,
-            });
-          } else {
-            console.error("Vapi SDK failed to load.");
-          }
+          vapiInstance = window.vapiSDK.run({
+            apiKey,
+            assistant,
+            config: buttonConfig,
+          });
         };
       })(document, "script");
     </script>
