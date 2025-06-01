@@ -1,57 +1,42 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Alan Holding Digital Solutions</title>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="https://alanholding.co.uk/favicon.ico" type="image/x-icon" />
-    <style>
-      body {
-        margin: 0;
-        font-family: 'Inter', sans-serif;
-        background-color: #000d1a;
-        color: #ffffff;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        text-align: center;
-        padding: 2rem;
-      }
-
-      h1 {
-        color: #00c6ff;
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-      }
-
-      p {
-        font-size: 1.2rem;
-        max-width: 600px;
-        line-height: 1.6;
-      }
-
-      footer {
-        margin-top: 2rem;
-        font-size: 0.85rem;
-        color: #888;
-      }
-    </style>
+    <title>Alan Holding Digital Solutions | Web Development & AI Chatbots</title>
+    <script src="https://cdn.botpress.cloud/webchat/v2.4/inject.js"></script>
   </head>
   <body>
-    <h1>Alan Holding Digital Solutions</h1>
-    <p>
-      AI voice and chat agents that answer calls 24/7, speak English & Spanish,
-      book appointments, and close leads like a pro.
-    </p>
-    <p>
-      Click the mic button at the bottom right to speak with Oliver.
-    </p>
+    <div id="root"></div>
+    <div id="webchat" style="width: 500px; height: 500px;"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      window.botpress.init({
+        "botId": "c23553ca-8e78-494d-9cc1-b5d6341c54f5",
+        "configuration": {
+          "website": {},
+          "email": {},
+          "phone": {},
+          "termsOfService": {},
+          "privacyPolicy": {},
+          "botName": "Oliver",
+          "color": "#5eb1ef",
+          "variant": "solid",
+          "themeMode": "dark",
+          "fontFamily": "inter",
+          "radius": 2.5,
+          "welcomeMessage": "Hello! 👋 Welcome to Alan Holding Digital Solutions. I'm Oliver, your AI assistant. How can I help you today?"
+        },
+        "clientId": "618d8e6d-457b-449e-b895-4cf79049220d",
+        "selector": "#webchat"
+      });
+      window.botpress.on("webchat:ready", () => {
+        window.botpress.open();
+      });
+    </script>
 
-    <footer>© 2025 Alan Holding. All rights reserved.</footer>
-
-    <!-- ✅ Vapi Assistant Script -->
+    <!-- Vapi Voice Assistant -->
     <script>
       const assistant = "0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c";
       const apiKey = "7b4db2a3-2750-4601-b8f1-14f21ca44044";
@@ -95,7 +80,6 @@
             config: buttonConfig
           });
 
-          // Optional: Listen for voice events
           vapiInstance.on("call-start", () => console.log("🔊 Call started"));
           vapiInstance.on("call-end", () => console.log("📴 Call ended"));
         };
