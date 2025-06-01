@@ -181,28 +181,17 @@ body.light-theme {
 
 /* Vapi Widget Styling */
 .vapi-widget-button {
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  z-index: 9999 !important;
   display: block !important;
   opacity: 1 !important;
   visibility: visible !important;
-  z-index: 9999 !important;
-  bottom: 24px !important;
-  right: 24px !important;
-  position: fixed !important;
   transform: scale(1) !important;
   transition: transform 0.3s ease !important;
 }
 
 .vapi-widget-button:hover {
   transform: scale(1.05) !important;
-}
-
-/* Custom Vapi trigger button */
-.vapi-trigger-btn {
-  @apply shadow-lg hover:shadow-xl;
-}
-
-@media (max-width: 640px) {
-  .vapi-trigger-btn {
-    @apply text-sm px-4 py-2 bottom-4 right-4;
-  }
 }

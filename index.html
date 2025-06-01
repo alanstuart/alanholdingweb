@@ -9,31 +9,12 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script>
-      window.vapiSettings = {
-        assistantId: "0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c",
-        showWidget: true,
-        position: "bottom-right",
-        offset: {
-          bottom: "24px",
-          right: "24px"
-        },
-        theme: {
-          primaryColor: "#2563eb",
-          buttonBackground: "#2563eb",
-          textColor: "#ffffff"
-        },
-        autoOpen: true,
-        widgetTitle: "Talk to Oliver",
-        widgetSubtitle: "Your AI Assistant"
-      };
-    </script>
-    <script src="https://widget.vapi.ai/script.js"></script>
+    <script src="https://widget.vapi.ai/script.js" data-assistant-id="0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c"></script>
     <script>
       window.addEventListener("load", () => {
         setTimeout(() => {
           window.vapi?.showDefaultWidget?.();
-        }, 1000);
+        }, 500);
       });
     </script>
   </body>
