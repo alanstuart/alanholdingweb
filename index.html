@@ -1,31 +1,54 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alan Holding Digital Solutions | Web Development & AI Chatbots</title>
+    <title>Alan Holding Digital Solutions | AI Voice Agents</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <style>
-      /* Optional: smooth fade-in for the mic */
-      .vapi-btn {
-        transition: opacity 0.3s ease-in-out;
+      body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        background-color: #000814;
+        color: white;
+      }
+
+      #root {
+        min-height: 100vh;
+        padding: 40px;
+      }
+
+      h1 {
+        font-size: 2rem;
+        color: #00c6ff;
+      }
+
+      .info {
+        max-width: 800px;
+        margin-top: 1rem;
+        font-size: 1.1rem;
+        line-height: 1.6;
       }
     </style>
   </head>
+
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <div id="root">
+      <h1>Alan Holding Digital Solutions</h1>
+      <div class="info">
+        <p>AI voice and chat agents that answer calls 24/7, speak English & Spanish, book appointments, and close leads like a pro.</p>
+        <p>Click the mic button at the bottom right to speak with Oliver.</p>
+      </div>
+    </div>
 
-    <!-- Vapi Voice Assistant Widget Script -->
+    <!-- Vapi SDK -->
     <script>
-      let vapiInstance = null;
-
-      const apiKey = "7b4db2a3-2750-4601-b8f1-14f21ca44044"; // Your public Vapi API key
-      const assistant = "0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c"; // Oliver's assistant ID
+      const apiKey = "7b4db2a3-2750-4601-b8f1-14f21ca44044";
+      const assistant = "0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c";
 
       const buttonConfig = {
         position: "bottom-right",
-        offset: "40px",
+        offset: "30px",
         width: "60px",
         height: "60px",
         idle: {
@@ -35,32 +58,29 @@
         },
         loading: {
           type: "round",
-          color: "#999999",
+          color: "#999",
           icon: "https://unpkg.com/lucide-static@0.321.0/icons/loader-2.svg"
         },
         active: {
           type: "round",
-          color: "#ff3333",
+          color: "#f00",
           icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg"
         }
       };
 
-      (function (d, t) {
-        var g = document.createElement(t),
-            s = d.getElementsByTagName(t)[0];
-        g.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
-        g.defer = true;
-        g.async = true;
-        s.parentNode.insertBefore(g, s);
-
-        g.onload = function () {
-          vapiInstance = window.vapiSDK.run({
+      window.addEventListener("DOMContentLoaded", () => {
+        const script = document.createElement("script");
+        script.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
+        script.async = true;
+        script.onload = () => {
+          window.vapiSDK.run({
             apiKey,
             assistant,
             config: buttonConfig,
           });
         };
-      })(document, "script");
+        document.body.appendChild(script);
+      });
     </script>
   </body>
 </html>
