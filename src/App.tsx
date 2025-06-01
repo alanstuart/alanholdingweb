@@ -23,7 +23,7 @@ declare global {
 function AppContent() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { theme } = useTheme();
-  const [vapiReady, setVapiReady] = useState(false);
+  const [vapiLoaded, setVapiLoaded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,13 +32,13 @@ function AppContent() {
     
     window.addEventListener('scroll', handleScroll);
 
-    // Check if Vapi is ready
+    // Check for Vapi initialization
     const checkVapi = setInterval(() => {
       if (window.vapi) {
-        setVapiReady(true);
+        setVapiLoaded(true);
         clearInterval(checkVapi);
       }
-    }, 1000);
+    }, 500);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -46,7 +46,7 @@ function AppContent() {
     };
   }, []);
 
-  const handleVapiClick = () => {
+  const startVapiConversation = () => {
     if (window.vapi) {
       window.vapi.startConversation();
     }
@@ -74,12 +74,12 @@ function AppContent() {
         <Footer />
       </div>
 
-      {/* Manual Vapi Trigger Button */}
-      {vapiReady && (
-        <button 
-          onClick={handleVapiClick}
-          className="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full shadow-lg transition-all duration-300 z-50 flex items-center gap-2 font-semibold"
-          aria-label="Start voice conversation"
+      {/* Vapi Trigger Button */}
+      {vapiLoaded && (
+        <button
+          onClick={startVapiConversation}
+          className="vapi-trigger-btn fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full shadow-lg transition-all duration-300 z-[9999] flex items-center gap-2 font-semibold"
+          aria-label="Start voice conversation with Oliver"
         >
           <span role="img" aria-label="microphone">🎙️</span>
           Talk to Oliver

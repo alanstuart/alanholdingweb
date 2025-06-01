@@ -179,7 +179,7 @@ body.light-theme {
   }
 }
 
-/* Vapi Assistant Styling */
+/* Vapi Widget Styling */
 .vapi-widget-button {
   z-index: 9999 !important;
   position: fixed !important;
@@ -190,12 +190,13 @@ body.light-theme {
   visibility: visible !important;
 }
 
-/* Mobile responsiveness for manual trigger button */
+/* Custom Vapi trigger button */
+.vapi-trigger-btn {
+  @apply shadow-lg hover:shadow-xl;
+}
+
 @media (max-width: 640px) {
-  button[onclick*="vapi"] {
-    bottom: 16px !important;
-    right: 16px !important;
-    padding: 0.75rem 1.5rem !important;
-    font-size: 0.875rem !important;
+  .vapi-trigger-btn {
+    @apply text-sm px-4 py-2 bottom-4 right-4;
   }
 }
