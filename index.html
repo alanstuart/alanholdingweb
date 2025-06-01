@@ -59,7 +59,7 @@
 
           // Link to manual button
           document.getElementById("start-vapi").addEventListener("click", () => {
-            if (vapiInstance) vapiInstance.startConversation();
+            if (vapiInstance) vapiInstance.start();
             else alert("Vapi not ready yet. Please wait a few seconds and try again.");
           });
         };
