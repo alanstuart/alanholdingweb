@@ -18,8 +18,8 @@
       const buttonConfig = {
         position: "bottom-right",
         offset: "32px",
-        width: "64px",
-        height: "64px",
+        width: "60px",
+        height: "60px",
         idle: {
           color: "#00c6ff",
           type: "round",
@@ -31,7 +31,7 @@
           icon: "https://unpkg.com/lucide-static@0.321.0/icons/loader-2.svg"
         },
         active: {
-          color: "#ff4d4f",
+          color: "#00c6ff",
           type: "round",
           icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg"
         }
@@ -53,9 +53,6 @@
             assistant,
             config: buttonConfig
           });
-
-          vapiInstance.on("call-start", () => console.log("🔊 Call started"));
-          vapiInstance.on("call-end", () => console.log("📴 Call ended"));
         };
       })(document, "script");
     </script>
