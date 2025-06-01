@@ -180,35 +180,31 @@ body.light-theme {
 }
 
 /* Vapi Assistant Styling */
-.vapi-assistant-widget {
+#vapi-widget-root {
   position: fixed;
   bottom: 20px;
   right: 20px;
   z-index: 1000;
 }
 
-.vapi-assistant-button {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
-  box-shadow: 0 4px 12px rgba(0, 198, 255, 0.3);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+#vapi-widget-root button {
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50% !important;
+  background: linear-gradient(135deg, var(--primary-light), var(--primary-dark)) !important;
+  box-shadow: 0 4px 12px rgba(0, 198, 255, 0.3) !important;
+  transition: all 0.3s ease !important;
 }
 
-.vapi-assistant-button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 16px rgba(0, 198, 255, 0.4);
+#vapi-widget-root button:hover {
+  transform: scale(1.1) !important;
+  box-shadow: 0 6px 16px rgba(0, 198, 255, 0.4) !important;
 }
 
-.dark-theme .vapi-assistant-button {
-  box-shadow: 0 4px 12px rgba(0, 198, 255, 0.3);
+.dark-theme #vapi-widget-root button {
+  box-shadow: 0 4px 12px rgba(0, 198, 255, 0.3) !important;
 }
 
-.light-theme .vapi-assistant-button {
-  box-shadow: 0 4px 12px rgba(0, 114, 255, 0.2);
+.light-theme #vapi-widget-root button {
+  box-shadow: 0 4px 12px rgba(0, 114, 255, 0.2) !important;
 }
