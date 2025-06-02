@@ -58,13 +58,32 @@
       }
     };
 
-    window.addEventListener('load', () => {
-      window.Vapi.init({
-        apiKey: apiKey,
-        assistant: assistant,
-        config: buttonConfig
-      });
-    });
+    function initVapi() {
+      const maxAttempts = 50; // 5 seconds total (50 * 100ms)
+      let attempts = 0;
+
+      const checkAndInit = () => {
+        if (window.Vapi) {
+          window.Vapi.init({
+            apiKey: apiKey,
+            assistant: assistant,
+            config: buttonConfig
+          });
+          return;
+        }
+
+        attempts++;
+        if (attempts < maxAttempts) {
+          setTimeout(checkAndInit, 100);
+        } else {
+          console.error('Failed to initialize Vapi after 5 seconds');
+        }
+      };
+
+      checkAndInit();
+    }
+
+    window.addEventListener('load', initVapi);
   </script>
 </body>
 </html>
