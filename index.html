@@ -1,94 +1,93 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alan Holding Digital Solutions</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 2rem;
-      background: #0f172a;
-      color: #fff;
-      text-align: center;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alan Holding Digital Solutions | Web Development & AI Chatbots</title>
+    <script src="https://cdn.botpress.cloud/webchat/v2.4/inject.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <div id="webchat" style="width: 500px; height: 500px;"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      window.botpress.init({
+        "botId": "c23553ca-8e78-494d-9cc1-b5d6341c54f5",
+        "configuration": {
+          "website": {},
+          "email": {},
+          "phone": {},
+          "termsOfService": {},
+          "privacyPolicy": {},
+          "botName": "Oliver",
+          "color": "#5eb1ef",
+          "variant": "solid",
+          "themeMode": "dark",
+          "fontFamily": "inter",
+          "radius": 2.5,
+          "welcomeMessage": "Hello! 👋 Welcome to Alan Holding Digital Solutions. I'm Oliver, your AI assistant. How can I help you today?"
+        },
+        "clientId": "618d8e6d-457b-449e-b895-4cf79049220d",
+        "selector": "#webchat"
+      });
+      window.botpress.on("webchat:ready", () => {
+        window.botpress.open();
+      });
+    </script>
+    <!-- Vapi Voice Assistant -->
+    <script src="https://cdn.jsdelivr.net/npm/@vapi-ai/web@1.1.0/dist/index.min.js"></script>
+    <script>
+      const assistant = "0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c";
+      const apiKey = "7b4db2a3-2750-4601-b8f1-14f21ca44044";
 
-    h1 {
-      color: #0ef;
-      margin-bottom: 1rem;
-    }
+      let vapiInstance = null;
 
-    p {
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-  </style>
-</head>
-<body>
-  <h1>Alan Holding Digital Solutions</h1>
-  <p>AI voice and chat agents that answer calls 24/7, speak English & Spanish, book appointments, and close leads like a pro.</p>
-  <p>Click the mic button at the bottom right to speak with Oliver.</p>
+      (function (d, t) {
+        const g = d.createElement(t),
+              s = d.getElementsByTagName(t)[0];
+        g.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
+        g.defer = true;
+        g.async = true;
+        s.parentNode.insertBefore(g, s);
 
-  <script src="https://cdn.jsdelivr.net/npm/@vapi-ai/web@1.1.0/dist/index.min.js"></script>
-  <script>
-    const assistant = "0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c";
-    const apiKey = "7b4db2a3-2750-4601-b8f1-14f21ca44044";
-
-    const buttonConfig = {
-      position: "bottom-right",
-      offset: "20px",
-      width: "60px",
-      height: "60px",
-      idle: {
-        color: "#0ef",
-        type: "round",
-        icon: "https://unpkg.com/lucide-static@0.321.0/icons/mic.svg"
-      },
-      loading: {
-        color: "#999",
-        type: "round",
-        icon: "https://unpkg.com/lucide-static@0.321.0/icons/loader.svg"
-      },
-      active: {
-        color: "red",
-        type: "round",
-        icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg"
-      }
-    };
-
-    function initVapi() {
-      const maxAttempts = 50; // 5 seconds total (50 * 100ms)
-      let attempts = 0;
-
-      const checkAndInit = () => {
-        if (window.Vapi) {
-          window.Vapi.init({
-            apiKey: apiKey,
-            assistant: assistant,
-            config: buttonConfig
+        g.onload = function () {
+          vapiInstance = window.vapiSDK.run({
+            apiKey,
+            assistant,
+            config: {
+              position: "bottom-right",
+              offset: "24px",
+              width: "60px",
+              height: "60px",
+              idle: {
+                color: "#00c6ff",
+                type: "round",
+                icon: "https://unpkg.com/lucide-static@0.321.0/icons/mic.svg",
+              },
+              loading: {
+                color: "#12a594",
+                type: "round",
+                icon: "https://unpkg.com/lucide-static@0.321.0/icons/loader-2.svg",
+              },
+              active: {
+                color: "#00c6ff",
+                type: "round",
+                icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg",
+              }
+            }
           });
-          return;
-        }
 
-        attempts++;
-        if (attempts < maxAttempts) {
-          setTimeout(checkAndInit, 100);
-        } else {
-          console.error('Failed to initialize Vapi after 5 seconds');
-        }
-      };
-
-      checkAndInit();
-    }
-
-    // Wait for both DOM and Vapi script to load
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initVapi);
-    } else {
-      initVapi();
-    }
-  </script>
-</body>
+          // Add click event listener to manual button if it exists
+          const startButton = document.getElementById("start-vapi");
+          if (startButton) {
+            startButton.addEventListener("click", () => {
+              if (vapiInstance) vapiInstance.startConversation();
+              else alert("Vapi not ready yet. Please wait a few seconds and try again.");
+            });
+          }
+        };
+      })(document, "script");
+    </script>
+  </body>
 </html>
