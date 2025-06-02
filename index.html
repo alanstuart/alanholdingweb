@@ -1,82 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alan Holding Digital Solutions</title>
-    <link rel="icon" type="image/png" href="/favicon.ico" />
-    <style>
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background-color: #000d1a;
-        color: white;
-        padding: 2rem;
-        text-align: center;
-      }
-      h1 {
-        font-size: 2.5rem;
-        color: #00c6ff;
-        margin-bottom: 1rem;
-      }
-      p {
-        font-size: 1.2rem;
-        line-height: 1.6;
-        max-width: 600px;
-        margin: 0 auto 1rem;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Alan Holding Digital Solutions</h1>
-    <p>
-      We build AI voice and chat agents that speak English and Spanish, answer calls 24/7, book appointments, and capture leads on autopilot.
-    </p>
-    <p>Click the mic button in the bottom-right corner to speak with Oliver.</p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alan Holding Digital Solutions</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background: #0f172a;
+      color: #fff;
+      text-align: center;
+    }
 
-    <!-- ✅ Vapi Assistant Script -->
-    <script>
-      const assistant = "0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c";
-      const apiKey = "7b4db2a3-2750-4601-b8f1-14f21ca44044";
+    h1 {
+      color: #0ef;
+      margin-bottom: 1rem;
+    }
 
-      const buttonConfig = {
-        position: "bottom-right",
-        offset: "24px",
-        width: "60px",
-        height: "60px",
-        idle: {
-          color: "#00c6ff",
-          type: "round",
-          icon: "https://unpkg.com/lucide-static@0.321.0/icons/mic.svg"
-        },
-        loading: {
-          color: "#12a594",
-          type: "round",
-          icon: "https://unpkg.com/lucide-static@0.321.0/icons/loader-2.svg"
-        },
-        active: {
-          color: "#00c6ff", // no red glow
-          type: "round",
-          icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg"
-        }
+    p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Alan Holding Digital Solutions</h1>
+  <p>AI voice and chat agents that answer calls 24/7, speak English & Spanish, book appointments, and close leads like a pro.</p>
+  <p>Click the mic button at the bottom right to speak with Oliver.</p>
+
+  <script>
+    const assistant = "0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c"; // Your Assistant ID
+    const apiKey = "7b4db2a3-2750-4601-b8f1-14f21ca44044"; // Your Public API Key
+
+    const buttonConfig = {
+      position: "bottom-right",
+      offset: "20px",
+      width: "60px",
+      height: "60px",
+      idle: {
+        color: "#0ef",
+        type: "round",
+        icon: "https://unpkg.com/lucide-static@0.321.0/icons/mic.svg"
+      },
+      loading: {
+        color: "#999",
+        type: "round",
+        icon: "https://unpkg.com/lucide-static@0.321.0/icons/loader.svg"
+      },
+      active: {
+        color: "red",
+        type: "round",
+        icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg"
+      }
+    };
+
+    (function (d, t) {
+      var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      g.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
+      g.defer = true;
+      g.async = true;
+      s.parentNode.insertBefore(g, s);
+      g.onload = function () {
+        window.vapiSDK.run({
+          apiKey: apiKey,
+          assistant: assistant,
+          config: buttonConfig
+        });
       };
-
-      var vapiInstance = null;
-      (function (d, t) {
-        var g = document.createElement(t),
-            s = d.getElementsByTagName(t)[0];
-        g.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
-        g.defer = true;
-        g.async = true;
-        s.parentNode.insertBefore(g, s);
-        g.onload = function () {
-          vapiInstance = window.vapiSDK.run({
-            apiKey: apiKey,
-            assistant: assistant,
-            config: buttonConfig
-          });
-        };
-      })(document, "script");
-    </script>
-  </body>
+    })(document, "script");
+  </script>
+</body>
 </html>
