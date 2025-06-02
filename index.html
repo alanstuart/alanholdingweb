@@ -25,6 +25,7 @@
       margin: 0 auto;
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/@vapi-ai/web@1.1.0/dist/index.min.js"></script>
 </head>
 <body>
   <h1>Alan Holding Digital Solutions</h1>
@@ -32,8 +33,8 @@
   <p>Click the mic button at the bottom right to speak with Oliver.</p>
 
   <script>
-    const assistant = "0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c"; // Your Assistant ID
-    const apiKey = "7b4db2a3-2750-4601-b8f1-14f21ca44044"; // Your Public API Key
+    const assistant = "0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c";
+    const apiKey = "7b4db2a3-2750-4601-b8f1-14f21ca44044";
 
     const buttonConfig = {
       position: "bottom-right",
@@ -57,20 +58,13 @@
       }
     };
 
-    (function (d, t) {
-      var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
-      g.src = "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
-      g.defer = true;
-      g.async = true;
-      s.parentNode.insertBefore(g, s);
-      g.onload = function () {
-        window.vapiSDK.run({
-          apiKey: apiKey,
-          assistant: assistant,
-          config: buttonConfig
-        });
-      };
-    })(document, "script");
+    window.addEventListener('load', () => {
+      window.Vapi.init({
+        apiKey: apiKey,
+        assistant: assistant,
+        config: buttonConfig
+      });
+    });
   </script>
 </body>
 </html>
