@@ -25,13 +25,13 @@
       margin: 0 auto;
     }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/@vapi-ai/web@1.1.0/dist/index.min.js"></script>
 </head>
 <body>
   <h1>Alan Holding Digital Solutions</h1>
   <p>AI voice and chat agents that answer calls 24/7, speak English & Spanish, book appointments, and close leads like a pro.</p>
   <p>Click the mic button at the bottom right to speak with Oliver.</p>
 
+  <script src="https://cdn.jsdelivr.net/npm/@vapi-ai/web@1.1.0/dist/index.min.js"></script>
   <script>
     const assistant = "0ddb9259-b0a9-4c3a-a3ed-fa5e0c409a0c";
     const apiKey = "7b4db2a3-2750-4601-b8f1-14f21ca44044";
@@ -83,7 +83,12 @@
       checkAndInit();
     }
 
-    window.addEventListener('load', initVapi);
+    // Wait for both DOM and Vapi script to load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initVapi);
+    } else {
+      initVapi();
+    }
   </script>
 </body>
 </html>
