@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
             </p>
             <div className="flex space-x-4">
               <a 
-                href="https://github.com" 
+                href="https://github.com/alanholding" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="p-2 bg-gray-800 rounded-full hover:bg-blue-600 transition-colors"
@@ -46,7 +46,7 @@ const Footer: React.FC = () => {
                 <Github size={20} />
               </a>
               <a 
-                href="https://linkedin.com" 
+                href="https://www.linkedin.com/in/alan-holding-7b8b8b1b8/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="p-2 bg-gray-800 rounded-full hover:bg-blue-600 transition-colors"
@@ -55,7 +55,7 @@ const Footer: React.FC = () => {
                 <Linkedin size={20} />
               </a>
               <a 
-                href="https://twitter.com" 
+                href="https://twitter.com/alanholding" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="p-2 bg-gray-800 rounded-full hover:bg-blue-600 transition-colors"

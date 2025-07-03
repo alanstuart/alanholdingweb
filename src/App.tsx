@@ -34,9 +34,10 @@ function AppContent() {
         ? 'text-white' 
         : 'text-gray-800'
     }`}>
-      {/* Background elements */}
+      {/* Enhanced background elements */}
       <ParticlesBackground />
-      <div className="grid-overlay fixed inset-0 z-0 opacity-10"></div>
+      <div className="animated-grid fixed inset-0 z-0"></div>
+      <div className="floating-orbs fixed inset-0 z-0"></div>
       
       {/* Content */}
       <div className="relative z-10">
