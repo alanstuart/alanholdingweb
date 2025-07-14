@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Menu, X, Globe } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 interface NavbarProps {
   isScrolled: boolean;
@@ -40,10 +41,10 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
         
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
-          <a href="#services" className="nav-link">{language === 'en' ? 'Services' : 'Servicios'}</a>
-          <a href="#projects" className="nav-link">{language === 'en' ? 'Projects' : 'Proyectos'}</a>
-          <a href="#testimonials" className="nav-link">{language === 'en' ? 'Testimonials' : 'Testimonios'}</a>
-          <a href="#contact" className="nav-link">{language === 'en' ? 'Contact' : 'Contacto'}</a>
+          <a href="#services" className="nav-link">{translations[language].services}</a>
+          <a href="#projects" className="nav-link">{translations[language].projects}</a>
+          <a href="#testimonials" className="nav-link">{translations[language].testimonials}</a>
+          <a href="#contact" className="nav-link">{translations[language].contact}</a>
           <button 
             onClick={toggleLanguage}
             className={`p-2 rounded-full transition-colors ${
@@ -118,22 +119,22 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
             <a href="#services" className={`py-2 px-4 rounded-md transition-colors ${
               theme === 'dark' ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
             }`} onClick={() => setIsOpen(false)}>
-              {language === 'en' ? 'Services' : 'Servicios'}
+              {translations[language].services}
             </a>
             <a href="#projects" className={`py-2 px-4 rounded-md transition-colors ${
               theme === 'dark' ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
             }`} onClick={() => setIsOpen(false)}>
-              {language === 'en' ? 'Projects' : 'Proyectos'}
+              {translations[language].projects}
             </a>
             <a href="#testimonials" className={`py-2 px-4 rounded-md transition-colors ${
               theme === 'dark' ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
             }`} onClick={() => setIsOpen(false)}>
-              {language === 'en' ? 'Testimonials' : 'Testimonios'}
+              {translations[language].testimonials}
             </a>
             <a href="#contact" className={`py-2 px-4 rounded-md transition-colors ${
               theme === 'dark' ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
             }`} onClick={() => setIsOpen(false)}>
-              {language === 'en' ? 'Contact' : 'Contacto'}
+              {translations[language].contact}
             </a>
           </div>
         </div>

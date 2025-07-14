@@ -1,5 +1,7 @@
 import React, { useRef } from 'react';
 import { ChevronLeft, ChevronRight, MessageSquare, Star } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 interface Testimonial {
   id: string;
@@ -13,6 +15,9 @@ interface Testimonial {
 }
 
 const Testimonials: React.FC = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+  
   const sliderRef = useRef<HTMLDivElement>(null);
   
   const testimonials: Testimonial[] = [
@@ -67,9 +72,9 @@ const Testimonials: React.FC = () => {
       <div className="container mx-auto">
         <div className="text-center mb-14">
           <span className="badge bg-gradient-to-r from-blue-600 to-blue-400 text-white text-xs uppercase tracking-widest px-3 py-1 rounded-full">Testimonials</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-4 mb-6">Client Success Stories</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mt-4 mb-6">{t.testimonialsTitle}</h2>
           <p className="text-gray-400 max-w-xl mx-auto">
-            Don't just take my word for it. Here's what clients say about working with me and the results they've achieved.
+            {t.testimonialsSubtitle}
           </p>
         </div>
         
@@ -141,7 +146,7 @@ const Testimonials: React.FC = () => {
                   {/* Result Badge */}
                   <div className="absolute bottom-6 right-6">
                     <div className="bg-blue-900 bg-opacity-50 text-blue-300 text-xs py-1 px-2 rounded-full">
-                      Result: {testimonial.result}
+                      {t.result}: {testimonial.result}
                     </div>
                   </div>
                 </div>

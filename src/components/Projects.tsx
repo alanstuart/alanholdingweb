@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { ExternalLink, Code, Layers } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 interface Project {
   id: string;
@@ -12,6 +14,9 @@ interface Project {
 }
 
 const Projects: React.FC = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+  
   const [activeCategory, setActiveCategory] = useState('all');
   
   const projects: Project[] = [
@@ -55,11 +60,11 @@ const Projects: React.FC = () => {
     : projects.filter(project => project.category === activeCategory);
   
   const categories = [
-    { id: 'all', label: 'All Projects' },
-    { id: 'e-commerce', label: 'E-commerce' },
-    { id: 'web-app', label: 'Web Apps' },
-    { id: 'dashboard', label: 'Dashboards' },
-    { id: 'website', label: 'Websites' }
+    { id: 'all', label: t.projectCategories.all },
+    { id: 'e-commerce', label: t.projectCategories.ecommerce },
+    { id: 'web-app', label: t.projectCategories.webApps },
+    { id: 'dashboard', label: t.projectCategories.dashboards },
+    { id: 'website', label: t.projectCategories.websites }
   ];
   
   return (
@@ -67,9 +72,9 @@ const Projects: React.FC = () => {
       <div className="container mx-auto">
         <div className="text-center mb-14">
           <span className="badge bg-gradient-to-r from-blue-600 to-blue-400 text-white text-xs uppercase tracking-widest px-3 py-1 rounded-full">Portfolio</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-4 mb-6">Recent Projects</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mt-4 mb-6">{t.projectsTitle}</h2>
           <p className="text-gray-400 max-w-xl mx-auto">
-            Explore my latest work, featuring real-world projects that demonstrate technical expertise and business results.
+            {t.projectsSubtitle}
           </p>
         </div>
         
@@ -143,11 +148,11 @@ const Projects: React.FC = () => {
                   <div className="flex items-center space-x-4">
                     <div className="flex items-center text-gray-500 text-sm">
                       <Code size={16} className="mr-1" />
-                      <span>Clean Code</span>
+                      <span>{t.cleanCode}</span>
                     </div>
                     <div className="flex items-center text-gray-500 text-sm">
                       <Layers size={16} className="mr-1" />
-                      <span>Responsive</span>
+                      <span>{t.responsive}</span>
                     </div>
                   </div>
                 </div>
@@ -159,10 +164,10 @@ const Projects: React.FC = () => {
         {/* Call to Action */}
         <div className="mt-16 text-center">
           <p className="text-gray-400 mb-6">
-            Want to see more examples of my work?
+            {t.projectsCallToAction}
           </p>
           <a href="#contact" className="btn-secondary">
-            Request Full Portfolio
+            {t.requestPortfolio}
           </a>
         </div>
       </div>

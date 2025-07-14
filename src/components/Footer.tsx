@@ -1,7 +1,12 @@
 import React from 'react';
 import { Github, Linkedin, Twitter, ArrowUp } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 const Footer: React.FC = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+  
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -33,7 +38,7 @@ const Footer: React.FC = () => {
               <span className="text-xl font-bold">Alan Holding</span>
             </div>
             <p className="text-gray-400 mb-6 max-w-md">
-              Creating websites that deliver real business results. From concept to completion, I build digital solutions that drive growth and engagement.
+              {t.footerDescription}
             </p>
             <div className="flex space-x-4">
               <a 
@@ -67,37 +72,37 @@ const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h4 className="text-lg font-bold mb-4">Quick Links</h4>
+            <h4 className="text-lg font-bold mb-4">{t.quickLinks}</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#services" className="text-gray-400 hover:text-white transition-colors">Services</a>
+                <a href="#services" className="text-gray-400 hover:text-white transition-colors">{t.services}</a>
               </li>
               <li>
-                <a href="#projects" className="text-gray-400 hover:text-white transition-colors">Projects</a>
+                <a href="#projects" className="text-gray-400 hover:text-white transition-colors">{t.projects}</a>
               </li>
               <li>
-                <a href="#testimonials" className="text-gray-400 hover:text-white transition-colors">Testimonials</a>
+                <a href="#testimonials" className="text-gray-400 hover:text-white transition-colors">{t.testimonials}</a>
               </li>
               <li>
-                <a href="#contact" className="text-gray-400 hover:text-white transition-colors">Contact</a>
+                <a href="#contact" className="text-gray-400 hover:text-white transition-colors">{t.contact}</a>
               </li>
             </ul>
           </div>
           
           <div>
-            <h4 className="text-lg font-bold mb-4">Services</h4>
+            <h4 className="text-lg font-bold mb-4">{t.services}</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#services" className="text-gray-400 hover:text-white transition-colors">Web Development</a>
+                <a href="#services" className="text-gray-400 hover:text-white transition-colors">{language === 'en' ? 'Web Development' : 'Desarrollo Web'}</a>
               </li>
               <li>
-                <a href="#services" className="text-gray-400 hover:text-white transition-colors">SEO Optimization</a>
+                <a href="#services" className="text-gray-400 hover:text-white transition-colors">{language === 'en' ? 'SEO Optimization' : 'Optimización SEO'}</a>
               </li>
               <li>
-                <a href="#services" className="text-gray-400 hover:text-white transition-colors">Responsive Design</a>
+                <a href="#services" className="text-gray-400 hover:text-white transition-colors">{language === 'en' ? 'Responsive Design' : 'Diseño Responsivo'}</a>
               </li>
               <li>
-                <a href="#services" className="text-gray-400 hover:text-white transition-colors">Tech Integration</a>
+                <a href="#services" className="text-gray-400 hover:text-white transition-colors">{language === 'en' ? 'Tech Integration' : 'Integración Tecnológica'}</a>
               </li>
             </ul>
           </div>
@@ -105,12 +110,12 @@ const Footer: React.FC = () => {
         
         <div className="border-t border-gray-800 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 text-sm mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} Alan Holding. All rights reserved.
+            &copy; {new Date().getFullYear()} Alan Holding. {t.allRightsReserved}
           </p>
           <div className="flex flex-wrap gap-4 text-sm text-gray-500">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
+            <a href="#" className="hover:text-white transition-colors">{t.privacyPolicy}</a>
+            <a href="#" className="hover:text-white transition-colors">{t.termsOfService}</a>
+            <a href="#" className="hover:text-white transition-colors">{t.cookiePolicy}</a>
           </div>
         </div>
       </div>
@@ -118,7 +123,7 @@ const Footer: React.FC = () => {
       <button 
         onClick={scrollToTop}
         className="back-to-top-btn"
-        aria-label="Back to top"
+        aria-label={t.backToTop}
       >
         <ArrowUp size={20} />
       </button>

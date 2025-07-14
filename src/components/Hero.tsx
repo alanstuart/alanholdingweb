@@ -1,14 +1,19 @@
 import React from 'react';
 import { Phone, MessageSquare, Calendar, Clock, Globe, UserCheck } from 'lucide-react';
 import TypeWriter from './TypeWriter';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 const Hero: React.FC = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+  
   const typingPhrases = [
-    "Handling Business Like a Pro...",
-    "Turning Missed Calls into Booked Clients...",
-    "Speaking Fluent English and Spanish...",
-    "Your AI Receptionist at Work...",
-    "No Breaks. No Excuses. Just Results..."
+    language === 'en' ? "Handling Business Like a Pro..." : "Manejando Negocios Como un Profesional...",
+    language === 'en' ? "Turning Missed Calls into Booked Clients..." : "Convirtiendo Llamadas Perdidas en Clientes Reservados...",
+    language === 'en' ? "Speaking Fluent English and Spanish..." : "Hablando Inglés y Español con Fluidez...",
+    language === 'en' ? "Your AI Receptionist at Work..." : "Tu Recepcionista IA en Acción...",
+    language === 'en' ? "No Breaks. No Excuses. Just Results..." : "Sin Descansos. Sin Excusas. Solo Resultados..."
   ];
 
   return (
@@ -21,11 +26,11 @@ const Hero: React.FC = () => {
       <div className="container mx-auto relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <div className="badge text-xs uppercase tracking-widest mb-4 inline-block px-3 py-1 rounded-full bg-gradient-to-r from-blue-600 to-blue-400">
-            AI Voice & Chat Agents
+            {t.heroSubtitle}
           </div>
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600">
-            Your Business Is Losing Sales by Missing Calls Let AI Handle Them 24/7
+            {t.heroTitle}
           </h1>
 
           <div className="mb-8">
@@ -33,7 +38,7 @@ const Hero: React.FC = () => {
           </div>
           
           <p className="text-xl text-blue-300 mb-12">
-            AI voice and chat agents can speak English and Spanish, answer calls, book appointments, and collect leads all with the professionalism of a human assistant.
+            {t.heroDescription}
           </p>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12 text-left">
@@ -43,8 +48,8 @@ const Hero: React.FC = () => {
                   <Clock className="w-6 h-6 text-blue-400" />
                 </div>
                 <div>
-                  <p className="text-lg font-semibold mb-1">Available 24/7 to handle customer interactions</p>
-                  <p className="text-gray-400">No more "Sorry we missed your call." Your AI never sleeps.</p>
+                  <p className="text-lg font-semibold mb-1">{t.heroFeatures.available247.title}</p>
+                  <p className="text-gray-400">{t.heroFeatures.available247.description}</p>
                 </div>
               </div>
 
@@ -53,8 +58,8 @@ const Hero: React.FC = () => {
                   <Globe className="w-6 h-6 text-blue-400" />
                 </div>
                 <div>
-                  <p className="text-lg font-semibold mb-1">Bilingual fluency in English and Spanish</p>
-                  <p className="text-gray-400">Every caller gets the respect of being understood.</p>
+                  <p className="text-lg font-semibold mb-1">{t.heroFeatures.bilingual.title}</p>
+                  <p className="text-gray-400">{t.heroFeatures.bilingual.description}</p>
                 </div>
               </div>
 
@@ -63,8 +68,8 @@ const Hero: React.FC = () => {
                   <Calendar className="w-6 h-6 text-blue-400" />
                 </div>
                 <div>
-                  <p className="text-lg font-semibold mb-1">Books appointments directly into your calendar</p>
-                  <p className="text-gray-400">Hands off. Clients show up.</p>
+                  <p className="text-lg font-semibold mb-1">{t.heroFeatures.appointments.title}</p>
+                  <p className="text-gray-400">{t.heroFeatures.appointments.description}</p>
                 </div>
               </div>
             </div>
@@ -75,8 +80,8 @@ const Hero: React.FC = () => {
                   <UserCheck className="w-6 h-6 text-blue-400" />
                 </div>
                 <div>
-                  <p className="text-lg font-semibold mb-1">Collects name, email, and phone</p>
-                  <p className="text-gray-400">Captures every lead, even at midnight.</p>
+                  <p className="text-lg font-semibold mb-1">{t.heroFeatures.leadCollection.title}</p>
+                  <p className="text-gray-400">{t.heroFeatures.leadCollection.description}</p>
                 </div>
               </div>
 
@@ -85,8 +90,8 @@ const Hero: React.FC = () => {
                   <Phone className="w-6 h-6 text-blue-400" />
                 </div>
                 <div>
-                  <p className="text-lg font-semibold mb-1">Perfect for clinics, service businesses, and local shops</p>
-                  <p className="text-gray-400">Anyone with a phone line and a schedule.</p>
+                  <p className="text-lg font-semibold mb-1">{t.heroFeatures.perfectFor.title}</p>
+                  <p className="text-gray-400">{t.heroFeatures.perfectFor.description}</p>
                 </div>
               </div>
 
@@ -95,15 +100,15 @@ const Hero: React.FC = () => {
                   <MessageSquare className="w-6 h-6 text-blue-400" />
                 </div>
                 <div>
-                  <p className="text-lg font-semibold mb-1">No hiring. No missed calls. Just results.</p>
-                  <p className="text-gray-400">Less overhead. More conversions.</p>
+                  <p className="text-lg font-semibold mb-1">{t.heroFeatures.noHiring.title}</p>
+                  <p className="text-gray-400">{t.heroFeatures.noHiring.description}</p>
                 </div>
               </div>
             </div>
           </div>
 
           <p className="text-xl text-blue-300 italic">
-            These intelligent agents are launching soon. Stay tuned and get ready to turn missed calls and messages into booked clients.
+            {t.heroClosing}
           </p>
         </div>
       </div>

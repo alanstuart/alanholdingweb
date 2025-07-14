@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { Mail, Calendar, Send } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 const Contact: React.FC = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -39,21 +44,21 @@ const Contact: React.FC = () => {
       <div className="container mx-auto">
         <div className="text-center mb-14">
           <span className="badge bg-gradient-to-r from-blue-600 to-blue-400 text-white text-xs uppercase tracking-widest px-3 py-1 rounded-full">Contact</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-4 mb-6">Let's Build Something Amazing</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mt-4 mb-6">{t.contactTitle}</h2>
           <p className="text-gray-400 max-w-xl mx-auto">
-            Ready to discuss your project? Contact me today for a free consultation and let's turn your ideas into reality.
+            {t.contactSubtitle}
           </p>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           {/* Contact Form */}
           <div className="lg:col-span-3 bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-800 shadow-lg">
-            <h3 className="text-xl font-bold mb-6">Send a Message</h3>
+            <h3 className="text-xl font-bold mb-6">{t.sendMessage}</h3>
             
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">Your Name</label>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">{t.yourName}</label>
                   <input
                     type="text"
                     id="name"
@@ -61,13 +66,13 @@ const Contact: React.FC = () => {
                     value={formData.name}
                     onChange={handleChange}
                     className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                    placeholder="John Doe"
+                    placeholder={language === 'en' ? 'John Doe' : 'Juan Pérez'}
                     required
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2">Email Address</label>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2">{t.emailAddress}</label>
                   <input
                     type="email"
                     id="email"
@@ -75,14 +80,14 @@ const Contact: React.FC = () => {
                     value={formData.email}
                     onChange={handleChange}
                     className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                    placeholder="john@example.com"
+                    placeholder={language === 'en' ? 'john@example.com' : 'juan@ejemplo.com'}
                     required
                   />
                 </div>
               </div>
               
               <div className="mb-6">
-                <label htmlFor="service" className="block text-sm font-medium text-gray-400 mb-2">Service Interested In</label>
+                <label htmlFor="service" className="block text-sm font-medium text-gray-400 mb-2">{t.serviceInterestedIn}</label>
                 <select
                   id="service"
                   name="service"
@@ -91,18 +96,18 @@ const Contact: React.FC = () => {
                   className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                   required
                 >
-                  <option value="" disabled>Select a service</option>
-                  <option value="website">Website Development</option>
-                  <option value="ecommerce">E-commerce Solution</option>
-                  <option value="chatbot">AI Chatbot Integration</option>
-                  <option value="seo">SEO Optimization</option>
-                  <option value="tech">Tech Integration</option>
-                  <option value="other">Other</option>
+                  <option value="" disabled>{t.selectService}</option>
+                  <option value="website">{t.serviceOptions.website}</option>
+                  <option value="ecommerce">{t.serviceOptions.ecommerce}</option>
+                  <option value="chatbot">{t.serviceOptions.chatbot}</option>
+                  <option value="seo">{t.serviceOptions.seo}</option>
+                  <option value="tech">{t.serviceOptions.tech}</option>
+                  <option value="other">{t.serviceOptions.other}</option>
                 </select>
               </div>
               
               <div className="mb-6">
-                <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-2">Your Message</label>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-2">{t.yourMessage}</label>
                 <textarea
                   id="message"
                   name="message"
@@ -110,7 +115,7 @@ const Contact: React.FC = () => {
                   onChange={handleChange}
                   rows={5}
                   className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                  placeholder="Tell me about your project..."
+                  placeholder={t.messagePlaceholder}
                   required
                 ></textarea>
               </div>
@@ -120,7 +125,7 @@ const Contact: React.FC = () => {
                 className="btn-primary w-full flex items-center justify-center"
               >
                 <Send size={18} className="mr-2" />
-                Send Message
+                {t.sendMessageButton}
               </button>
             </form>
           </div>
@@ -128,7 +133,7 @@ const Contact: React.FC = () => {
           {/* Contact Information */}
           <div className="lg:col-span-2 space-y-6">
             <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-800 shadow-lg">
-              <h3 className="text-xl font-bold mb-6">Contact Information</h3>
+              <h3 className="text-xl font-bold mb-6">{t.contactInformation}</h3>
               
               <div className="space-y-4">
                 <div className="flex items-start">
@@ -136,7 +141,7 @@ const Contact: React.FC = () => {
                     <Mail size={20} className="text-blue-400" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-400">Email</p>
+                    <p className="text-sm text-gray-400">{t.email}</p>
                     <a href="mailto:alan.s.holding@gmail.com" className="text-white hover:text-blue-400 transition-colors">
                       alan.s.holding@gmail.com
                     </a>
@@ -146,23 +151,23 @@ const Contact: React.FC = () => {
             </div>
             
             <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-800 shadow-lg">
-              <h3 className="text-xl font-bold mb-6">Schedule a Call</h3>
+              <h3 className="text-xl font-bold mb-6">{t.scheduleCall}</h3>
               <p className="text-gray-400 mb-4">
-                Prefer to talk directly? Book a free 30-minute consultation call.
+                {t.scheduleCallDescription}
               </p>
               <button 
                 onClick={handleBookingClick}
                 className="btn-secondary w-full flex items-center justify-center"
               >
                 <Calendar size={18} className="mr-2" />
-                Book a Call
+                {t.bookCall}
               </button>
             </div>
             
             <div className="bg-blue-900 bg-opacity-20 rounded-xl p-6 border border-blue-800 shadow-lg">
-              <h3 className="text-xl font-bold mb-2">Quick Response Guarantee</h3>
+              <h3 className="text-xl font-bold mb-2">{t.quickResponse}</h3>
               <p className="text-gray-300">
-                I'll get back to you within 24 hours with a personalized response and next steps.
+                {t.quickResponseDescription}
               </p>
             </div>
           </div>

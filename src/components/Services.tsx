@@ -1,16 +1,21 @@
 import React from 'react';
 import { Phone, MessageSquare, Laptop } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../translations';
 
 const Services: React.FC = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
+  
   return (
     <section id="services" className="py-20 px-4 bg-gradient-to-b from-gray-900 to-black">
       <div className="container mx-auto">
         <div className="text-center mb-14">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Empowering Businesses with AI-Driven Voice and Chat Solutions
+            {t.servicesTitle}
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            We help companies automate communication, capture leads, and increase sales using cutting-edge AI tools.
+            {t.servicesSubtitle}
           </p>
         </div>
         
@@ -21,9 +26,9 @@ const Services: React.FC = () => {
               <Phone className="w-8 h-8 text-blue-400" />
             </div>
             
-            <h3 className="text-xl font-bold mb-4">AI Voice Agents</h3>
+            <h3 className="text-xl font-bold mb-4">{t.aiVoiceAgents.title}</h3>
             <p className="text-gray-400 leading-relaxed">
-              Automate phone calls with intelligent agents that answer, book appointments, and capture leads 24/7 in English and Spanish.
+              {t.aiVoiceAgents.description}
             </p>
           </div>
 
@@ -33,9 +38,9 @@ const Services: React.FC = () => {
               <MessageSquare className="w-8 h-8 text-blue-400" />
             </div>
             
-            <h3 className="text-xl font-bold mb-4">Smart Chatbots</h3>
+            <h3 className="text-xl font-bold mb-4">{t.smartChatbots.title}</h3>
             <p className="text-gray-400 leading-relaxed">
-              Engage website visitors instantly using chatbots that qualify leads, answer FAQs, and drive conversions even while you sleep.
+              {t.smartChatbots.description}
             </p>
           </div>
 
@@ -45,9 +50,9 @@ const Services: React.FC = () => {
               <Laptop className="w-8 h-8 text-blue-400" />
             </div>
             
-            <h3 className="text-xl font-bold mb-4">Digital Solutions</h3>
+            <h3 className="text-xl font-bold mb-4">{t.digitalSolutions.title}</h3>
             <p className="text-gray-400 leading-relaxed">
-              From web design to automation workflows, we build digital infrastructure that saves time and delivers measurable ROI.
+              {t.digitalSolutions.description}
             </p>
           </div>
         </div>
