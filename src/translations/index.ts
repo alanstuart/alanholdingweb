@@ -4,6 +4,7 @@ export interface Translations {
   projects: string;
   testimonials: string;
   contact: string;
+  about: string;
   
   // Hero Section
   heroTitle: string;
@@ -124,6 +125,16 @@ export interface Translations {
   responsive: string;
   backToTop: string;
   limitedOffer: string;
+  
+  // About Section
+  aboutTitle: string;
+  aboutSubtitle: string;
+  aboutDescription: string;
+  aboutMission: string;
+  aboutServices: string;
+  aboutApproach: string;
+  aboutCTA: string;
+  aboutLinkedInText: string;
 }
 
 export const translations: Record<'en' | 'es' | 'tr', Translations> = {
@@ -133,6 +144,7 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
     projects: 'Projects',
     testimonials: 'Testimonials',
     contact: 'Contact',
+    about: 'About',
     
     // Hero Section
     heroTitle: 'Your Business Is Losing Sales by Missing Calls Let AI Handle Them 24/7',
@@ -252,7 +264,17 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
     cleanCode: 'Clean Code',
     responsive: 'Responsive',
     backToTop: 'Back to top',
-    limitedOffer: 'Limited Offer'
+    limitedOffer: 'Limited Offer',
+    
+    // About Section
+    aboutTitle: 'About Alan Holding Digital Solutions',
+    aboutSubtitle: 'Your trusted partner for practical digital solutions',
+    aboutDescription: 'We are a digital agency focused on helping local businesses, entrepreneurs, and small companies grow through smart technology. We understand that every business is unique, which is why we create customized solutions that actually work for your specific needs.',
+    aboutMission: 'Our mission is simple: to make advanced technology accessible and affordable for businesses of all sizes. We believe that every company deserves professional digital tools without the complexity or high costs typically associated with them.',
+    aboutServices: 'From modern website development to AI voice agents that handle your calls 24/7, we take care of everything. Our booking automation systems and lead capture solutions work seamlessly without requiring expensive CRM systems. We handle the design, development, integrations, and ongoing support so you can focus on what you do best: running your business.',
+    aboutApproach: 'What sets us apart is our hands-on approach and commitment to real results. We don\'t just build websites or set up systems – we create digital solutions that drive actual business growth. Every project is handled with care, attention to detail, and a deep understanding of what small businesses need to succeed online.',
+    aboutCTA: 'Ready to transform your business with smart digital solutions?',
+    aboutLinkedInText: 'If you want to learn more or connect directly, you can visit our founder\'s LinkedIn profile.'
   },
   es: {
     // Navigation
@@ -260,6 +282,7 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
     projects: 'Proyectos',
     testimonials: 'Testimonios',
     contact: 'Contacto',
+    about: 'Nosotros',
     
     // Hero Section
     heroTitle: 'Tu Negocio Está Perdiendo Ventas por Llamadas Perdidas Deja que la IA las Maneje 24/7',
@@ -379,7 +402,17 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
     cleanCode: 'Código Limpio',
     responsive: 'Responsivo',
     backToTop: 'Volver arriba',
-    limitedOffer: 'Oferta Limitada'
+    limitedOffer: 'Oferta Limitada',
+    
+    // About Section
+    aboutTitle: 'Sobre Alan Holding Digital Solutions',
+    aboutSubtitle: 'Tu socio de confianza para soluciones digitales prácticas',
+    aboutDescription: 'Somos una agencia digital enfocada en ayudar a negocios locales, emprendedores y pequeñas empresas a crecer a través de tecnología inteligente. Entendemos que cada negocio es único, por eso creamos soluciones personalizadas que realmente funcionan para tus necesidades específicas.',
+    aboutMission: 'Nuestra misión es simple: hacer que la tecnología avanzada sea accesible y asequible para empresas de todos los tamaños. Creemos que toda empresa merece herramientas digitales profesionales sin la complejidad o los altos costos que normalmente se asocian con ellas.',
+    aboutServices: 'Desde el desarrollo de sitios web modernos hasta agentes de voz con IA que manejan tus llamadas las 24 horas, nos encargamos de todo. Nuestros sistemas de automatización de reservas y soluciones de captación de leads funcionan perfectamente sin requerir sistemas CRM costosos. Manejamos el diseño, desarrollo, integraciones y soporte continuo para que puedas enfocarte en lo que mejor sabes hacer: dirigir tu negocio.',
+    aboutApproach: 'Lo que nos distingue es nuestro enfoque práctico y compromiso con resultados reales. No solo construimos sitios web o configuramos sistemas – creamos soluciones digitales que impulsan el crecimiento real del negocio. Cada proyecto se maneja con cuidado, atención al detalle y un profundo entendimiento de lo que las pequeñas empresas necesitan para tener éxito en línea.',
+    aboutCTA: '¿Listo para transformar tu negocio con soluciones digitales inteligentes?',
+    aboutLinkedInText: 'Si quieres saber más o conectar directamente, puedes visitar el perfil de nuestro fundador en LinkedIn.'
   },
   tr: {
     // Navigation
@@ -387,6 +420,7 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
     projects: 'Projeler',
     testimonials: 'Referanslar',
     contact: 'İletişim',
+    about: 'Hakkımızda',
     
     // Hero Section
     heroTitle: 'İşletmeniz Kaçırılan Aramalar Yüzünden Satış Kaybediyor AI\'nın 7/24 Halletmesine İzin Verin',
@@ -506,6 +540,16 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
     cleanCode: 'Temiz Kod',
     responsive: 'Duyarlı',
     backToTop: 'Başa dön',
-    limitedOffer: 'Sınırlı Teklif'
+    limitedOffer: 'Sınırlı Teklif',
+    
+    // About Section
+    aboutTitle: 'Alan Holding Digital Solutions Hakkında',
+    aboutSubtitle: 'Pratik dijital çözümler için güvenilir ortağınız',
+    aboutDescription: 'Yerel işletmelerin, girişimcilerin ve küçük şirketlerin akıllı teknoloji aracılığıyla büyümesine yardımcı olmaya odaklanan bir dijital ajansız. Her işletmenin benzersiz olduğunu anlıyoruz, bu yüzden özel ihtiyaçlarınız için gerçekten işe yarayan özelleştirilmiş çözümler yaratıyoruz.',
+    aboutMission: 'Misyonumuz basit: gelişmiş teknolojiyi her boyuttaki işletme için erişilebilir ve uygun fiyatlı hale getirmek. Her şirketin, genellikle bunlarla ilişkilendirilen karmaşıklık veya yüksek maliyetler olmadan profesyonel dijital araçları hak ettiğine inanıyoruz.',
+    aboutServices: 'Modern web sitesi geliştirmeden aramalarınızı 7/24 yöneten AI ses ajanlarına kadar her şeyle ilgileniyoruz. Rezervasyon otomasyon sistemlerimiz ve müşteri adayı yakalama çözümlerimiz pahalı CRM sistemleri gerektirmeden kusursuz çalışır. Tasarım, geliştirme, entegrasyonlar ve devam eden desteği yönetiyoruz, böylece en iyi yaptığınız şeye odaklanabilirsiniz: işinizi yönetmek.',
+    aboutApproach: 'Bizi farklı kılan şey, uygulamalı yaklaşımımız ve gerçek sonuçlara olan bağlılığımızdır. Sadece web siteleri kurmaz veya sistemler oluşturmayız – gerçek iş büyümesini sağlayan dijital çözümler yaratırız. Her proje özenle, detaylara dikkat ederek ve küçük işletmelerin çevrimiçi başarılı olmak için neye ihtiyaç duyduğunu derin bir anlayışla ele alınır.',
+    aboutCTA: 'İşinizi akıllı dijital çözümlerle dönüştürmeye hazır mısınız?',
+    aboutLinkedInText: 'Daha fazla bilgi edinmek veya doğrudan bağlantı kurmak istiyorsanız, kurucumuzun LinkedIn profilini ziyaret edebilirsiniz.'
   }
 };

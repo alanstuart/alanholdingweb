@@ -55,6 +55,7 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
         
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
+          <a href="#about" className="nav-link">{translations[language].about}</a>
           <a href="#services" className="nav-link">{translations[language].services}</a>
           <a href="#projects" className="nav-link">{translations[language].projects}</a>
           <a href="#testimonials" className="nav-link">{translations[language].testimonials}</a>
@@ -195,6 +196,11 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
             : 'bg-white bg-opacity-95 backdrop-blur-md border-gray-200 text-blue-600'
         }`}>
           <div className="container mx-auto px-4 flex flex-col space-y-4">
+            <a href="#about" className={`py-2 px-4 rounded-md transition-colors ${
+              theme === 'dark' ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
+            }`} onClick={() => setIsOpen(false)}>
+              {translations[language].about}
+            </a>
             <a href="#services" className={`py-2 px-4 rounded-md transition-colors ${
               theme === 'dark' ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
             }`} onClick={() => setIsOpen(false)}>

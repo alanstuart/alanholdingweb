@@ -75,6 +75,9 @@ const Footer: React.FC = () => {
             <h4 className="text-lg font-bold mb-4">{t.quickLinks}</h4>
             <ul className="space-y-2">
               <li>
+                <a href="#about" className="text-gray-400 hover:text-white transition-colors">{t.about}</a>
+              </li>
+              <li>
                 <a href="#services" className="text-gray-400 hover:text-white transition-colors">{t.services}</a>
               </li>
               <li>
