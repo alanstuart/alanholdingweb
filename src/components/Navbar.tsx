@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, Globe, ChevronDown } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
@@ -10,8 +10,22 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
-  const { language, toggleLanguage } = useLanguage();
+  const { language, setLanguage } = useLanguage();
+  
+  const languages = [
+    { code: 'en', name: 'English', flag: '🇺🇸' },
+    { code: 'es', name: 'Español', flag: '🇪🇸' },
+    { code: 'tr', name: 'Türkçe', flag: '🇹🇷' }
+  ];
+  
+  const currentLanguage = languages.find(lang => lang.code === language);
+  
+  const handleLanguageChange = (langCode: 'en' | 'es' | 'tr') => {
+    setLanguage(langCode);
+    setIsLanguageDropdownOpen(false);
+  };
   
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -45,18 +59,51 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
           <a href="#projects" className="nav-link">{translations[language].projects}</a>
           <a href="#testimonials" className="nav-link">{translations[language].testimonials}</a>
           <a href="#contact" className="nav-link">{translations[language].contact}</a>
-          <button 
-            onClick={toggleLanguage}
-            className={`p-2 rounded-full transition-colors ${
-              theme === 'dark' 
-                ? 'bg-gray-800 text-blue-400 hover:bg-gray-700' 
-                : 'bg-white text-blue-600 hover:bg-gray-100'
-            }`}
-            aria-label="Toggle language"
-          >
-            <Globe size={20} />
-            <span className="ml-1">{language.toUpperCase()}</span>
-          </button>
+          
+          {/* Language Dropdown */}
+          <div className="relative">
+            <button 
+              onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
+              className={`flex items-center p-2 rounded-full transition-colors ${
+                theme === 'dark' 
+                  ? 'bg-gray-800 text-blue-400 hover:bg-gray-700' 
+                  : 'bg-white text-blue-600 hover:bg-gray-100'
+              }`}
+              aria-label="Select language"
+            >
+              <Globe size={20} />
+              <span className="ml-1 mr-1">{currentLanguage?.flag}</span>
+              <ChevronDown size={16} />
+            </button>
+            
+            {isLanguageDropdownOpen && (
+              <div className={`absolute top-full right-0 mt-2 py-2 w-40 rounded-lg shadow-lg border z-50 ${
+                theme === 'dark'
+                  ? 'bg-gray-800 border-gray-700'
+                  : 'bg-white border-gray-200'
+              }`}>
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => handleLanguageChange(lang.code as 'en' | 'es' | 'tr')}
+                    className={`w-full text-left px-4 py-2 flex items-center transition-colors ${
+                      language === lang.code
+                        ? theme === 'dark'
+                          ? 'bg-blue-900 text-blue-400'
+                          : 'bg-blue-100 text-blue-600'
+                        : theme === 'dark'
+                          ? 'text-gray-300 hover:bg-gray-700'
+                          : 'text-gray-700 hover:bg-gray-100'
+                    }`}
+                  >
+                    <span className="mr-2">{lang.flag}</span>
+                    <span>{lang.name}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          
           <button 
             onClick={toggleTheme}
             className={`p-2 rounded-full transition-colors ${
@@ -72,20 +119,52 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
         
         {/* Mobile Navigation Toggle */}
         <div className="md:hidden flex items-center">
-          <button 
-            onClick={toggleLanguage}
-            className={`p-2 mr-2 rounded-full transition-colors ${
-              theme === 'dark' 
-                ? 'bg-gray-800 text-blue-400 hover:bg-gray-700' 
-                : 'bg-white text-blue-600 hover:bg-gray-100'
-            }`}
-            aria-label="Toggle language"
-          >
-            <Globe size={20} />
-          </button>
+          {/* Mobile Language Dropdown */}
+          <div className="relative mr-2">
+            <button 
+              onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
+              className={`flex items-center p-2 rounded-full transition-colors ${
+                theme === 'dark' 
+                  ? 'bg-gray-800 text-blue-400 hover:bg-gray-700' 
+                  : 'bg-white text-blue-600 hover:bg-gray-100'
+              }`}
+              aria-label="Select language"
+            >
+              <Globe size={20} />
+              <span className="ml-1">{currentLanguage?.flag}</span>
+            </button>
+            
+            {isLanguageDropdownOpen && (
+              <div className={`absolute top-full right-0 mt-2 py-2 w-32 rounded-lg shadow-lg border z-50 ${
+                theme === 'dark'
+                  ? 'bg-gray-800 border-gray-700'
+                  : 'bg-white border-gray-200'
+              }`}>
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => handleLanguageChange(lang.code as 'en' | 'es' | 'tr')}
+                    className={`w-full text-left px-3 py-2 flex items-center transition-colors ${
+                      language === lang.code
+                        ? theme === 'dark'
+                          ? 'bg-blue-900 text-blue-400'
+                          : 'bg-blue-100 text-blue-600'
+                        : theme === 'dark'
+                          ? 'text-gray-300 hover:bg-gray-700'
+                          : 'text-gray-700 hover:bg-gray-100'
+                    }`}
+                  >
+                    <span className="mr-2">{lang.flag}</span>
+                    <span className="text-sm">{lang.name}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          
           <button 
             onClick={toggleTheme}
-            className={`p-2 mr-2 rounded-full transition-colors ${
+            className={`p-2 rounded-full transition-colors ${
               theme === 'dark' 
                 ? 'bg-gray-800 text-blue-400 hover:bg-gray-700' 
                 : 'bg-white text-blue-600 hover:bg-gray-100'

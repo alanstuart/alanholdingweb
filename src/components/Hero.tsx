@@ -9,11 +9,31 @@ const Hero: React.FC = () => {
   const t = translations[language];
   
   const typingPhrases = [
-    language === 'en' ? "Handling Business Like a Pro..." : "Manejando Negocios Como un Profesional...",
-    language === 'en' ? "Turning Missed Calls into Booked Clients..." : "Convirtiendo Llamadas Perdidas en Clientes Reservados...",
-    language === 'en' ? "Speaking Fluent English and Spanish..." : "Hablando Inglés y Español con Fluidez...",
-    language === 'en' ? "Your AI Receptionist at Work..." : "Tu Recepcionista IA en Acción...",
-    language === 'en' ? "No Breaks. No Excuses. Just Results..." : "Sin Descansos. Sin Excusas. Solo Resultados..."
+    language === 'en' 
+      ? "Handling Business Like a Pro..." 
+      : language === 'es' 
+        ? "Manejando Negocios Como un Profesional..." 
+        : "İşi Profesyonel Gibi Yönetmek...",
+    language === 'en' 
+      ? "Turning Missed Calls into Booked Clients..." 
+      : language === 'es' 
+        ? "Convirtiendo Llamadas Perdidas en Clientes Reservados..." 
+        : "Kaçırılan Aramaları Rezervasyonlu Müşterilere Dönüştürmek...",
+    language === 'en' 
+      ? "Speaking Fluent English and Spanish..." 
+      : language === 'es' 
+        ? "Hablando Inglés y Español con Fluidez..." 
+        : "Akıcı İngilizce ve İspanyolca Konuşmak...",
+    language === 'en' 
+      ? "Your AI Receptionist at Work..." 
+      : language === 'es' 
+        ? "Tu Recepcionista IA en Acción..." 
+        : "AI Resepsiyonistiniz İş Başında...",
+    language === 'en' 
+      ? "No Breaks. No Excuses. Just Results..." 
+      : language === 'es' 
+        ? "Sin Descansos. Sin Excusas. Solo Resultados..." 
+        : "Mola Yok. Bahane Yok. Sadece Sonuçlar..."
   ];
 
   return (

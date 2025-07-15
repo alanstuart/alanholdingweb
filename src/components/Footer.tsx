@@ -93,16 +93,24 @@ const Footer: React.FC = () => {
             <h4 className="text-lg font-bold mb-4">{t.services}</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#services" className="text-gray-400 hover:text-white transition-colors">{language === 'en' ? 'Web Development' : 'Desarrollo Web'}</a>
+                <a href="#services" className="text-gray-400 hover:text-white transition-colors">
+                  {language === 'en' ? 'Web Development' : language === 'es' ? 'Desarrollo Web' : 'Web Geliştirme'}
+                </a>
               </li>
               <li>
-                <a href="#services" className="text-gray-400 hover:text-white transition-colors">{language === 'en' ? 'SEO Optimization' : 'Optimización SEO'}</a>
+                <a href="#services" className="text-gray-400 hover:text-white transition-colors">
+                  {language === 'en' ? 'SEO Optimization' : language === 'es' ? 'Optimización SEO' : 'SEO Optimizasyonu'}
+                </a>
               </li>
               <li>
-                <a href="#services" className="text-gray-400 hover:text-white transition-colors">{language === 'en' ? 'Responsive Design' : 'Diseño Responsivo'}</a>
+                <a href="#services" className="text-gray-400 hover:text-white transition-colors">
+                  {language === 'en' ? 'Responsive Design' : language === 'es' ? 'Diseño Responsivo' : 'Duyarlı Tasarım'}
+                </a>
               </li>
               <li>
-                <a href="#services" className="text-gray-400 hover:text-white transition-colors">{language === 'en' ? 'Tech Integration' : 'Integración Tecnológica'}</a>
+                <a href="#services" className="text-gray-400 hover:text-white transition-colors">
+                  {language === 'en' ? 'Tech Integration' : language === 'es' ? 'Integración Tecnológica' : 'Teknoloji Entegrasyonu'}
+                </a>
               </li>
             </ul>
           </div>

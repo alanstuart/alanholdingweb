@@ -126,7 +126,7 @@ export interface Translations {
   limitedOffer: string;
 }
 
-export const translations: Record<'en' | 'es', Translations> = {
+export const translations: Record<'en' | 'es' | 'tr', Translations> = {
   en: {
     // Navigation
     services: 'Services',
@@ -380,5 +380,132 @@ export const translations: Record<'en' | 'es', Translations> = {
     responsive: 'Responsivo',
     backToTop: 'Volver arriba',
     limitedOffer: 'Oferta Limitada'
+  },
+  tr: {
+    // Navigation
+    services: 'Hizmetler',
+    projects: 'Projeler',
+    testimonials: 'Referanslar',
+    contact: 'İletişim',
+    
+    // Hero Section
+    heroTitle: 'İşletmeniz Kaçırılan Aramalar Yüzünden Satış Kaybediyor AI\'nın 7/24 Halletmesine İzin Verin',
+    heroSubtitle: 'AI Ses ve Sohbet Ajanları',
+    heroDescription: 'AI ses ve sohbet ajanları İngilizce ve İspanyolca konuşabilir, aramaları yanıtlayabilir, randevu alabilir ve insan asistanının profesyonelliğiyle müşteri adaylarını toplayabilir.',
+    heroFeatures: {
+      available247: {
+        title: 'Müşteri etkileşimlerini 7/24 yönetmek için hazır',
+        description: 'Artık "Üzgünüz, aramanızı kaçırdık" yok. AI\'nız asla uyumaz.'
+      },
+      bilingual: {
+        title: 'İngilizce ve İspanyolca\'da iki dilli akıcılık',
+        description: 'Her arayan anlaşılma saygısını görür.'
+      },
+      appointments: {
+        title: 'Randevuları doğrudan takviminize kaydeder',
+        description: 'Müdahalesiz. Müşteriler gelir.'
+      },
+      leadCollection: {
+        title: 'İsim, e-posta ve telefon toplar',
+        description: 'Gece yarısında bile her müşteri adayını yakalar.'
+      },
+      perfectFor: {
+        title: 'Klinikler, hizmet işletmeleri ve yerel mağazalar için mükemmel',
+        description: 'Telefon hattı ve programı olan herkes için.'
+      },
+      noHiring: {
+        title: 'İşe alma yok. Kaçırılan arama yok. Sadece sonuçlar.',
+        description: 'Daha az genel gider. Daha fazla dönüşüm.'
+      }
+    },
+    heroClosing: 'Bu akıllı ajanlar yakında başlatılıyor. Takipte kalın ve kaçırılan aramaları ve mesajları rezervasyonlu müşterilere dönüştürmeye hazır olun.',
+    
+    // Services Section
+    servicesTitle: 'AI Destekli Ses ve Sohbet Çözümleriyle İşletmeleri Güçlendirme',
+    servicesSubtitle: 'Şirketlerin iletişimi otomatikleştirmesine, müşteri adaylarını yakalamasına ve son teknoloji AI araçlarını kullanarak satışları artırmasına yardımcı oluyoruz.',
+    aiVoiceAgents: {
+      title: 'AI Ses Ajanları',
+      description: 'Telefon aramalarını İngilizce ve İspanyolca olarak 7/24 yanıtlayan, randevu alan ve müşteri adaylarını yakalayan akıllı ajanlarla otomatikleştirin.'
+    },
+    smartChatbots: {
+      title: 'Akıllı Sohbet Botları',
+      description: 'Web sitesi ziyaretçilerini müşteri adaylarını nitelendiren, SSS\'leri yanıtlayan ve siz uyurken bile dönüşümleri artıran sohbet botlarıyla anında etkileşime geçirin.'
+    },
+    digitalSolutions: {
+      title: 'Dijital Çözümler',
+      description: 'Web tasarımından otomasyon iş akışlarına kadar, zaman kazandıran ve ölçülebilir ROI sağlayan dijital altyapı kuruyoruz.'
+    },
+    
+    // Special Offer
+    offerTitle: 'ÖZEL: Sadece İlk 5 Müşteri',
+    offerDescription: 'Bu ay rezervasyon yaptırdığınızda herhangi bir web sitesi paketinde %15 İNDİRİM kazanın. Dijital varlıkları konusunda ciddi işletmeler için sınırlı yer mevcuttur.',
+    offerSpots: 'Sadece 3 yer kaldı!',
+    offerButton: 'İndirimi Şimdi Talep Et',
+    offerEndsIn: 'Teklif Bitiş Süresi:',
+    offerTimeUnits: {
+      days: 'Gün',
+      hours: 'Saat',
+      mins: 'Dk',
+      secs: 'Sn'
+    },
+    
+    // Projects Section
+    projectsTitle: 'Son Projeler',
+    projectsSubtitle: 'Teknik uzmanlık ve iş sonuçlarını gösteren gerçek dünya projelerini içeren en son çalışmalarımı keşfedin.',
+    projectCategories: {
+      all: 'Tüm Projeler',
+      ecommerce: 'E-ticaret',
+      webApps: 'Web Uygulamaları',
+      dashboards: 'Panolar',
+      websites: 'Web Siteleri'
+    },
+    projectsCallToAction: 'Çalışmalarımın daha fazla örneğini görmek ister misiniz?',
+    requestPortfolio: 'Tam Portföy Talep Et',
+    
+    // Testimonials Section
+    testimonialsTitle: 'Müşteri Başarı Hikayeleri',
+    testimonialsSubtitle: 'Sadece benim sözümü almayın. Müşterilerin benimle çalışma ve elde ettikleri sonuçlar hakkında söyledikleri şunlar.',
+    result: 'Sonuç',
+    
+    // Contact Section
+    contactTitle: 'Harika Bir Şey İnşa Edelim',
+    contactSubtitle: 'Projenizi tartışmaya hazır mısınız? Ücretsiz danışmanlık için bugün benimle iletişime geçin ve fikirlerinizi gerçeğe dönüştürelim.',
+    sendMessage: 'Mesaj Gönder',
+    yourName: 'Adınız',
+    emailAddress: 'E-posta Adresi',
+    serviceInterestedIn: 'İlgilendiğiniz Hizmet',
+    selectService: 'Bir hizmet seçin',
+    serviceOptions: {
+      website: 'Web Sitesi Geliştirme',
+      ecommerce: 'E-ticaret Çözümü',
+      chatbot: 'AI Sohbet Botu Entegrasyonu',
+      seo: 'SEO Optimizasyonu',
+      tech: 'Teknoloji Entegrasyonu',
+      other: 'Diğer'
+    },
+    yourMessage: 'Mesajınız',
+    messagePlaceholder: 'Projeniz hakkında bana anlatın...',
+    sendMessageButton: 'Mesaj Gönder',
+    contactInformation: 'İletişim Bilgileri',
+    email: 'E-posta',
+    scheduleCall: 'Arama Planla',
+    scheduleCallDescription: 'Doğrudan konuşmayı mı tercih ediyorsunuz? Ücretsiz 30 dakikalık danışmanlık araması rezervasyonu yapın.',
+    bookCall: 'Arama Rezervasyonu Yap',
+    quickResponse: 'Hızlı Yanıt Garantisi',
+    quickResponseDescription: '24 saat içinde kişiselleştirilmiş yanıt ve sonraki adımlarla size geri döneceğim.',
+    
+    // Footer
+    footerDescription: 'Gerçek iş sonuçları sağlayan web siteleri yaratıyorum. Konseptten tamamlanmaya kadar, büyüme ve etkileşimi artıran dijital çözümler inşa ediyorum.',
+    quickLinks: 'Hızlı Bağlantılar',
+    privacyPolicy: 'Gizlilik Politikası',
+    termsOfService: 'Hizmet Şartları',
+    cookiePolicy: 'Çerez Politikası',
+    allRightsReserved: 'Tüm hakları saklıdır.',
+    
+    // Common
+    cleanCode: 'Temiz Kod',
+    responsive: 'Duyarlı',
+    backToTop: 'Başa dön',
+    limitedOffer: 'Sınırlı Teklif'
   }
 };

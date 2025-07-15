@@ -66,7 +66,7 @@ const Contact: React.FC = () => {
                     value={formData.name}
                     onChange={handleChange}
                     className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                    placeholder={language === 'en' ? 'John Doe' : 'Juan Pérez'}
+                    placeholder={language === 'en' ? 'John Doe' : language === 'es' ? 'Juan Pérez' : 'Ahmet Yılmaz'}
                     required
                   />
                 </div>
@@ -80,7 +80,7 @@ const Contact: React.FC = () => {
                     value={formData.email}
                     onChange={handleChange}
                     className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-                    placeholder={language === 'en' ? 'john@example.com' : 'juan@ejemplo.com'}
+                    placeholder={language === 'en' ? 'john@example.com' : language === 'es' ? 'juan@ejemplo.com' : 'ahmet@ornek.com'}
                     required
                   />
                 </div>
