@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import ModernHero from './components/ModernHero';
-import ModernNavbar from './components/ModernNavbar';
+import Hero from './components/Hero';
+import Navbar from './components/Navbar';
 import About from './components/About';
-import ModernServices from './components/ModernServices';
-import ModernProjects from './components/ModernProjects';
+import Services from './components/Services';
+import Projects from './components/Projects';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import SpecialOffer from './components/SpecialOffer';
+import ParticlesBackground from './components/ParticlesBackground';
 import { ThemeProvider } from './context/ThemeContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { useTheme } from './context/ThemeContext';
@@ -34,14 +35,17 @@ function AppContent() {
         ? 'text-white bg-gradient-to-br from-gray-900 via-black to-gray-900' 
         : 'text-gray-800 bg-gradient-to-br from-gray-50 via-white to-gray-100'
     }`}>
+      {/* Particles Background */}
+      <ParticlesBackground />
+      
       {/* Content */}
       <div className="relative">
-        <ModernNavbar isScrolled={isScrolled} />
-        <ModernHero />
+        <Navbar isScrolled={isScrolled} />
+        <Hero />
         <About />
         <SpecialOffer />
-        <ModernServices />
-        <ModernProjects />
+        <Services />
+        <Projects />
         <Testimonials />
         <Contact />
         <Footer />
