@@ -3,12 +3,6 @@ import { Mail, Calendar, Send } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 import { useTheme } from '../context/ThemeContext';
-import { createClient } from '@supabase/supabase-js';
-
-// Initialize Supabase client
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'YOUR_SUPABASE_URL';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'YOUR_ANON_KEY';
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const Contact: React.FC = () => {
   const { language } = useLanguage();
@@ -39,31 +33,22 @@ const Contact: React.FC = () => {
     setSubmitStatus('idle');
     
     try {
-      const { error } = await supabase
-        .from('contacts')
-        .insert([{
-          name: formData.name,
-          email: formData.email,
-          service: formData.service,
-          message: formData.message,
-          created_at: new Date().toISOString()
-        }]);
-
-      if (error) {
-        console.error('Supabase error:', error);
-        setSubmitStatus('error');
-      } else {
-        setSubmitStatus('success');
-        // Reset form
-        setFormData({
-          name: '',
-          email: '',
-          service: '',
-          message: ''
-        });
-      }
+      // Simulate form submission for now
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // For now, just log the data and show success
+      console.log('Form submitted:', formData);
+      setSubmitStatus('success');
+      
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        service: '',
+        message: ''
+      });
     } catch (error) {
-      console.error('Network error:', error);
+      console.error('Error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
