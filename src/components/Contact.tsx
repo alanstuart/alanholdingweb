@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
 import { Mail, Calendar, Send } from 'lucide-react';
+import { createClient } from '@supabase/supabase-js';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 import { useTheme } from '../context/ThemeContext';
+
+// Initialize Supabase client
+const supabase = createClient(
+  'https://adqxqhksrbcsmfgntrjd.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFkcXhxaGtzcmJjc21mZ250cmpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMyMDY5MzEsImV4cCI6MjA2ODc4MjkzMX0.TW6uTyLMUIzkyTKTsuTMF3msmjSCzFcurjj-SNaOrm8'
+);
 
 const Contact: React.FC = () => {
   const { language } = useLanguage();
@@ -33,14 +40,23 @@ const Contact: React.FC = () => {
     setSubmitStatus('idle');
     
     try {
-      // Simulate form submission for now
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Submit to Supabase
+      const { error } = await supabase
+        .from('contacts')
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            service: formData.service,
+            message: formData.message
+          }
+        ]);
+
+      if (error) {
+        throw error;
+      }
       
-      // For now, just log the data and show success
-      console.log('Form submitted:', formData);
       setSubmitStatus('success');
-      
-      // Reset form
       setFormData({
         name: '',
         email: '',
