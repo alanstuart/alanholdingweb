@@ -2,9 +2,17 @@ import React, { useState } from 'react';
 import { Mail, Calendar, Send } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
+import { useTheme } from '../context/ThemeContext';
+import { createClient } from '@supabase/supabase-js';
+
+// Initialize Supabase client
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'YOUR_SUPABASE_URL';
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'YOUR_ANON_KEY';
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const Contact: React.FC = () => {
   const { language } = useLanguage();
+  const { theme } = useTheme();
   const t = translations[language];
   
   const [formData, setFormData] = useState({
@@ -14,6 +22,9 @@ const Contact: React.FC = () => {
     message: ''
   });
   
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
@@ -21,18 +32,42 @@ const Contact: React.FC = () => {
     });
   };
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission logic would go here
-    console.log(formData);
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      service: '',
-      message: ''
-    });
-    // Show success message or redirect
+    
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    
+    try {
+      const { error } = await supabase
+        .from('contacts')
+        .insert([{
+          name: formData.name,
+          email: formData.email,
+          service: formData.service,
+          message: formData.message,
+          created_at: new Date().toISOString()
+        }]);
+
+      if (error) {
+        console.error('Supabase error:', error);
+        setSubmitStatus('error');
+      } else {
+        setSubmitStatus('success');
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          service: '',
+          message: ''
+        });
+      }
+    } catch (error) {
+      console.error('Network error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleBookingClick = () => {
@@ -43,58 +78,114 @@ const Contact: React.FC = () => {
     <section id="contact" className="py-20 px-4">
       <div className="container mx-auto">
         <div className="text-center mb-14">
-          <span className="badge bg-gradient-to-r from-blue-600 to-blue-400 text-white text-xs uppercase tracking-widest px-3 py-1 rounded-full">Contact</span>
+          <span className="badge bg-gradient-to-r from-blue-600 to-blue-400 text-white text-xs uppercase tracking-widest px-3 py-1 rounded-full">
+            Contact
+          </span>
           <h2 className="text-3xl md:text-4xl font-bold mt-4 mb-6">{t.contactTitle}</h2>
-          <p className="text-gray-400 max-w-xl mx-auto">
+          <p className={`max-w-xl mx-auto ${
+            theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+          }`}>
             {t.contactSubtitle}
           </p>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           {/* Contact Form */}
-          <div className="lg:col-span-3 bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-800 shadow-lg">
+          <div className={`lg:col-span-3 rounded-xl p-6 border shadow-lg ${
+            theme === 'dark' 
+              ? 'bg-gradient-to-br from-gray-900 to-gray-800 border-gray-800' 
+              : 'bg-white border-gray-200'
+          }`}>
             <h3 className="text-xl font-bold mb-6">{t.sendMessage}</h3>
+            
+            {/* Status Messages */}
+            {submitStatus === 'success' && (
+              <div className={`mb-6 p-4 rounded-lg ${
+                theme === 'dark' 
+                  ? 'bg-green-900 bg-opacity-20 border border-green-800 text-green-400' 
+                  : 'bg-green-100 border border-green-200 text-green-700'
+              }`}>
+                ✅ Message sent successfully! We'll get back to you within 24 hours.
+              </div>
+            )}
+            
+            {submitStatus === 'error' && (
+              <div className={`mb-6 p-4 rounded-lg ${
+                theme === 'dark' 
+                  ? 'bg-red-900 bg-opacity-20 border border-red-800 text-red-400' 
+                  : 'bg-red-100 border border-red-200 text-red-700'
+              }`}>
+                ❌ Error sending message. Please try again or contact us directly.
+              </div>
+            )}
             
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">{t.yourName}</label>
+                  <label htmlFor="name" className={`block text-sm font-medium mb-2 ${
+                    theme === 'dark' ? 'text-gray-400' : 'text-gray-700'
+                  }`}>
+                    {t.yourName}
+                  </label>
                   <input
                     type="text"
                     id="name"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                    className={`w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
+                      theme === 'dark' 
+                        ? 'bg-gray-800 border-gray-700 text-white' 
+                        : 'bg-white border-gray-300 text-gray-900'
+                    }`}
                     placeholder={language === 'en' ? 'John Doe' : language === 'es' ? 'Juan Pérez' : 'Ahmet Yılmaz'}
                     required
+                    disabled={isSubmitting}
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2">{t.emailAddress}</label>
+                  <label htmlFor="email" className={`block text-sm font-medium mb-2 ${
+                    theme === 'dark' ? 'text-gray-400' : 'text-gray-700'
+                  }`}>
+                    {t.emailAddress}
+                  </label>
                   <input
                     type="email"
                     id="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                    className={`w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
+                      theme === 'dark' 
+                        ? 'bg-gray-800 border-gray-700 text-white' 
+                        : 'bg-white border-gray-300 text-gray-900'
+                    }`}
                     placeholder={language === 'en' ? 'john@example.com' : language === 'es' ? 'juan@ejemplo.com' : 'ahmet@ornek.com'}
                     required
+                    disabled={isSubmitting}
                   />
                 </div>
               </div>
               
               <div className="mb-6">
-                <label htmlFor="service" className="block text-sm font-medium text-gray-400 mb-2">{t.serviceInterestedIn}</label>
+                <label htmlFor="service" className={`block text-sm font-medium mb-2 ${
+                  theme === 'dark' ? 'text-gray-400' : 'text-gray-700'
+                }`}>
+                  {t.serviceInterestedIn}
+                </label>
                 <select
                   id="service"
                   name="service"
                   value={formData.service}
                   onChange={handleChange}
-                  className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                  className={`w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
+                    theme === 'dark' 
+                      ? 'bg-gray-800 border-gray-700 text-white' 
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
                   required
+                  disabled={isSubmitting}
                 >
                   <option value="" disabled>{t.selectService}</option>
                   <option value="website">{t.serviceOptions.website}</option>
@@ -107,42 +198,81 @@ const Contact: React.FC = () => {
               </div>
               
               <div className="mb-6">
-                <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-2">{t.yourMessage}</label>
+                <label htmlFor="message" className={`block text-sm font-medium mb-2 ${
+                  theme === 'dark' ? 'text-gray-400' : 'text-gray-700'
+                }`}>
+                  {t.yourMessage}
+                </label>
                 <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   rows={5}
-                  className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                  className={`w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
+                    theme === 'dark' 
+                      ? 'bg-gray-800 border-gray-700 text-white' 
+                      : 'bg-white border-gray-300 text-gray-900'
+                  }`}
                   placeholder={t.messagePlaceholder}
                   required
+                  disabled={isSubmitting}
                 ></textarea>
               </div>
               
               <button 
                 type="submit" 
-                className="btn-primary w-full flex items-center justify-center"
+                className={`btn-primary w-full flex items-center justify-center ${
+                  isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+                disabled={isSubmitting}
               >
-                <Send size={18} className="mr-2" />
-                {t.sendMessageButton}
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                    {language === 'en' ? 'Sending...' : language === 'es' ? 'Enviando...' : 'Gönderiliyor...'}
+                  </>
+                ) : (
+                  <>
+                    <Send size={18} className="mr-2" />
+                    {t.sendMessageButton}
+                  </>
+                )}
               </button>
             </form>
           </div>
           
           {/* Contact Information */}
           <div className="lg:col-span-2 space-y-6">
-            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-800 shadow-lg">
+            <div className={`rounded-xl p-6 border shadow-lg ${
+              theme === 'dark' 
+                ? 'bg-gradient-to-br from-gray-900 to-gray-800 border-gray-800' 
+                : 'bg-white border-gray-200'
+            }`}>
               <h3 className="text-xl font-bold mb-6">{t.contactInformation}</h3>
               
               <div className="space-y-4">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 p-2 bg-blue-900 bg-opacity-20 rounded-lg mr-4">
-                    <Mail size={20} className="text-blue-400" />
+                  <div className={`flex-shrink-0 p-2 rounded-lg mr-4 ${
+                    theme === 'dark' 
+                      ? 'bg-blue-900 bg-opacity-20' 
+                      : 'bg-blue-100'
+                  }`}>
+                    <Mail size={20} className={`${
+                      theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
+                    }`} />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-400">{t.email}</p>
-                    <a href="mailto:alan.s.holding@gmail.com" className="text-white hover:text-blue-400 transition-colors">
+                    <p className={`text-sm ${
+                      theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                    }`}>
+                      {t.email}
+                    </p>
+                    <a href="mailto:alan.s.holding@gmail.com" className={`transition-colors ${
+                      theme === 'dark' 
+                        ? 'text-white hover:text-blue-400' 
+                        : 'text-gray-900 hover:text-blue-600'
+                    }`}>
                       alan.s.holding@gmail.com
                     </a>
                   </div>
@@ -150,9 +280,15 @@ const Contact: React.FC = () => {
               </div>
             </div>
             
-            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-800 shadow-lg">
+            <div className={`rounded-xl p-6 border shadow-lg ${
+              theme === 'dark' 
+                ? 'bg-gradient-to-br from-gray-900 to-gray-800 border-gray-800' 
+                : 'bg-white border-gray-200'
+            }`}>
               <h3 className="text-xl font-bold mb-6">{t.scheduleCall}</h3>
-              <p className="text-gray-400 mb-4">
+              <p className={`mb-4 ${
+                theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+              }`}>
                 {t.scheduleCallDescription}
               </p>
               <button 
@@ -164,9 +300,15 @@ const Contact: React.FC = () => {
               </button>
             </div>
             
-            <div className="bg-blue-900 bg-opacity-20 rounded-xl p-6 border border-blue-800 shadow-lg">
+            <div className={`rounded-xl p-6 border shadow-lg ${
+              theme === 'dark' 
+                ? 'bg-blue-900 bg-opacity-20 border-blue-800' 
+                : 'bg-blue-50 border-blue-200'
+            }`}>
               <h3 className="text-xl font-bold mb-2">{t.quickResponse}</h3>
-              <p className="text-gray-300">
+              <p className={`${
+                theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+              }`}>
                 {t.quickResponseDescription}
               </p>
             </div>
