@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Linkedin, Twitter, ArrowUp } from 'lucide-react';
+import { Github, Linkedin, ArrowUp } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
@@ -58,15 +58,6 @@ const Footer: React.FC = () => {
                 aria-label="LinkedIn"
               >
                 <Linkedin size={20} />
-              </a>
-              <a 
-                href="https://twitter.com/alanholding" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="p-2 bg-gray-800 rounded-full hover:bg-blue-600 transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter size={20} />
               </a>
             </div>
           </div>
