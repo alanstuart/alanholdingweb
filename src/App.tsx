@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Hero from './components/Hero';
 import Navbar from './components/Navbar';
 import About from './components/About';
@@ -8,13 +9,14 @@ import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BookingSection from './components/BookingSection';
+import ThankYouPage from './components/ThankYouPage';
 import SpecialOffer from './components/SpecialOffer';
 import ParticlesBackground from './components/ParticlesBackground';
 import { ThemeProvider } from './context/ThemeContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { useTheme } from './context/ThemeContext';
 
-function AppContent() {
+function HomePage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { theme } = useTheme();
 
@@ -31,28 +33,41 @@ function AppContent() {
   }, []);
 
   return (
-    <div className={`min-h-screen relative overflow-x-hidden ${
-      theme === 'dark' 
-        ? 'text-white bg-gradient-to-br from-gray-900 via-black to-gray-900' 
-        : 'text-gray-800 bg-gradient-to-br from-gray-50 via-white to-gray-100'
-    }`}>
-      {/* Particles Background */}
-      <ParticlesBackground />
-      
-      {/* Content */}
-      <div className="relative">
-        <Navbar isScrolled={isScrolled} />
-        <Hero />
-        <About />
-        <SpecialOffer />
-        <Services />
-        <Projects />
-        <Testimonials />
-        <BookingSection />
-        <Contact />
-        <Footer />
+    <>
+      <div className={`min-h-screen relative overflow-x-hidden ${
+        theme === 'dark' 
+          ? 'text-white bg-gradient-to-br from-gray-900 via-black to-gray-900' 
+          : 'text-gray-800 bg-gradient-to-br from-gray-50 via-white to-gray-100'
+      }`}>
+        {/* Particles Background */}
+        <ParticlesBackground />
+        
+        {/* Content */}
+        <div className="relative">
+          <Navbar isScrolled={isScrolled} />
+          <Hero />
+          <About />
+          <SpecialOffer />
+          <Services />
+          <Projects />
+          <Testimonials />
+          <BookingSection />
+          <Contact />
+          <Footer />
+        </div>
       </div>
-    </div>
+    </>
+  );
+}
+
+function AppContent() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/thank-you" element={<ThankYouPage />} />
+      </Routes>
+    </Router>
   );
 }
 
