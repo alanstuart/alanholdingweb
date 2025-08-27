@@ -7,6 +7,7 @@ import Projects from './components/Projects';
 import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import BookingSection from './components/BookingSection';
 import SpecialOffer from './components/SpecialOffer';
 import ParticlesBackground from './components/ParticlesBackground';
 import { ThemeProvider } from './context/ThemeContext';
@@ -47,6 +48,7 @@ function AppContent() {
         <Services />
         <Projects />
         <Testimonials />
+        <BookingSection />
         <Contact />
         <Footer />
       </div>
