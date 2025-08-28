@@ -64,10 +64,10 @@ const BookingSection: React.FC = () => {
                   height: '100%',
                   overflow: 'visible'
                 }}
-                config={{
+                config={JSON.stringify({
                   layout: 'month_view',
                   theme: 'light'
-                }}
+                })}
               />
             </div>
             
