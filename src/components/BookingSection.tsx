@@ -8,7 +8,7 @@ const BookingSection: React.FC = () => {
   const { language } = useLanguage();
 
   return (
-    <section className="py-20 px-4 relative overflow-hidden min-h-screen">
+    <section className="py-20 px-4 relative overflow-hidden">
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white" />
       
@@ -53,17 +53,13 @@ const BookingSection: React.FC = () => {
         </div>
         
         {/* Cal.com Embed Container - Enhanced for full visibility */}
-        <div className="max-w-6xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-4 md:p-8">
+        <div className="max-w-6xl mx-auto mb-32">
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-4 md:p-8 pb-24">
             {/* Cal.com Inline Web Component */}
-            <div className="w-full" style={{ minHeight: '700px' }}>
+            <div className="w-full h-[1600px] md:h-[1700px] lg:h-[1600px] overflow-hidden">
               <cal-inline 
                 cal-link="alan-s.-holding-wtiey5/30min"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  overflow: 'visible'
-                }}
+                style="width: 100%; height: 100%; border: none; overflow: visible;"
                 config={JSON.stringify({
                   layout: 'month_view',
                   theme: 'light'
@@ -76,7 +72,7 @@ const BookingSection: React.FC = () => {
               <iframe
                 src="https://cal.com/alan-s.-holding-wtiey5/30min"
                 width="100%"
-                height="700"
+                height="1600"
                 frameBorder="0"
                 scrolling="no"
                 className="rounded-lg"

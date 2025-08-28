@@ -403,8 +403,9 @@ html {
 cal-inline {
   display: block !important;
   width: 100% !important;
-  min-height: 700px !important;
+  min-height: 1600px !important;
   overflow: visible !important;
+  border: none !important;
 }
 
 /* Ensure Cal.com doesn't get cut off */
@@ -412,11 +413,39 @@ cal-inline {
   position: relative;
   z-index: 10;
   overflow: visible !important;
+  min-height: 1600px;
+}
+
+/* Responsive Cal.com heights */
+@media (max-width: 768px) {
+  cal-inline {
+    min-height: 1700px !important;
+  }
+  
+  .cal-embed-container {
+    min-height: 1700px;
+  }
+}
+
+@media (min-width: 1024px) {
+  cal-inline {
+    min-height: 1600px !important;
+  }
+  
+  .cal-embed-container {
+    min-height: 1600px;
+  }
 }
 
 /* Override any floating widget z-index issues */
 elevenlabs-convai {
   z-index: 999 !important;
+}
+
+/* Ensure floating widgets don't interfere with booking form */
+#booking .cal-embed-container {
+  padding-bottom: 120px;
+  margin-bottom: 80px;
 }
 
 /* Responsive design */
@@ -436,9 +465,5 @@ elevenlabs-convai {
     height: 45px;
     bottom: 20px;
     right: 20px;
-  }
-  
-  cal-inline {
-    min-height: 600px !important;
   }
 }
