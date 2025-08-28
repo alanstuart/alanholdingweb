@@ -8,29 +8,36 @@ const BookingSection: React.FC = () => {
   const { language } = useLanguage();
 
   return (
-    <section className="py-20 px-4 relative overflow-hidden">
+    <section className="py-20 px-4 relative overflow-hidden min-h-screen">
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white" />
       
+      {/* Keep existing sparkles/particles effect */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="floating-orbs"></div>
+        <div className="animated-grid"></div>
+      </div>
+      
       <div className="container mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-16">
           <div className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium mb-6 bg-blue-100 text-blue-700 border border-blue-200">
             <Calendar className="w-4 h-4 mr-2" />
             Schedule a Call
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
-            Book Your Discovery Call
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+            Book a Free Patient Acquisition Consultation
           </h2>
           
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Easily schedule a 30-minute consultation with Alan Holding Digital Solutions.
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-12">
+            Schedule a 30-minute consultation to discuss how AI voice agents can transform your practice, 
+            handle calls 24/7, and turn missed opportunities into booked appointments.
           </p>
         </div>
 
         {/* Features Row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 max-w-4xl mx-auto">
           <div className="flex items-center justify-center p-4 bg-white rounded-xl shadow-sm border border-gray-100">
             <Clock className="w-5 h-5 text-blue-600 mr-3" />
             <span className="text-gray-700 font-medium">30 Minutes</span>
@@ -45,26 +52,42 @@ const BookingSection: React.FC = () => {
           </div>
         </div>
         
-        {/* Booking Calendar Card */}
-        <div className="max-w-5xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 md:p-8">
-            {/* Cal.com Embed */}
-            <div className="w-full">
+        {/* Cal.com Embed Container - Enhanced for full visibility */}
+        <div className="max-w-6xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-4 md:p-8">
+            {/* Cal.com Inline Web Component */}
+            <div className="w-full" style={{ minHeight: '700px' }}>
+              <cal-inline 
+                cal-link="alan-s.-holding-wtiey5/30min"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  overflow: 'visible'
+                }}
+                config={{
+                  layout: 'month_view',
+                  theme: 'light'
+                }}
+              />
+            </div>
+            
+            {/* Fallback iframe if web component doesn't load */}
+            <noscript>
               <iframe
                 src="https://cal.com/alan-s.-holding-wtiey5/30min"
                 width="100%"
-                height="650"
+                height="700"
                 frameBorder="0"
                 scrolling="no"
                 className="rounded-lg"
                 title="Book a consultation call with Alan Holding"
               />
-            </div>
+            </noscript>
           </div>
         </div>
 
         {/* Bottom Note */}
-        <div className="text-center mt-8">
+        <div className="text-center mt-12">
           <p className="text-gray-500 text-sm">
             Can't find a suitable time? <a href="mailto:alan.s.holding@gmail.com" className="text-blue-600 hover:text-blue-700 font-medium">Email me directly</a> and we'll find a time that works.
           </p>

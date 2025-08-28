@@ -14,6 +14,11 @@
     <elevenlabs-convai agent-id="agent_01jwpvv9x6f2sb849n5v4src03"></elevenlabs-convai>
     <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
 
+    <!-- Cal.com Web Component -->
+    <script>
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.q = cal.q || []; p(cal, ar); return; } let api = function () { let f = ar[0]; if (typeof f !== 'string') { p(cal, ar); return; } let namespace = ar[1]; let dom = ar[2]; if (typeof namespace !== 'string') { dom = namespace; namespace = 'com'; } let api = cal.ns[namespace] = cal.ns[namespace] || {}; if (!api[f]) { p(cal, ar); return; } return api[f].apply(null, [dom].concat(Array.prototype.slice.call(ar, 3))); }; return api(); }; let s = d.createElement('script'); s.src = A; s.async = 1; s.onload = L; d.head.appendChild(s); })(window, 'https://app.cal.com/embed/embed.js', function () { Cal.loaded = true; Cal.ns = Cal.ns || {}; Cal.q = Cal.q || []; Cal.q.forEach(function (args) { Cal.apply(null, args); }); });
+    </script>
+
     <!-- Vite JS entry point -->
     <script type="module" src="/src/main.tsx"></script>
   </body>

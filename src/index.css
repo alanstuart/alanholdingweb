@@ -399,6 +399,26 @@ html {
   display: none;
 }
 
+/* Cal.com embed styling */
+cal-inline {
+  display: block !important;
+  width: 100% !important;
+  min-height: 700px !important;
+  overflow: visible !important;
+}
+
+/* Ensure Cal.com doesn't get cut off */
+.cal-embed-container {
+  position: relative;
+  z-index: 10;
+  overflow: visible !important;
+}
+
+/* Override any floating widget z-index issues */
+elevenlabs-convai {
+  z-index: 999 !important;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   .animated-grid {
@@ -416,5 +436,9 @@ html {
     height: 45px;
     bottom: 20px;
     right: 20px;
+  }
+  
+  cal-inline {
+    min-height: 600px !important;
   }
 }
