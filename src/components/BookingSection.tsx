@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Calendar, Clock, User } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useLanguage } from '../context/LanguageContext';
@@ -6,6 +6,17 @@ import { useLanguage } from '../context/LanguageContext';
 const BookingSection: React.FC = () => {
   const { theme } = useTheme();
   const { language } = useLanguage();
+  const calInlineRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (calInlineRef.current) {
+      const element = calInlineRef.current;
+      element.style.width = '100%';
+      element.style.height = '100%';
+      element.style.border = 'none';
+      element.style.overflow = 'visible';
+    }
+  }, []);
 
   return (
     <section className="py-20 px-4 relative overflow-hidden">
@@ -58,8 +69,8 @@ const BookingSection: React.FC = () => {
             {/* Cal.com Inline Web Component */}
             <div className="w-full h-[1600px] md:h-[1700px] lg:h-[1600px] overflow-hidden">
               <cal-inline 
+                ref={calInlineRef}
                 cal-link="alan-s.-holding-wtiey5/30min"
-                style={{ width: '100%', height: '100%', border: 'none', overflow: 'visible' }}
                 config={JSON.stringify({
                   layout: 'month_view',
                   theme: 'light'
