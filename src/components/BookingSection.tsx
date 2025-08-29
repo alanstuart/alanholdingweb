@@ -1,22 +1,67 @@
-import React, { useRef, useEffect } from 'react';
-import { Calendar, Clock, User } from 'lucide-react';
+import React, { useRef, useEffect, useState } from 'react';
+import { Calendar, Clock, User, ExternalLink } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useLanguage } from '../context/LanguageContext';
 
 const BookingSection: React.FC = () => {
   const { theme } = useTheme();
   const { language } = useLanguage();
-  const calInlineRef = useRef<HTMLElement>(null);
+  const [isCalLoaded, setIsCalLoaded] = useState(false);
+  const [showFallback, setShowFallback] = useState(false);
+  const calContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (calInlineRef.current) {
-      const element = calInlineRef.current;
-      element.style.width = '100%';
-      element.style.height = '100%';
-      element.style.border = 'none';
-      element.style.overflow = 'visible';
+    // Check if Cal.com is already loaded
+    if (window.Cal && window.Cal.loaded) {
+      setIsCalLoaded(true);
+      initializeCal();
+      return;
     }
+
+    // Wait for Cal.com to load
+    const checkCalLoaded = () => {
+      if (window.Cal && window.Cal.loaded) {
+        setIsCalLoaded(true);
+        initializeCal();
+      } else {
+        // If Cal.com doesn't load within 10 seconds, show fallback
+        setTimeout(() => {
+          if (!isCalLoaded) {
+            setShowFallback(true);
+          }
+        }, 10000);
+      }
+    };
+
+    // Check immediately and then periodically
+    checkCalLoaded();
+    const interval = setInterval(checkCalLoaded, 500);
+
+    return () => clearInterval(interval);
   }, []);
+
+  const initializeCal = () => {
+    if (!calContainerRef.current || !window.Cal) return;
+
+    try {
+      // Initialize Cal.com inline embed
+      window.Cal('inline', {
+        elementOrSelector: calContainerRef.current,
+        calLink: 'alan-s.-holding-wtiey5/30min',
+        config: {
+          layout: 'month_view',
+          theme: theme === 'dark' ? 'dark' : 'light'
+        }
+      });
+    } catch (error) {
+      console.error('Error initializing Cal.com:', error);
+      setShowFallback(true);
+    }
+  };
+
+  const handleDirectBooking = () => {
+    window.open('https://cal.com/alan-s.-holding-wtiey5/30min', '_blank');
+  };
 
   return (
     <section className="py-20 px-4 relative overflow-hidden">
@@ -63,33 +108,49 @@ const BookingSection: React.FC = () => {
           </div>
         </div>
         
-        {/* Cal.com Embed Container - Enhanced for full visibility */}
+        {/* Cal.com Embed Container */}
         <div className="max-w-6xl mx-auto mb-32">
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-4 md:p-8 pb-24">
-            {/* Cal.com Inline Web Component */}
-            <div className="w-full h-[1600px] md:h-[1700px] lg:h-[1600px] overflow-hidden">
-              <cal-inline 
-                ref={calInlineRef}
-                cal-link="alan-s.-holding-wtiey5/30min"
-                config={JSON.stringify({
-                  layout: 'month_view',
-                  theme: 'light'
-                })}
-              />
-            </div>
-            
-            {/* Fallback iframe if web component doesn't load */}
-            <noscript>
-              <iframe
-                src="https://cal.com/alan-s.-holding-wtiey5/30min"
-                width="100%"
-                height="1600"
-                frameBorder="0"
-                scrolling="no"
-                className="rounded-lg"
-                title="Book a consultation call with Alan Holding"
-              />
-            </noscript>
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-4 md:p-8">
+            {!showFallback ? (
+              <div 
+                ref={calContainerRef}
+                className="w-full min-h-[600px] cal-embed-container"
+                style={{ minHeight: '600px' }}
+              >
+                {!isCalLoaded && (
+                  <div className="flex items-center justify-center h-96">
+                    <div className="text-center">
+                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                      <p className="text-gray-600">Loading calendar...</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              /* Fallback UI when Cal.com fails to load */
+              <div className="text-center py-16">
+                <Calendar className="w-16 h-16 text-blue-600 mx-auto mb-6" />
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  Book Your Consultation
+                </h3>
+                <p className="text-gray-600 mb-8 max-w-md mx-auto">
+                  Click the button below to open our booking calendar in a new window.
+                </p>
+                <button 
+                  onClick={handleDirectBooking}
+                  className="inline-flex items-center px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-semibold transition-colors shadow-lg"
+                >
+                  <ExternalLink className="w-5 h-5 mr-2" />
+                  Open Booking Calendar
+                </button>
+                <p className="text-sm text-gray-500 mt-4">
+                  Or email us directly at{' '}
+                  <a href="mailto:alan.s.holding@gmail.com" className="text-blue-600 hover:text-blue-700">
+                    alan.s.holding@gmail.com
+                  </a>
+                </p>
+              </div>
+            )}
           </div>
         </div>
 
@@ -103,5 +164,12 @@ const BookingSection: React.FC = () => {
     </section>
   );
 };
+
+// Extend Window interface for TypeScript
+declare global {
+  interface Window {
+    Cal: any;
+  }
+}
 
 export default BookingSection;
