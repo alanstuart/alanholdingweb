@@ -59,7 +59,7 @@ const BookingSection: React.FC = () => {
             <div className="w-full h-[1600px] md:h-[1700px] lg:h-[1600px] overflow-hidden">
               <cal-inline 
                 cal-link="alan-s.-holding-wtiey5/30min"
-                style="width: 100%; height: 100%; border: none; overflow: visible;"
+                style={{ width: '100%', height: '100%', border: 'none', overflow: 'visible' }}
                 config={JSON.stringify({
                   layout: 'month_view',
                   theme: 'light'
