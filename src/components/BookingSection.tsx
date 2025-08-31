@@ -205,7 +205,7 @@ Looking forward to speaking with you!`);
             {(calStatus === 'loading' || calStatus === 'loaded') && (
               <div 
                 ref={calContainerRef}
-                className="w-full min-h-[600px]"
+                className="w-full min-h-[600px] cal-embed-container"
               />
             )}
 
