@@ -17,7 +17,7 @@ export default function CalEmbed({
   const resolvedLink =
     calLink ||
     (typeof process !== "undefined" && (process as any).env?.NEXT_PUBLIC_CAL_LINK) ||
-    (typeof import !== "undefined" && (import as any).meta?.env?.VITE_CAL_LINK) ||
+    import.meta.env?.VITE_CAL_LINK ||
     "alan-s.-holding-wtiey5/30min";
 
   const [scriptReady, setScriptReady] = useState(false);
