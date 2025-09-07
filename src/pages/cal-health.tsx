@@ -4,7 +4,7 @@ import CalEmbed from "../components/CalEmbed";
 export default function CalHealth() {
   const envLink =
     (typeof process !== "undefined" && (process as any).env?.NEXT_PUBLIC_CAL_LINK) ||
-    (typeof import !== "undefined" && (import as any).meta?.env?.VITE_CAL_LINK) ||
+    import.meta.env?.VITE_CAL_LINK ||
     "alan-s.-holding-wtiey5/30min";
 
   console.groupCollapsed("[Cal Health]");

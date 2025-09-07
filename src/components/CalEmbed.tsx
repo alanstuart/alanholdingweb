@@ -100,7 +100,7 @@ export default function CalEmbed({
     console.log("Should use iframe:", shouldUseIframe);
     console.log("Environment vars:", {
       NEXT_PUBLIC_CAL_LINK: typeof process !== "undefined" ? (process as any).env?.NEXT_PUBLIC_CAL_LINK : "N/A",
-      VITE_CAL_LINK: typeof import !== "undefined" ? (import as any).meta?.env?.VITE_CAL_LINK : "N/A"
+      VITE_CAL_LINK: import.meta.env?.VITE_CAL_LINK || "N/A"
     });
     console.groupEnd();
   }, [resolvedLink, scriptReady, scriptFailed, canUseScript, shouldUseIframe]);
