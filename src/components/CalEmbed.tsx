@@ -17,11 +17,11 @@ export default function CalEmbed({
   const resolvedLink =
     calLink ||
     (typeof process !== "undefined" && (process as any).env?.NEXT_PUBLIC_CAL_LINK) ||
-    import.meta.env?.VITE_CAL_LINK ||
-    "alan-s.-holding-wtiey5/30min";
+    import.meta.env?.VITE_CAL_LINK;
 
   const [scriptReady, setScriptReady] = useState(false);
   const [scriptFailed, setScriptFailed] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const rootRef = useRef<HTMLDivElement | null>(null);
 
   const wantsScript = prefer === "script" || prefer === "auto";
@@ -29,14 +29,10 @@ export default function CalEmbed({
 
   useEffect(() => {
     if (!wantsScript) return;
-    if (typeof window === "undefined" || !resolvedLink || resolvedLink === "alan-s.-holding-wtiey5/30min") {
-      // Don't fail for the fallback link, it's valid
-      if (resolvedLink === "alan-s.-holding-wtiey5/30min") {
-        // Continue with script loading
-      } else {
-        setScriptFailed(true);
-        return;
-      }
+    if (typeof window === "undefined" || !resolvedLink) {
+      setScriptFailed(true);
+      setIsLoading(false);
+      return;
     }
 
     const existing = document.querySelector<HTMLScriptElement>('script[src^="https://cal.com/embed"]');
@@ -58,6 +54,7 @@ export default function CalEmbed({
         setScriptFailed(true);
         console.error("[CalEmbed] Error initializing Cal:", error);
       }
+      setIsLoading(false);
     };
 
     if (existing) {
@@ -70,6 +67,7 @@ export default function CalEmbed({
       s.onload = load;
       s.onerror = () => {
         setScriptFailed(true);
+        setIsLoading(false);
         console.error("[CalEmbed] Failed to load Cal.com script");
       };
       document.head.appendChild(s);
@@ -80,6 +78,19 @@ export default function CalEmbed({
     };
   }, [resolvedLink, wantsScript]);
 
+  // Add timeout for script loading
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (!scriptReady && !scriptFailed) {
+        console.warn("[CalEmbed] Script loading timeout, falling back to iframe");
+        setScriptFailed(true);
+        setIsLoading(false);
+      }
+    }, 8000);
+
+    return () => clearTimeout(timeout);
+  }, [scriptReady, scriptFailed]);
+
   const dataAttrs = useMemo(() => {
     return {
       "data-cal-link": resolvedLink,
@@ -87,7 +98,7 @@ export default function CalEmbed({
     };
   }, [resolvedLink]);
 
-  const canUseScript = wantsScript && scriptReady && !scriptFailed && resolvedLink;
+  const canUseScript = wantsScript && scriptReady && !scriptFailed && resolvedLink && !isLoading;
   const shouldUseIframe = wantsIframe && (!canUseScript || scriptFailed);
 
   // Console diagnosis
@@ -100,17 +111,33 @@ export default function CalEmbed({
     console.log("Should use iframe:", shouldUseIframe);
     console.log("Environment vars:", {
       NEXT_PUBLIC_CAL_LINK: typeof process !== "undefined" ? (process as any).env?.NEXT_PUBLIC_CAL_LINK : "N/A",
-      VITE_CAL_LINK: import.meta.env?.VITE_CAL_LINK || "N/A"
+      VITE_CAL_LINK: import.meta.env?.VITE_CAL_LINK || "N/A",
+      RESOLVED_LINK: resolvedLink || "N/A"
     });
     console.groupEnd();
   }, [resolvedLink, scriptReady, scriptFailed, canUseScript, shouldUseIframe]);
 
   if (!resolvedLink) {
-    console.warn("[CalEmbed] No calLink provided. Set NEXT_PUBLIC_CAL_LINK or VITE_CAL_LINK.");
+    console.error("[CalEmbed] No calLink provided. Set NEXT_PUBLIC_CAL_LINK or VITE_CAL_LINK.");
+    return (
+      <div className={`p-6 rounded-xl border border-red-300 bg-red-50 ${className}`}>
+        <p className="font-semibold text-red-800">Booking Configuration Error</p>
+        <p className="text-sm text-red-600 mt-2">
+          Calendar link not configured. Please contact support.
+        </p>
+      </div>
+    );
   }
 
   return (
     <div className={className}>
+      {isLoading && (
+        <div className="flex items-center justify-center p-8">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+          <span className="ml-3 text-gray-600">Loading calendar...</span>
+        </div>
+      )}
+      
       {canUseScript && (
         <div ref={rootRef} {...(dataAttrs as any)} />
       )}
@@ -125,15 +152,25 @@ export default function CalEmbed({
           allow="camera; microphone; fullscreen; autoplay; encrypted-media"
           referrerPolicy="strict-origin-when-cross-origin"
           style={{ borderRadius: "1rem", width: "100%" }}
+          onLoad={() => console.log("[CalEmbed] Iframe loaded successfully")}
+          onError={() => console.error("[CalEmbed] Iframe failed to load")}
         />
       )}
 
-      {!canUseScript && !shouldUseIframe && (
-        <div className="p-4 rounded-xl border">
-          <p className="font-semibold">Booking widget unavailable</p>
+      {!canUseScript && !shouldUseIframe && !isLoading && (
+        <div className="p-6 rounded-xl border border-yellow-300 bg-yellow-50">
+          <p className="font-semibold text-yellow-800">Booking widget unavailable</p>
           <p className="text-sm text-gray-600">
-            Check CAL_LINK and CSP. Set <code>NEXT_PUBLIC_CAL_LINK</code> or <code>VITE_CAL_LINK</code>.
+            Unable to load calendar. Please try refreshing the page or contact support.
           </p>
+          <a 
+            href={`https://cal.com/${resolvedLink}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block mt-3 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Open Calendar Directly
+          </a>
         </div>
       )}
     </div>

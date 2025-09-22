@@ -116,7 +116,11 @@ Looking forward to speaking with you!`);
               ? 'bg-gray-800 border-gray-700'
               : 'bg-white border-gray-200'
           }`}>
-            <CalEmbed className="rounded-2xl shadow-xl" />
+            <CalEmbed 
+              className="rounded-2xl shadow-xl" 
+              prefer="auto"
+              iframeHeight={750}
+            />
           </div>
         </div>
 
@@ -135,6 +139,19 @@ Looking forward to speaking with you!`);
               Email me directly
             </a>
             {' '}and we'll find a time that works.
+          </p>
+          <p className={`text-xs mt-2 ${
+            theme === 'dark' ? 'text-gray-600' : 'text-gray-400'
+          }`}>
+            Having trouble with the calendar? Visit{' '}
+            <a 
+              href="/cal-health" 
+              className={`underline ${
+                theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
+              }`}
+            >
+              our diagnostics page
+            </a>
           </p>
         </div>
       </div>
