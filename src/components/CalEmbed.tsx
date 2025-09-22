@@ -149,8 +149,9 @@ export default function CalEmbed({
           height={iframeHeight}
           title="Book a time"
           frameBorder="0"
-          allow="camera; microphone; fullscreen; autoplay; encrypted-media"
-          referrerPolicy="strict-origin-when-cross-origin"
+          allow="camera; microphone; fullscreen; autoplay; encrypted-media; geolocation"
+          referrerPolicy="no-referrer-when-downgrade"
+          sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-top-navigation"
           style={{ borderRadius: "1rem", width: "100%" }}
           onLoad={() => console.log("[CalEmbed] Iframe loaded successfully")}
           onError={() => console.error("[CalEmbed] Iframe failed to load")}
@@ -158,19 +159,36 @@ export default function CalEmbed({
       )}
 
       {!canUseScript && !shouldUseIframe && !isLoading && (
-        <div className="p-6 rounded-xl border border-yellow-300 bg-yellow-50">
-          <p className="font-semibold text-yellow-800">Booking widget unavailable</p>
-          <p className="text-sm text-gray-600">
-            Unable to load calendar. Please try refreshing the page or contact support.
+        <div className="p-6 rounded-xl border border-red-300 bg-red-50">
+          <p className="font-semibold text-red-800">Cal.com Connection Issue</p>
+          <p className="text-sm text-red-600 mb-4">
+            Cal.com refused to connect. This may be due to browser security settings or network restrictions.
           </p>
+          <div className="space-y-2">
+            <p className="text-sm text-red-600">Try these solutions:</p>
+            <ul className="text-sm text-red-600 list-disc list-inside space-y-1">
+              <li>Disable ad blockers or privacy extensions</li>
+              <li>Try a different browser (Chrome, Firefox, Safari)</li>
+              <li>Check if your network blocks Cal.com</li>
+            </ul>
+          </div>
           <a 
             href={`https://cal.com/${resolvedLink}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block mt-3 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="inline-block mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             Open Calendar Directly
           </a>
+          <div className="mt-4 pt-4 border-t border-red-200">
+            <p className="text-sm text-red-600 mb-2">Alternative booking:</p>
+            <a 
+              href="mailto:alan.s.holding@gmail.com?subject=Consultation Booking&body=Hi Alan, I'd like to schedule a consultation call. Please let me know your available times."
+              className="inline-block px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+            >
+              Email to Book
+            </a>
+          </div>
         </div>
       )}
     </div>
