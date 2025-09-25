@@ -9,6 +9,7 @@ import Testimonials from './components/Testimonials';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BookingSection from './components/BookingSection';
+import BookingCTA from './components/BookingCTA';
 import ThankYouPage from './components/ThankYouPage';
 import SpecialOffer from './components/SpecialOffer';
 import ParticlesBackground from './components/ParticlesBackground';
@@ -50,6 +51,7 @@ function HomePage() {
           <About />
           <SpecialOffer />
           <Services />
+          <BookingCTA />
           <Projects />
           <Testimonials />
           <BookingSection />
