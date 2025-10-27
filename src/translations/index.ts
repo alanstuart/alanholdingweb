@@ -5,6 +5,7 @@ export interface Translations {
   testimonials: string;
   contact: string;
   about: string;
+  blog: string;
   
   // Hero Section
   heroTitle: string;
@@ -145,6 +146,7 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
     testimonials: 'Testimonials',
     contact: 'Contact',
     about: 'About',
+    blog: 'Blog',
     
     // Hero Section
     heroTitle: 'Your Business Is Losing Sales by Missing Calls Let AI Handle Them 24/7',
@@ -283,6 +285,7 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
     testimonials: 'Testimonios',
     contact: 'Contacto',
     about: 'Nosotros',
+    blog: 'Blog',
     
     // Hero Section
     heroTitle: 'Tu Negocio Está Perdiendo Ventas por Llamadas Perdidas Deja que la IA las Maneje 24/7',
@@ -421,6 +424,7 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
     testimonials: 'Referanslar',
     contact: 'İletişim',
     about: 'Hakkımızda',
+    blog: 'Blog',
     
     // Hero Section
     heroTitle: 'İşletmeniz Kaçırılan Aramalar Yüzünden Satış Kaybediyor AI\'nın 7/24 Halletmesine İzin Verin',

@@ -13,7 +13,10 @@ import BookingCTA from './components/BookingCTA';
 import ThankYouPage from './components/ThankYouPage';
 import SpecialOffer from './components/SpecialOffer';
 import ParticlesBackground from './components/ParticlesBackground';
+import BlogPreview from './components/BlogPreview';
 import CalHealth from './pages/cal-health';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 import FutureBlogPosts from './components/blog/FutureBlogPosts';
 import { ThemeProvider } from './context/ThemeContext';
 import { LanguageProvider } from './context/LanguageContext';
@@ -55,6 +58,7 @@ function HomePage() {
           <BookingCTA />
           <Projects />
           <Testimonials />
+          <BlogPreview />
           <BookingSection />
           <Contact />
           <Footer />
@@ -71,6 +75,8 @@ function AppContent() {
         <Route path="/" element={<HomePage />} />
         <Route path="/thank-you" element={<ThankYouPage />} />
         <Route path="/cal-health" element={<CalHealth />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/blog-posts" element={<FutureBlogPosts />} />
       </Routes>
     </Router>
