@@ -4,6 +4,8 @@ import { Calendar, Clock, TrendingUp, ArrowLeft, Share2, Tag } from 'lucide-reac
 import { publishedBlogService } from '../services/publishedBlogService';
 import type { PublishedBlogPost } from '../types/publishedBlog';
 import { useTheme } from '../context/ThemeContext';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -110,6 +112,7 @@ const BlogPost: React.FC = () => {
         ? 'bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white'
         : 'bg-gradient-to-br from-gray-50 via-white to-gray-100 text-gray-900'
     }`}>
+      <Navbar isScrolled={true} />
       <article className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto">
           <Link
@@ -268,6 +271,7 @@ const BlogPost: React.FC = () => {
           )}
         </div>
       </article>
+      <Footer />
     </div>
   );
 };

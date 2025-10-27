@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Clock, Tag, TrendingUp } from 'lucide-react';
+import { Calendar, Clock, Tag, TrendingUp, Home } from 'lucide-react';
 import { publishedBlogService } from '../services/publishedBlogService';
 import type { PublishedBlogPost } from '../types/publishedBlog';
 import { useTheme } from '../context/ThemeContext';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const Blog: React.FC = () => {
   const [posts, setPosts] = useState<PublishedBlogPost[]>([]);
@@ -63,7 +65,19 @@ const Blog: React.FC = () => {
         ? 'bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white'
         : 'bg-gradient-to-br from-gray-50 via-white to-gray-100 text-gray-900'
     }`}>
+      <Navbar isScrolled={true} />
       <div className="container mx-auto px-4 py-20">
+        <Link
+          to="/"
+          className={`inline-flex items-center gap-2 mb-8 px-6 py-3 rounded-xl font-medium transition-all hover:scale-105 ${
+            theme === 'dark'
+              ? 'bg-gray-800 text-blue-400 hover:bg-gray-700 shadow-lg'
+              : 'bg-white text-blue-600 hover:bg-gray-100 shadow-lg'
+          }`}
+        >
+          <Home size={20} />
+          Back to Home
+        </Link>
         <div className="max-w-4xl mx-auto text-center mb-16 pt-8">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
             Blog
@@ -178,6 +192,7 @@ const Blog: React.FC = () => {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 };
