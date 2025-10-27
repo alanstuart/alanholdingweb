@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Clock, Tag, TrendingUp, Home } from 'lucide-react';
+import { Calendar, Clock, Tag, TrendingUp, Home, AlertCircle } from 'lucide-react';
 import { publishedBlogService } from '../services/publishedBlogService';
 import type { PublishedBlogPost } from '../types/publishedBlog';
 import { useTheme } from '../context/ThemeContext';
+import { isSupabaseConfigured } from '../lib/supabaseClient';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
@@ -13,6 +14,7 @@ const Blog: React.FC = () => {
   const [categories, setCategories] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const { theme } = useTheme();
 
   useEffect(() => {
@@ -30,6 +32,14 @@ const Blog: React.FC = () => {
   const loadData = async () => {
     try {
       setIsLoading(true);
+      setError(null);
+
+      if (!isSupabaseConfigured) {
+        setError('database-not-configured');
+        setIsLoading(false);
+        return;
+      }
+
       const [postsData, categoriesData] = await Promise.all([
         publishedBlogService.getAllPublishedPosts(),
         publishedBlogService.getCategories(),
@@ -38,6 +48,7 @@ const Blog: React.FC = () => {
       setCategories(categoriesData);
     } catch (error) {
       console.error('Failed to load blog posts:', error);
+      setError('failed-to-load');
     } finally {
       setIsLoading(false);
     }
@@ -122,6 +133,40 @@ const Blog: React.FC = () => {
         {isLoading ? (
           <div className="flex items-center justify-center py-20">
             <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500"></div>
+          </div>
+        ) : error === 'database-not-configured' ? (
+          <div className={`max-w-2xl mx-auto text-center py-20 ${
+            theme === 'dark' ? 'bg-gray-800' : 'bg-white'
+          } rounded-2xl shadow-xl p-12`}>
+            <AlertCircle className="mx-auto mb-4 text-yellow-500" size={64} />
+            <h3 className="text-2xl font-bold mb-4">Database Connection Issue</h3>
+            <p className={`mb-6 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
+              The blog is not able to connect to the database. This usually means environment variables are missing in your deployment platform.
+            </p>
+            <div className={`text-left p-6 rounded-lg mb-6 ${
+              theme === 'dark' ? 'bg-gray-900' : 'bg-gray-100'
+            }`}>
+              <p className="font-semibold mb-2">To fix this in Netlify:</p>
+              <ol className="list-decimal list-inside space-y-1 text-sm">
+                <li>Go to Site Settings → Environment Variables</li>
+                <li>Add: VITE_SUPABASE_URL</li>
+                <li>Add: VITE_SUPABASE_ANON_KEY</li>
+                <li>Redeploy your site</li>
+              </ol>
+            </div>
+            <p className={`text-sm ${theme === 'dark' ? 'text-gray-500' : 'text-gray-500'}`}>
+              Check your browser console (F12) for more details.
+            </p>
+          </div>
+        ) : error === 'failed-to-load' ? (
+          <div className={`max-w-2xl mx-auto text-center py-20 ${
+            theme === 'dark' ? 'bg-gray-800' : 'bg-white'
+          } rounded-2xl shadow-xl p-12`}>
+            <AlertCircle className="mx-auto mb-4 text-red-500" size={64} />
+            <h3 className="text-2xl font-bold mb-4">Failed to Load Blog Posts</h3>
+            <p className={theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}>
+              There was an error loading the blog posts. Please check your browser console for details or try refreshing the page.
+            </p>
           </div>
         ) : filteredPosts.length === 0 ? (
           <div className={`max-w-2xl mx-auto text-center py-20 ${

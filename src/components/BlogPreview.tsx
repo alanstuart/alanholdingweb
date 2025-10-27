@@ -5,6 +5,7 @@ import { publishedBlogService } from '../services/publishedBlogService';
 import type { PublishedBlogPost } from '../types/publishedBlog';
 import { useTheme } from '../context/ThemeContext';
 import { useLanguage } from '../context/LanguageContext';
+import { isSupabaseConfigured } from '../lib/supabaseClient';
 
 const BlogPreview: React.FC = () => {
   const [posts, setPosts] = useState<PublishedBlogPost[]>([]);
@@ -18,6 +19,11 @@ const BlogPreview: React.FC = () => {
 
   const loadPosts = async () => {
     try {
+      if (!isSupabaseConfigured) {
+        setIsLoading(false);
+        return;
+      }
+
       const latestPosts = await publishedBlogService.getLatestPosts(3);
       setPosts(latestPosts);
     } catch (error) {
