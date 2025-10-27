@@ -21,8 +21,8 @@ Press **F12** → Click **Console** tab → Look for errors
 1. Go to: **Site Settings → Environment Variables**
 2. Add these two variables:
 ```
-VITE_SUPABASE_URL=https://gxohsuckrfwmzqnzvxjn.supabase.co
-VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd4b2hzdWNrcmZ3bXpxbnp2eGpuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE1MTc5MTMsImV4cCI6MjA3NzA5MzkxM30.apGis9krTyPZGC-QQpwPhw-ZsKV7jxJzIG7apgPeBBw
+VITE_SUPABASE_URL=https://ptsbcrvtcrdsqxoxkkhp.supabase.co
+VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB0c2JjcnZ0Y3Jkc3F4b3hra2hwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE1OTA0MjUsImV4cCI6MjA3NzE2NjQyNX0.XClHW9mhOYti40lL_D34Cvx5pARNxks1lw9MudpBD1k
 ```
 3. Click: **Deploys → Trigger Deploy → Deploy Site**
 

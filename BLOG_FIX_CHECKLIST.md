@@ -1,7 +1,7 @@
 # Blog Not Visible - Fix Checklist
 
 ## Problem Summary
-Your blog functionality is working perfectly, and your database has 6 blog posts ready to display. However, the blog is not visible online because **Netlify doesn't have the environment variables** needed to connect to your Supabase database.
+Your blog functionality is working perfectly, and your database has 3 blog posts ready to display. However, the blog is not visible online because **Netlify doesn't have the environment variables** needed to connect to your Supabase database.
 
 ## Solution: Add Environment Variables to Netlify
 
@@ -20,7 +20,7 @@ Your blog functionality is working perfectly, and your database has 6 blog posts
 #### 3. Add First Variable
 ```
 Key:   VITE_SUPABASE_URL
-Value: https://gxohsuckrfwmzqnzvxjn.supabase.co
+Value: https://ptsbcrvtcrdsqxoxkkhp.supabase.co
 ```
 Click "Save"
 
@@ -28,7 +28,7 @@ Click "Save"
 Click "Add a variable" again:
 ```
 Key:   VITE_SUPABASE_ANON_KEY
-Value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd4b2hzdWNrcmZ3bXpxbnp2eGpuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE1MTc5MTMsImV4cCI6MjA3NzA5MzkxM30.apGis9krTyPZGC-QQpwPhw-ZsKV7jxJzIG7apgPeBBw
+Value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB0c2JjcnZ0Y3Jkc3F4b3hra2hwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE1OTA0MjUsImV4cCI6MjA3NzE2NjQyNX0.XClHW9mhOYti40lL_D34Cvx5pARNxks1lw9MudpBD1k
 ```
 Click "Save"
 
@@ -41,7 +41,7 @@ Click "Save"
 #### 6. Test Your Blog
 Once deployment is complete:
 - Visit: https://alanholding.co.uk/blog
-- You should see 6 blog posts displayed
+- You should see 3 blog posts displayed
 - Test clicking on a blog post to view details
 - Verify the back button works
 
@@ -52,7 +52,7 @@ Once deployment is complete:
 - ❌ Homepage blog preview section is empty/hidden
 
 ### After Fix
-- ✅ Blog page shows all 6 published posts
+- ✅ Blog page shows all 3 published posts
 - ✅ Homepage shows latest 3 blog posts in preview section
 - ✅ Category filtering works
 - ✅ Individual blog post pages load correctly
@@ -60,14 +60,11 @@ Once deployment is complete:
 
 ## Your Current Blog Posts
 
-Your database already contains these 6 posts (they'll appear automatically):
+Your database already contains these 3 posts (they'll appear automatically):
 
-1. **How Websites Can Improve Any Kind of Business** (Web Development)
-2. **The Complete Guide to E-commerce Website Development** (E-commerce)
-3. **5 Essential SEO Strategies for Small Businesses in 2025** (SEO)
-4. **Why Every Business Needs a Professional Website in 2025** (Business Growth)
-5. **Responsive Web Design: Best Practices for 2025** (Web Development)
-6. **Digital Marketing Trends to Watch in 2025** (Digital Marketing)
+1. **Building Scalable Web Applications** (Web Development)
+2. **Digital Transformation for Small Businesses** (Business)
+3. **Welcome to My Blog** (Business)
 
 ## Troubleshooting
 
@@ -116,7 +113,7 @@ Your database already contains these 6 posts (they'll appear automatically):
 
 ### Database Status
 - ✅ Table `published_blog_posts` exists
-- ✅ 6 blog posts are published
+- ✅ 3 blog posts are published
 - ✅ Row Level Security is correctly configured
 - ✅ Public can read posts without authentication
 - ✅ All migrations applied successfully
