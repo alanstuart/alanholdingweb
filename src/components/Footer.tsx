@@ -78,6 +78,9 @@ const Footer: React.FC = () => {
                 <a href="#testimonials" className="text-gray-400 hover:text-white transition-colors">{t.testimonials}</a>
               </li>
               <li>
+                <a href="/blog" className="text-gray-400 hover:text-white transition-colors">{t.blog}</a>
+              </li>
+              <li>
                 <a href="#contact" className="text-gray-400 hover:text-white transition-colors">{t.contact}</a>
               </li>
             </ul>

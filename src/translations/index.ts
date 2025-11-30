@@ -5,6 +5,7 @@ export interface Translations {
   testimonials: string;
   contact: string;
   about: string;
+  blog: string;
   
   // Hero Section
   heroTitle: string;
@@ -135,6 +136,20 @@ export interface Translations {
   aboutApproach: string;
   aboutCTA: string;
   aboutLinkedInText: string;
+
+  // Blog Section
+  blogTitle: string;
+  blogSubtitle: string;
+  readMore: string;
+  readingTime: string;
+  minutes: string;
+  allPosts: string;
+  latestPosts: string;
+  categories: string;
+  tags: string;
+  relatedPosts: string;
+  sharePost: string;
+  backToBlog: string;
 }
 
 export const translations: Record<'en' | 'es' | 'tr', Translations> = {
@@ -145,6 +160,7 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
     testimonials: 'Testimonials',
     contact: 'Contact',
     about: 'About',
+    blog: 'Blog',
     
     // Hero Section
     heroTitle: 'Your Business Is Losing Sales by Missing Calls Let AI Handle Them 24/7',
@@ -274,7 +290,21 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
     aboutServices: 'From modern website development to AI voice agents that handle your calls 24/7, we take care of everything. Our booking automation systems and lead capture solutions work seamlessly without requiring expensive CRM systems. We handle the design, development, integrations, and ongoing support so you can focus on what you do best: running your business.',
     aboutApproach: 'What sets us apart is our hands-on approach and commitment to real results. We don\'t just build websites or set up systems – we create digital solutions that drive actual business growth. Every project is handled with care, attention to detail, and a deep understanding of what small businesses need to succeed online.',
     aboutCTA: 'Ready to transform your business with smart digital solutions?',
-    aboutLinkedInText: 'If you want to learn more or connect directly, you can visit our founder\'s LinkedIn profile.'
+    aboutLinkedInText: 'If you want to learn more or connect directly, you can visit our founder\'s LinkedIn profile.',
+
+    // Blog Section
+    blogTitle: 'Latest Insights',
+    blogSubtitle: 'Explore articles about AI, automation, web development, and digital transformation',
+    readMore: 'Read More',
+    readingTime: 'Reading time',
+    minutes: 'min',
+    allPosts: 'All Posts',
+    latestPosts: 'Latest Posts',
+    categories: 'Categories',
+    tags: 'Tags',
+    relatedPosts: 'Related Posts',
+    sharePost: 'Share this post',
+    backToBlog: 'Back to Blog'
   },
   es: {
     // Navigation
@@ -283,6 +313,7 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
     testimonials: 'Testimonios',
     contact: 'Contacto',
     about: 'Nosotros',
+    blog: 'Blog',
     
     // Hero Section
     heroTitle: 'Tu Negocio Está Perdiendo Ventas por Llamadas Perdidas Deja que la IA las Maneje 24/7',
@@ -412,7 +443,21 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
     aboutServices: 'Desde el desarrollo de sitios web modernos hasta agentes de voz con IA que manejan tus llamadas las 24 horas, nos encargamos de todo. Nuestros sistemas de automatización de reservas y soluciones de captación de leads funcionan perfectamente sin requerir sistemas CRM costosos. Manejamos el diseño, desarrollo, integraciones y soporte continuo para que puedas enfocarte en lo que mejor sabes hacer: dirigir tu negocio.',
     aboutApproach: 'Lo que nos distingue es nuestro enfoque práctico y compromiso con resultados reales. No solo construimos sitios web o configuramos sistemas – creamos soluciones digitales que impulsan el crecimiento real del negocio. Cada proyecto se maneja con cuidado, atención al detalle y un profundo entendimiento de lo que las pequeñas empresas necesitan para tener éxito en línea.',
     aboutCTA: '¿Listo para transformar tu negocio con soluciones digitales inteligentes?',
-    aboutLinkedInText: 'Si quieres saber más o conectar directamente, puedes visitar el perfil de nuestro fundador en LinkedIn.'
+    aboutLinkedInText: 'Si quieres saber más o conectar directamente, puedes visitar el perfil de nuestro fundador en LinkedIn.',
+
+    // Blog Section
+    blogTitle: 'Últimas Perspectivas',
+    blogSubtitle: 'Explora artículos sobre IA, automatización, desarrollo web y transformación digital',
+    readMore: 'Leer Más',
+    readingTime: 'Tiempo de lectura',
+    minutes: 'min',
+    allPosts: 'Todas las Publicaciones',
+    latestPosts: 'Últimas Publicaciones',
+    categories: 'Categorías',
+    tags: 'Etiquetas',
+    relatedPosts: 'Publicaciones Relacionadas',
+    sharePost: 'Compartir esta publicación',
+    backToBlog: 'Volver al Blog'
   },
   tr: {
     // Navigation
@@ -421,6 +466,7 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
     testimonials: 'Referanslar',
     contact: 'İletişim',
     about: 'Hakkımızda',
+    blog: 'Blog',
     
     // Hero Section
     heroTitle: 'İşletmeniz Kaçırılan Aramalar Yüzünden Satış Kaybediyor AI\'nın 7/24 Halletmesine İzin Verin',
@@ -550,6 +596,20 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
     aboutServices: 'Modern web sitesi geliştirmeden aramalarınızı 7/24 yöneten AI ses ajanlarına kadar her şeyle ilgileniyoruz. Rezervasyon otomasyon sistemlerimiz ve müşteri adayı yakalama çözümlerimiz pahalı CRM sistemleri gerektirmeden kusursuz çalışır. Tasarım, geliştirme, entegrasyonlar ve devam eden desteği yönetiyoruz, böylece en iyi yaptığınız şeye odaklanabilirsiniz: işinizi yönetmek.',
     aboutApproach: 'Bizi farklı kılan şey, uygulamalı yaklaşımımız ve gerçek sonuçlara olan bağlılığımızdır. Sadece web siteleri kurmaz veya sistemler oluşturmayız – gerçek iş büyümesini sağlayan dijital çözümler yaratırız. Her proje özenle, detaylara dikkat ederek ve küçük işletmelerin çevrimiçi başarılı olmak için neye ihtiyaç duyduğunu derin bir anlayışla ele alınır.',
     aboutCTA: 'İşinizi akıllı dijital çözümlerle dönüştürmeye hazır mısınız?',
-    aboutLinkedInText: 'Daha fazla bilgi edinmek veya doğrudan bağlantı kurmak istiyorsanız, kurucumuzun LinkedIn profilini ziyaret edebilirsiniz.'
+    aboutLinkedInText: 'Daha fazla bilgi edinmek veya doğrudan bağlantı kurmak istiyorsanız, kurucumuzun LinkedIn profilini ziyaret edebilirsiniz.',
+
+    // Blog Section
+    blogTitle: 'Son Görüşler',
+    blogSubtitle: 'AI, otomasyon, web geliştirme ve dijital dönüşüm hakkında makaleler keşfedin',
+    readMore: 'Devamını Oku',
+    readingTime: 'Okuma süresi',
+    minutes: 'dk',
+    allPosts: 'Tüm Gönderiler',
+    latestPosts: 'Son Gönderiler',
+    categories: 'Kategoriler',
+    tags: 'Etiketler',
+    relatedPosts: 'İlgili Gönderiler',
+    sharePost: 'Bu gönderiyi paylaş',
+    backToBlog: 'Bloga Dön'
   }
 };
