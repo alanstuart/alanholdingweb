@@ -59,7 +59,6 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
           <a href="#services" className="nav-link">{translations[language].services}</a>
           <a href="#projects" className="nav-link">{translations[language].projects}</a>
           <a href="#testimonials" className="nav-link">{translations[language].testimonials}</a>
-          <a href="/blog" className="nav-link">{translations[language].blog}</a>
           <a href="#contact" className="nav-link">{translations[language].contact}</a>
           
           {/* Language Dropdown */}
@@ -216,11 +215,6 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
               theme === 'dark' ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
             }`} onClick={() => setIsOpen(false)}>
               {translations[language].testimonials}
-            </a>
-            <a href="/blog" className={`py-2 px-4 rounded-md transition-colors ${
-              theme === 'dark' ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
-            }`} onClick={() => setIsOpen(false)}>
-              {translations[language].blog}
             </a>
             <a href="#contact" className={`py-2 px-4 rounded-md transition-colors ${
               theme === 'dark' ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
