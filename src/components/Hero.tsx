@@ -25,7 +25,7 @@ const Hero: React.FC = () => {
           <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight ${
             theme === 'dark' ? 'text-white' : 'text-gray-900'
           }`}>
-            I Transform Businesses with{' '}
+            We Create{' '}
             <span className="text-blue-500">Modern Landing Pages</span>
             {' '}and{' '}
             <span className="text-blue-500">AI Voice Agents</span>
