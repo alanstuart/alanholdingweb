@@ -128,17 +128,14 @@ const ModernHero: React.FC = () => {
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8">
               <span className={theme === 'dark' ? 'text-white' : 'text-gray-900'}>
-                I Transform Businesses with
+                Landing Pages + AI Voice Agents
               </span>
-              <span className="block">
-                <span className="text-blue-500">
-                  Modern Landing Pages
-                </span>
+              <span className="block mt-2">
                 <span className={theme === 'dark' ? 'text-white' : 'text-gray-900'}>
-                  {' '}and{' '}
+                  Built for One Thing,{' '}
                 </span>
                 <span className="text-blue-500">
-                  AI Voice Agents
+                  Growth
                 </span>
               </span>
             </h1>
@@ -146,7 +143,7 @@ const ModernHero: React.FC = () => {
             <p className={`text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed ${
               theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
             }`}>
-              High-impact digital solutions that automate your growth.
+              Modern landing pages and AI voice agents that capture leads, book calls, and follow up automatically.
             </p>
           </div>
 
