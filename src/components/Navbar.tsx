@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Globe, ChevronDown } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useLanguage } from '../context/LanguageContext';
@@ -13,7 +14,16 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const { language, setLanguage } = useLanguage();
-  
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
+  const getNavLink = (hash: string) => {
+    if (isHomePage) {
+      return hash;
+    }
+    return `/${hash}`;
+  };
+
   const languages = [
     { code: 'en', name: 'English', flag: '🇬🇧' },
     { code: 'es', name: 'Español', flag: '🇪🇸' },
@@ -32,7 +42,7 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
       isScrolled ? 'bg-black bg-opacity-80 backdrop-blur-md shadow-lg py-2' : 'bg-transparent py-4'
     }`}>
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <div className="flex items-center">
+        <Link to="/" className="flex items-center">
           <svg className="w-10 h-10 mr-2" viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="logo-gradient" x1="0" y1="0" x2="1" y2="1">
@@ -51,16 +61,16 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
           <span className="text-xl font-bold tracking-tight text-blue-400">
             Alan Holding
           </span>
-        </div>
+        </Link>
         
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
-          <a href="#about" className="nav-link">{translations[language].about}</a>
-          <a href="#services" className="nav-link">{translations[language].services}</a>
-          <a href="#projects" className="nav-link">{translations[language].projects}</a>
-          <a href="#testimonials" className="nav-link">{translations[language].testimonials}</a>
-          <a href="/blog" className="nav-link">{translations[language].blog}</a>
-          <a href="#contact" className="nav-link">{translations[language].contact}</a>
+          <a href={getNavLink('#about')} className="nav-link">{translations[language].about}</a>
+          <a href={getNavLink('#services')} className="nav-link">{translations[language].services}</a>
+          <a href={getNavLink('#projects')} className="nav-link">{translations[language].projects}</a>
+          <a href={getNavLink('#testimonials')} className="nav-link">{translations[language].testimonials}</a>
+          <Link to="/blog" className="nav-link">{translations[language].blog}</Link>
+          <a href={getNavLink('#contact')} className="nav-link">{translations[language].contact}</a>
           
           {/* Language Dropdown */}
           <div className="relative">
@@ -197,32 +207,32 @@ const Navbar: React.FC<NavbarProps> = ({ isScrolled }) => {
             : 'bg-white bg-opacity-95 backdrop-blur-md border-gray-200 text-blue-600'
         }`}>
           <div className="container mx-auto px-4 flex flex-col space-y-4">
-            <a href="#about" className={`py-2 px-4 rounded-md transition-colors ${
+            <a href={getNavLink('#about')} className={`py-2 px-4 rounded-md transition-colors ${
               theme === 'dark' ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
             }`} onClick={() => setIsOpen(false)}>
               {translations[language].about}
             </a>
-            <a href="#services" className={`py-2 px-4 rounded-md transition-colors ${
+            <a href={getNavLink('#services')} className={`py-2 px-4 rounded-md transition-colors ${
               theme === 'dark' ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
             }`} onClick={() => setIsOpen(false)}>
               {translations[language].services}
             </a>
-            <a href="#projects" className={`py-2 px-4 rounded-md transition-colors ${
+            <a href={getNavLink('#projects')} className={`py-2 px-4 rounded-md transition-colors ${
               theme === 'dark' ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
             }`} onClick={() => setIsOpen(false)}>
               {translations[language].projects}
             </a>
-            <a href="#testimonials" className={`py-2 px-4 rounded-md transition-colors ${
+            <a href={getNavLink('#testimonials')} className={`py-2 px-4 rounded-md transition-colors ${
               theme === 'dark' ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
             }`} onClick={() => setIsOpen(false)}>
               {translations[language].testimonials}
             </a>
-            <a href="/blog" className={`py-2 px-4 rounded-md transition-colors ${
+            <Link to="/blog" className={`py-2 px-4 rounded-md transition-colors ${
               theme === 'dark' ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
             }`} onClick={() => setIsOpen(false)}>
               {translations[language].blog}
-            </a>
-            <a href="#contact" className={`py-2 px-4 rounded-md transition-colors ${
+            </Link>
+            <a href={getNavLink('#contact')} className={`py-2 px-4 rounded-md transition-colors ${
               theme === 'dark' ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
             }`} onClick={() => setIsOpen(false)}>
               {translations[language].contact}
