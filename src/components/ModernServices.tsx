@@ -1,35 +1,24 @@
 import React from 'react';
-import { Phone, MessageSquare, Laptop, ArrowRight, Sparkles } from 'lucide-react';
-import { useLanguage } from '../context/LanguageContext';
-import { translations } from '../translations';
+import { Phone, Laptop, ArrowRight, Sparkles } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 const ModernServices: React.FC = () => {
-  const { language } = useLanguage();
   const { theme } = useTheme();
-  const t = translations[language];
-  
+
   const services = [
     {
-      icon: Phone,
-      title: t.aiVoiceAgents.title,
-      description: t.aiVoiceAgents.description,
-      features: ['24/7 Availability', 'Bilingual Support', 'Appointment Booking', 'Lead Capture'],
+      icon: Laptop,
+      title: 'Landing Page Design & Development',
+      description: 'Responsive, ultra-fast websites optimized to convert visitors into customers.',
+      features: ['Conversion Optimized', 'Mobile Responsive', 'Ultra-Fast Loading', 'SEO Ready'],
       color: 'from-blue-500 to-cyan-500'
     },
     {
-      icon: MessageSquare,
-      title: t.smartChatbots.title,
-      description: t.smartChatbots.description,
-      features: ['Instant Response', 'FAQ Automation', 'Lead Qualification', 'Multi-platform'],
-      color: 'from-purple-500 to-pink-500'
-    },
-    {
-      icon: Laptop,
-      title: t.digitalSolutions.title,
-      description: t.digitalSolutions.description,
-      features: ['Custom Development', 'SEO Optimization', 'Mobile Responsive', 'Analytics'],
-      color: 'from-green-500 to-teal-500'
+      icon: Phone,
+      title: 'AI Voice Agents (Voice Bots)',
+      description: 'Intelligent systems that handle calls, book appointments, and answer questions 24/7 using natural language.',
+      features: ['24/7 Availability', 'Natural Language', 'Appointment Booking', 'Lead Capture'],
+      color: 'from-teal-500 to-emerald-500'
     }
   ];
   
@@ -41,7 +30,7 @@ const ModernServices: React.FC = () => {
           theme === 'dark' ? 'bg-blue-500' : 'bg-blue-300'
         }`} />
         <div className={`absolute bottom-20 right-10 w-96 h-96 rounded-full blur-3xl opacity-20 ${
-          theme === 'dark' ? 'bg-purple-500' : 'bg-purple-300'
+          theme === 'dark' ? 'bg-teal-500' : 'bg-teal-300'
         }`} />
       </div>
 
@@ -54,26 +43,26 @@ const ModernServices: React.FC = () => {
               : 'bg-blue-100 text-blue-700 border border-blue-200'
           }`}>
             <Sparkles className="w-4 h-4 mr-2" />
-            Our Services
+            What I Offer
           </div>
-          
+
           <h2 className={`text-4xl md:text-6xl font-bold mb-6 ${
             theme === 'dark' ? 'text-white' : 'text-gray-900'
           }`}>
-            Transforming Ideas Into
-            <span className="block text-blue-500">Digital Reality</span>
+            Specialized
+            <span className="block text-blue-500">Services</span>
           </h2>
-          
+
           <p className={`text-xl max-w-3xl mx-auto ${
             theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
           }`}>
-            We combine cutting-edge technology with creative design to deliver 
-            solutions that drive real business growth and user engagement.
+            High-impact digital solutions designed to automate your growth
+            and convert more visitors into customers.
           </p>
         </div>
         
         {/* Services Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20 max-w-5xl mx-auto">
           {services.map((service, index) => (
             <div 
               key={index}
@@ -134,8 +123,8 @@ const ModernServices: React.FC = () => {
         {/* Bottom CTA */}
         <div className={`text-center p-12 rounded-3xl ${
           theme === 'dark'
-            ? 'bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-800/30'
-            : 'bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200'
+            ? 'bg-gradient-to-r from-blue-900/20 to-teal-900/20 border border-blue-800/30'
+            : 'bg-gradient-to-r from-blue-50 to-teal-50 border border-blue-200'
         }`}>
           <h3 className={`text-3xl font-bold mb-4 ${
             theme === 'dark' ? 'text-white' : 'text-gray-900'
