@@ -1,40 +1,9 @@
 import React from 'react';
-import { Phone, MessageSquare, Calendar, Clock, Globe, UserCheck } from 'lucide-react';
-import TypeWriter from './TypeWriter';
-import { useLanguage } from '../context/LanguageContext';
-import { translations } from '../translations';
+import { ArrowRight, Laptop, Phone } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 
 const Hero: React.FC = () => {
-  const { language } = useLanguage();
-  const t = translations[language];
-  
-  const typingPhrases = [
-    language === 'en' 
-      ? "Handling Business Like a Pro..." 
-      : language === 'es' 
-        ? "Manejando Negocios Como un Profesional..." 
-        : "İşi Profesyonel Gibi Yönetmek...",
-    language === 'en' 
-      ? "Turning Missed Calls into Booked Clients..." 
-      : language === 'es' 
-        ? "Convirtiendo Llamadas Perdidas en Clientes Reservados..." 
-        : "Kaçırılan Aramaları Rezervasyonlu Müşterilere Dönüştürmek...",
-    language === 'en' 
-      ? "Speaking Fluent English and Spanish..." 
-      : language === 'es' 
-        ? "Hablando Inglés y Español con Fluidez..." 
-        : "Akıcı İngilizce ve İspanyolca Konuşmak...",
-    language === 'en' 
-      ? "Your AI Receptionist at Work..." 
-      : language === 'es' 
-        ? "Tu Recepcionista IA en Acción..." 
-        : "AI Resepsiyonistiniz İş Başında...",
-    language === 'en' 
-      ? "No Breaks. No Excuses. Just Results..." 
-      : language === 'es' 
-        ? "Sin Descansos. Sin Excusas. Solo Resultados..." 
-        : "Mola Yok. Bahane Yok. Sadece Sonuçlar..."
-  ];
+  const { theme } = useTheme();
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center pt-20 pb-10 px-4 relative overflow-hidden">
@@ -42,94 +11,85 @@ const Hero: React.FC = () => {
         <div className="code-rain"></div>
         <div className="circuit-pattern"></div>
       </div>
-      
+
       <div className="container mx-auto relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="badge text-xs uppercase tracking-widest mb-4 inline-block px-3 py-1 rounded-full bg-gradient-to-r from-blue-600 to-blue-400">
-            {t.heroSubtitle}
+          <div className={`text-xs uppercase tracking-widest mb-6 inline-block px-4 py-2 rounded-full ${
+            theme === 'dark'
+              ? 'bg-blue-900/30 text-blue-300 border border-blue-800/50'
+              : 'bg-blue-100 text-blue-700 border border-blue-200'
+          }`}>
+            Landing Pages & AI Voice Solutions
           </div>
-          
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600">
-            {t.heroTitle}
+
+          <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight ${
+            theme === 'dark' ? 'text-white' : 'text-gray-900'
+          }`}>
+            I Transform Businesses with{' '}
+            <span className="text-blue-500">Modern Landing Pages</span>
+            {' '}and{' '}
+            <span className="text-blue-500">AI Voice Agents</span>
           </h1>
 
-          <div className="mb-8">
-            <TypeWriter phrases={typingPhrases} />
-          </div>
-          
-          <p className="text-xl text-blue-300 mb-12">
-            {t.heroDescription}
+          <p className={`text-xl md:text-2xl mb-12 ${
+            theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+          }`}>
+            High-impact digital solutions that automate your growth.
           </p>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-12 text-left">
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 p-2 bg-blue-900 bg-opacity-20 rounded-lg">
-                  <Clock className="w-6 h-6 text-blue-400" />
-                </div>
-                <div>
-                  <p className="text-lg font-semibold mb-1">{t.heroFeatures.available247.title}</p>
-                  <p className="text-gray-400">{t.heroFeatures.available247.description}</p>
-                </div>
+          <div className="grid md:grid-cols-2 gap-6 mb-12 max-w-3xl mx-auto">
+            <div className={`p-6 rounded-2xl text-left transition-all duration-300 hover:scale-105 ${
+              theme === 'dark'
+                ? 'bg-white/5 border border-white/10 hover:bg-white/10'
+                : 'bg-white border border-gray-200 hover:shadow-xl shadow-lg'
+            }`}>
+              <div className={`w-12 h-12 rounded-lg mb-4 flex items-center justify-center ${
+                theme === 'dark' ? 'bg-blue-600/20' : 'bg-blue-100'
+              }`}>
+                <Laptop className={`w-6 h-6 ${theme === 'dark' ? 'text-blue-400' : 'text-blue-600'}`} />
               </div>
-
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 p-2 bg-blue-900 bg-opacity-20 rounded-lg">
-                  <Globe className="w-6 h-6 text-blue-400" />
-                </div>
-                <div>
-                  <p className="text-lg font-semibold mb-1">{t.heroFeatures.bilingual.title}</p>
-                  <p className="text-gray-400">{t.heroFeatures.bilingual.description}</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 p-2 bg-blue-900 bg-opacity-20 rounded-lg">
-                  <Calendar className="w-6 h-6 text-blue-400" />
-                </div>
-                <div>
-                  <p className="text-lg font-semibold mb-1">{t.heroFeatures.appointments.title}</p>
-                  <p className="text-gray-400">{t.heroFeatures.appointments.description}</p>
-                </div>
-              </div>
+              <h3 className={`text-lg font-semibold mb-2 ${
+                theme === 'dark' ? 'text-white' : 'text-gray-900'
+              }`}>
+                Landing Page Design & Development
+              </h3>
+              <p className={`text-sm ${
+                theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+              }`}>
+                Responsive, ultra-fast websites optimized to convert visitors into customers.
+              </p>
             </div>
 
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 p-2 bg-blue-900 bg-opacity-20 rounded-lg">
-                  <UserCheck className="w-6 h-6 text-blue-400" />
-                </div>
-                <div>
-                  <p className="text-lg font-semibold mb-1">{t.heroFeatures.leadCollection.title}</p>
-                  <p className="text-gray-400">{t.heroFeatures.leadCollection.description}</p>
-                </div>
+            <div className={`p-6 rounded-2xl text-left transition-all duration-300 hover:scale-105 ${
+              theme === 'dark'
+                ? 'bg-white/5 border border-white/10 hover:bg-white/10'
+                : 'bg-white border border-gray-200 hover:shadow-xl shadow-lg'
+            }`}>
+              <div className={`w-12 h-12 rounded-lg mb-4 flex items-center justify-center ${
+                theme === 'dark' ? 'bg-blue-600/20' : 'bg-blue-100'
+              }`}>
+                <Phone className={`w-6 h-6 ${theme === 'dark' ? 'text-blue-400' : 'text-blue-600'}`} />
               </div>
-
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 p-2 bg-blue-900 bg-opacity-20 rounded-lg">
-                  <Phone className="w-6 h-6 text-blue-400" />
-                </div>
-                <div>
-                  <p className="text-lg font-semibold mb-1">{t.heroFeatures.perfectFor.title}</p>
-                  <p className="text-gray-400">{t.heroFeatures.perfectFor.description}</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 p-2 bg-blue-900 bg-opacity-20 rounded-lg">
-                  <MessageSquare className="w-6 h-6 text-blue-400" />
-                </div>
-                <div>
-                  <p className="text-lg font-semibold mb-1">{t.heroFeatures.noHiring.title}</p>
-                  <p className="text-gray-400">{t.heroFeatures.noHiring.description}</p>
-                </div>
-              </div>
+              <h3 className={`text-lg font-semibold mb-2 ${
+                theme === 'dark' ? 'text-white' : 'text-gray-900'
+              }`}>
+                AI Voice Agents (Voice Bots)
+              </h3>
+              <p className={`text-sm ${
+                theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+              }`}>
+                Intelligent systems that handle calls, book appointments, and answer questions 24/7 using natural language.
+              </p>
             </div>
           </div>
 
-          <p className="text-xl text-blue-300 italic">
-            {t.heroClosing}
-          </p>
+          <a
+            href="#services"
+            className="inline-flex items-center px-8 py-4 rounded-full font-semibold bg-blue-600 hover:bg-blue-700 text-white transition-all duration-300 transform hover:scale-105 shadow-lg shadow-blue-600/25"
+          >
+            <span>View My Services</span>
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </a>
         </div>
       </div>
     </section>
