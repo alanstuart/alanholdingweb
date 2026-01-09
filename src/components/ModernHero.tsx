@@ -4,6 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 import { useTheme } from '../context/ThemeContext';
 import TypeWriter from './TypeWriter';
+import AnimatedText from './AnimatedText';
 
 const ModernHero: React.FC = () => {
   const { language } = useLanguage();
@@ -119,24 +120,47 @@ const ModernHero: React.FC = () => {
         <div className="max-w-6xl mx-auto">
           {/* Main Heading */}
           <div className="text-center mb-16">
-            <div className={`inline-block px-4 py-2 rounded-full text-sm font-medium mb-8 ${
-              theme === 'dark'
-                ? 'bg-blue-900/30 text-blue-300 border border-blue-800/50'
-                : 'bg-blue-100 text-blue-700 border border-blue-200'
-            }`}>
+            <div
+              className={`inline-block px-4 py-2 rounded-full text-sm font-medium mb-8 animate-fade-in ${
+                theme === 'dark'
+                  ? 'bg-blue-900/30 text-blue-300 border border-blue-800/50'
+                  : 'bg-blue-100 text-blue-700 border border-blue-200'
+              }`}
+              style={{ animation: 'badgeFade 0.8s ease-out forwards' }}
+            >
               Landing Pages & AI Voice Solutions
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8">
               <span className={theme === 'dark' ? 'text-white' : 'text-gray-900'}>
-                Landing Pages + AI Voice Agents
+                <AnimatedText
+                  text="Landing Pages + AI Voice Agents"
+                  animationType="wave"
+                  staggerDelay={35}
+                  duration={700}
+                  startDelay={200}
+                />
               </span>
-              <span className="block mt-2">
+              <span className="block mt-4">
                 <span className={theme === 'dark' ? 'text-white' : 'text-gray-900'}>
-                  Built for One Thing,{' '}
+                  <AnimatedText
+                    text="Built for One Thing,"
+                    animationType="fadeSlide"
+                    staggerDelay={40}
+                    duration={600}
+                    startDelay={1200}
+                  />
                 </span>
-                <span className="text-blue-500">
-                  Growth
+                {' '}
+                <span className="text-gradient-animate">
+                  <AnimatedText
+                    text="Growth"
+                    animationType="bounce"
+                    staggerDelay={80}
+                    duration={800}
+                    startDelay={2200}
+                    className="inline"
+                  />
                 </span>
               </span>
             </h1>
@@ -208,14 +232,21 @@ const ModernHero: React.FC = () => {
           </div>
 
           {/* CTA Button */}
-          <div className="flex justify-center items-center">
+          <div
+            className="flex justify-center items-center"
+            style={{
+              opacity: 0,
+              animation: 'ctaSlide 0.8s ease-out 3s forwards'
+            }}
+          >
             <a
               href="#services"
               className={`group flex items-center px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 ${
-              theme === 'dark'
-                ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-600/25'
-                : 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-600/25'
-            }`}>
+                theme === 'dark'
+                  ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-600/25'
+                  : 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-600/25'
+              }`}
+            >
               <span>View My Services</span>
               <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
             </a>
