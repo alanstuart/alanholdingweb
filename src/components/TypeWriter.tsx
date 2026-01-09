@@ -5,13 +5,15 @@ interface TypeWriterProps {
   typingSpeed?: number;
   deletingSpeed?: number;
   pauseDuration?: number;
+  className?: string;
 }
 
 const TypeWriter: React.FC<TypeWriterProps> = ({
   phrases,
   typingSpeed = 100,
   deletingSpeed = 50,
-  pauseDuration = 1500
+  pauseDuration = 1500,
+  className = ''
 }) => {
   const [text, setText] = useState('');
   const [phraseIndex, setPhraseIndex] = useState(0);
@@ -42,12 +44,10 @@ const TypeWriter: React.FC<TypeWriterProps> = ({
   }, [text, isDeleting, phraseIndex, phrases, typingSpeed, deletingSpeed, pauseDuration]);
 
   return (
-    <div className="h-8 flex items-center justify-center">
-      <p className="text-xl md:text-2xl font-mono text-blue-400">
-        {text}
-        <span className="animate-pulse">|</span>
-      </p>
-    </div>
+    <p className={className}>
+      {text}
+      <span className="animate-pulse ml-1">|</span>
+    </p>
   );
 };
 

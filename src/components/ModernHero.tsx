@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 import { useTheme } from '../context/ThemeContext';
+import TypeWriter from './TypeWriter';
 
 const ModernHero: React.FC = () => {
   const { language } = useLanguage();
@@ -140,11 +141,19 @@ const ModernHero: React.FC = () => {
               </span>
             </h1>
 
-            <p className={`text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed ${
-              theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-            }`}>
-              Modern landing pages and AI voice agents that capture leads, book calls, and follow up automatically.
-            </p>
+            <div className="max-w-3xl mx-auto min-h-[80px] flex items-center justify-center">
+              <TypeWriter
+                phrases={[
+                  "Modern landing pages and AI voice agents that capture leads, book calls, and follow up automatically."
+                ]}
+                typingSpeed={50}
+                deletingSpeed={30}
+                pauseDuration={3000}
+                className={`text-xl md:text-2xl leading-relaxed ${
+                  theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                }`}
+              />
+            </div>
           </div>
 
           {/* Feature Grid */}
