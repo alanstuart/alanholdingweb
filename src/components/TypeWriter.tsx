@@ -18,17 +18,25 @@ const TypeWriter: React.FC<TypeWriterProps> = ({
   const [text, setText] = useState('');
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     const currentPhrase = phrases[phraseIndex];
-    
+
+    if (isPaused) {
+      const timer = setTimeout(() => {
+        setIsPaused(false);
+        setIsDeleting(true);
+      }, pauseDuration);
+      return () => clearTimeout(timer);
+    }
+
     const timer = setTimeout(() => {
       if (!isDeleting) {
         if (text.length < currentPhrase.length) {
           setText(currentPhrase.slice(0, text.length + 1));
         } else {
-          setIsDeleting(true);
-          setTimeout(() => {}, pauseDuration);
+          setIsPaused(true);
         }
       } else {
         if (text.length > 0) {
@@ -41,7 +49,7 @@ const TypeWriter: React.FC<TypeWriterProps> = ({
     }, isDeleting ? deletingSpeed : typingSpeed);
 
     return () => clearTimeout(timer);
-  }, [text, isDeleting, phraseIndex, phrases, typingSpeed, deletingSpeed, pauseDuration]);
+  }, [text, isDeleting, isPaused, phraseIndex, phrases, typingSpeed, deletingSpeed, pauseDuration]);
 
   return (
     <p className={className}>
