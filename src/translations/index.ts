@@ -150,6 +150,10 @@ export interface Translations {
   relatedPosts: string;
   sharePost: string;
   backToBlog: string;
+  postNotFound: string;
+  linkCopied: string;
+  byAuthor: string;
+  noBlogPosts: string;
 }
 
 export const translations: Record<'en' | 'es' | 'tr', Translations> = {
@@ -304,7 +308,11 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
     tags: 'Tags',
     relatedPosts: 'Related Posts',
     sharePost: 'Share this post',
-    backToBlog: 'Back to Blog'
+    backToBlog: 'Back to Blog',
+    postNotFound: 'Post Not Found',
+    linkCopied: 'Link copied to clipboard!',
+    byAuthor: 'By',
+    noBlogPosts: 'No blog posts available yet.'
   },
   es: {
     // Navigation
@@ -457,7 +465,11 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
     tags: 'Etiquetas',
     relatedPosts: 'Publicaciones Relacionadas',
     sharePost: 'Compartir esta publicación',
-    backToBlog: 'Volver al Blog'
+    backToBlog: 'Volver al Blog',
+    postNotFound: 'Publicación No Encontrada',
+    linkCopied: 'Enlace copiado al portapapeles!',
+    byAuthor: 'Por',
+    noBlogPosts: 'No hay publicaciones de blog disponibles todavía.'
   },
   tr: {
     // Navigation
@@ -610,6 +622,10 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
     tags: 'Etiketler',
     relatedPosts: 'İlgili Gönderiler',
     sharePost: 'Bu gönderiyi paylaş',
-    backToBlog: 'Bloga Dön'
+    backToBlog: 'Bloga Dön',
+    postNotFound: 'Gönderi Bulunamadı',
+    linkCopied: 'Bağlantı panoya kopyalandı!',
+    byAuthor: 'Yazar',
+    noBlogPosts: 'Henüz blog gönderisi bulunmuyor.'
   }
 };

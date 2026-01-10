@@ -1,5 +1,25 @@
 import { supabase } from '../lib/supabaseClient';
-import type { BlogPost, BlogPostCreate, BlogPostUpdate } from '../types/blog';
+import type { BlogPost, BlogPostCreate, BlogPostUpdate, LocalizedBlogPost } from '../types/blog';
+
+export function getLocalizedPost(post: BlogPost, language: string): LocalizedBlogPost {
+  const useSpanish = language === 'es';
+
+  return {
+    id: post.id,
+    slug: post.slug,
+    title: (useSpanish && post.title_es) || post.title,
+    excerpt: (useSpanish && post.excerpt_es) || post.excerpt,
+    content: (useSpanish && post.content_es) || post.content,
+    category: (useSpanish && post.category_es) || post.category,
+    author: post.author,
+    published_at: post.published_at,
+    updated_at: post.updated_at,
+    image_url: post.image_url,
+    tags: post.tags,
+    is_published: post.is_published,
+    created_at: post.created_at,
+  };
+}
 
 export const blogService = {
   async getAllPublishedPosts(): Promise<BlogPost[]> {

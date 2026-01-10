@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, Tag, ArrowRight } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
-import { blogService } from '../services/blogService';
+import { blogService, getLocalizedPost } from '../services/blogService';
 import type { BlogPost } from '../types/blog';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -38,9 +38,14 @@ const Blog: React.FC = () => {
     fetchData();
   }, []);
 
+  const localizedPosts = useMemo(() =>
+    posts.map(post => ({ original: post, localized: getLocalizedPost(post, language) })),
+    [posts, language]
+  );
+
   const filteredPosts = selectedCategory === 'all'
-    ? posts
-    : posts.filter(post => post.category === selectedCategory);
+    ? localizedPosts
+    : localizedPosts.filter(({ localized }) => localized.category === selectedCategory || posts.find(p => p.id === localized.id)?.category === selectedCategory);
 
   const calculateReadingTime = (content: string): number => {
     const wordsPerMinute = 200;
@@ -117,11 +122,11 @@ const Blog: React.FC = () => {
           <div className={`text-center py-20 ${
             theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
           }`}>
-            <p className="text-xl">No blog posts available yet.</p>
+            <p className="text-xl">{t.noBlogPosts}</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredPosts.map((post) => (
+            {filteredPosts.map(({ localized: post }) => (
               <Link
                 key={post.id}
                 to={`/blog/${post.slug}`}

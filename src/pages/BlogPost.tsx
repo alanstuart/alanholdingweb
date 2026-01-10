@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, Clock, Tag, ArrowLeft, Share2 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
-import { blogService } from '../services/blogService';
-import type { BlogPost as BlogPostType } from '../types/blog';
+import { blogService, getLocalizedPost } from '../services/blogService';
+import type { BlogPost as BlogPostType, LocalizedBlogPost } from '../types/blog';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
@@ -42,6 +42,16 @@ const BlogPost: React.FC = () => {
     fetchPost();
   }, [slug]);
 
+  const localizedPost: LocalizedBlogPost | null = useMemo(() =>
+    post ? getLocalizedPost(post, language) : null,
+    [post, language]
+  );
+
+  const localizedRelatedPosts: LocalizedBlogPost[] = useMemo(() =>
+    relatedPosts.map(p => getLocalizedPost(p, language)),
+    [relatedPosts, language]
+  );
+
   const calculateReadingTime = (content: string): number => {
     const wordsPerMinute = 200;
     const wordCount = content.split(/\s+/).length;
@@ -58,11 +68,11 @@ const BlogPost: React.FC = () => {
   };
 
   const handleShare = async () => {
-    if (navigator.share && post) {
+    if (navigator.share && localizedPost) {
       try {
         await navigator.share({
-          title: post.title,
-          text: post.excerpt,
+          title: localizedPost.title,
+          text: localizedPost.excerpt,
           url: window.location.href
         });
       } catch (error) {
@@ -70,7 +80,7 @@ const BlogPost: React.FC = () => {
       }
     } else {
       navigator.clipboard.writeText(window.location.href);
-      alert('Link copied to clipboard!');
+      alert(t.linkCopied || 'Link copied to clipboard!');
     }
   };
 
@@ -86,7 +96,7 @@ const BlogPost: React.FC = () => {
     );
   }
 
-  if (!post) {
+  if (!localizedPost) {
     return (
       <div className={`min-h-screen ${
         theme === 'dark'
@@ -95,7 +105,7 @@ const BlogPost: React.FC = () => {
       }`}>
         <Navbar isScrolled={true} />
         <div className="container mx-auto px-4 pt-32 pb-16 text-center">
-          <h1 className="text-4xl font-bold mb-4">Post Not Found</h1>
+          <h1 className="text-4xl font-bold mb-4">{t.postNotFound || 'Post Not Found'}</h1>
           <Link to="/blog" className="text-blue-600 hover:underline">
             {t.backToBlog}
           </Link>
@@ -127,13 +137,13 @@ const BlogPost: React.FC = () => {
         </Link>
 
         <span className="inline-block px-4 py-2 mb-6 text-sm font-semibold text-blue-600 bg-blue-100 rounded-full">
-          {post.category}
+          {localizedPost.category}
         </span>
 
         <h1 className={`text-5xl font-bold mb-6 ${
           theme === 'dark' ? 'text-white' : 'text-gray-900'
         }`}>
-          {post.title}
+          {localizedPost.title}
         </h1>
 
         <div className="flex flex-wrap items-center gap-6 mb-8 text-sm">
@@ -141,16 +151,16 @@ const BlogPost: React.FC = () => {
             theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
           }`}>
             <Calendar size={18} />
-            {formatDate(post.published_at)}
+            {formatDate(localizedPost.published_at)}
           </span>
           <span className={`flex items-center gap-2 ${
             theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
           }`}>
             <Clock size={18} />
-            {calculateReadingTime(post.content)} {t.minutes} {t.readingTime}
+            {calculateReadingTime(localizedPost.content)} {t.minutes} {t.readingTime}
           </span>
           <span className={theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}>
-            By {post.author}
+            {t.byAuthor || 'By'} {localizedPost.author}
           </span>
           <button
             onClick={handleShare}
@@ -165,11 +175,11 @@ const BlogPost: React.FC = () => {
           </button>
         </div>
 
-        {post.image_url && (
+        {localizedPost.image_url && (
           <div className="mb-12 rounded-xl overflow-hidden">
             <img
-              src={post.image_url}
-              alt={post.title}
+              src={localizedPost.image_url}
+              alt={localizedPost.title}
               className="w-full h-auto"
             />
           </div>
@@ -178,13 +188,13 @@ const BlogPost: React.FC = () => {
         <div className={`prose prose-lg max-w-none mb-12 ${
           theme === 'dark' ? 'prose-invert' : ''
         }`}>
-          <p className="text-xl leading-relaxed mb-8">{post.excerpt}</p>
-          <div className="whitespace-pre-wrap leading-relaxed">{post.content}</div>
+          <p className="text-xl leading-relaxed mb-8">{localizedPost.excerpt}</p>
+          <div className="whitespace-pre-wrap leading-relaxed">{localizedPost.content}</div>
         </div>
 
-        {post.tags && post.tags.length > 0 && (
+        {localizedPost.tags && localizedPost.tags.length > 0 && (
           <div className="flex flex-wrap gap-3 mb-12 pb-12 border-b border-gray-700">
-            {post.tags.map((tag, index) => (
+            {localizedPost.tags.map((tag, index) => (
               <span
                 key={index}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full ${
@@ -200,7 +210,7 @@ const BlogPost: React.FC = () => {
           </div>
         )}
 
-        {relatedPosts.length > 0 && (
+        {localizedRelatedPosts.length > 0 && (
           <div className="mt-16">
             <h2 className={`text-3xl font-bold mb-8 ${
               theme === 'dark' ? 'text-white' : 'text-gray-900'
@@ -208,7 +218,7 @@ const BlogPost: React.FC = () => {
               {t.relatedPosts}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {relatedPosts.map((relatedPost) => (
+              {localizedRelatedPosts.map((relatedPost) => (
                 <Link
                   key={relatedPost.id}
                   to={`/blog/${relatedPost.slug}`}
