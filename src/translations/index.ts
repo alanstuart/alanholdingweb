@@ -38,6 +38,23 @@ export interface Translations {
     };
   };
   heroClosing: string;
+  heroBadge: string;
+  heroMainTitle: {
+    weCreate: string;
+    modernLandingPages: string;
+    and: string;
+    aiVoiceAgents: string;
+  };
+  heroTagline: string;
+  heroLandingPageCard: {
+    title: string;
+    description: string;
+  };
+  heroVoiceAgentCard: {
+    title: string;
+    description: string;
+  };
+  viewServices: string;
   
   // Services Section
   servicesTitle: string;
@@ -197,7 +214,24 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
       }
     },
     heroClosing: 'These intelligent agents are launching soon. Stay tuned and get ready to turn missed calls and messages into booked clients.',
-    
+    heroBadge: 'Landing Pages & AI Voice Solutions',
+    heroMainTitle: {
+      weCreate: 'We Create',
+      modernLandingPages: 'Modern Landing Pages',
+      and: 'and',
+      aiVoiceAgents: 'AI Voice Agents'
+    },
+    heroTagline: 'High-impact digital solutions that automate your growth.',
+    heroLandingPageCard: {
+      title: 'Landing Page Design & Development',
+      description: 'Responsive, ultra-fast websites optimized to convert visitors into customers.'
+    },
+    heroVoiceAgentCard: {
+      title: 'AI Voice Agents (Voice Bots)',
+      description: 'Intelligent systems that handle calls, book appointments, and answer questions 24/7 using natural language.'
+    },
+    viewServices: 'View My Services',
+
     // Services Section
     servicesTitle: 'Empowering Businesses with AI-Driven Voice and Chat Solutions',
     servicesSubtitle: 'We help companies automate communication, capture leads, and increase sales using cutting-edge AI tools.',
@@ -354,7 +388,24 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
       }
     },
     heroClosing: 'Estos agentes inteligentes se lanzan pronto. Mantente atento y prepárate para convertir llamadas y mensajes perdidos en clientes programados.',
-    
+    heroBadge: 'Paginas de Aterrizaje y Soluciones de Voz IA',
+    heroMainTitle: {
+      weCreate: 'Creamos',
+      modernLandingPages: 'Paginas de Aterrizaje Modernas',
+      and: 'y',
+      aiVoiceAgents: 'Agentes de Voz IA'
+    },
+    heroTagline: 'Soluciones digitales de alto impacto que automatizan tu crecimiento.',
+    heroLandingPageCard: {
+      title: 'Diseno y Desarrollo de Paginas de Aterrizaje',
+      description: 'Sitios web responsivos y ultrarapidos optimizados para convertir visitantes en clientes.'
+    },
+    heroVoiceAgentCard: {
+      title: 'Agentes de Voz IA (Voice Bots)',
+      description: 'Sistemas inteligentes que manejan llamadas, programan citas y responden preguntas 24/7 usando lenguaje natural.'
+    },
+    viewServices: 'Ver Mis Servicios',
+
     // Services Section
     servicesTitle: 'Empoderando Negocios con Soluciones de Voz e IA Impulsadas por Inteligencia Artificial',
     servicesSubtitle: 'Ayudamos a las empresas a automatizar la comunicación, capturar clientes potenciales y aumentar las ventas usando herramientas de IA de vanguardia.',
@@ -511,7 +562,24 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
       }
     },
     heroClosing: 'Bu akıllı ajanlar yakında başlatılıyor. Takipte kalın ve kaçırılan aramaları ve mesajları rezervasyonlu müşterilere dönüştürmeye hazır olun.',
-    
+    heroBadge: 'Acilis Sayfalari ve AI Ses Cozumleri',
+    heroMainTitle: {
+      weCreate: 'Olusturuyoruz',
+      modernLandingPages: 'Modern Acilis Sayfalari',
+      and: 've',
+      aiVoiceAgents: 'AI Ses Ajanlari'
+    },
+    heroTagline: 'Buyumenizi otomatiklestiren yuksek etkili dijital cozumler.',
+    heroLandingPageCard: {
+      title: 'Acilis Sayfasi Tasarimi ve Gelistirme',
+      description: 'Ziyaretcileri musterilere donusturmek icin optimize edilmis duyarli, ultra hizli web siteleri.'
+    },
+    heroVoiceAgentCard: {
+      title: 'AI Ses Ajanlari (Sesli Botlar)',
+      description: 'Dogal dil kullanarak 7/24 aramalari yoneten, randevu alan ve sorulari yanitlayan akilli sistemler.'
+    },
+    viewServices: 'Hizmetlerimi Gor',
+
     // Services Section
     servicesTitle: 'AI Destekli Ses ve Sohbet Çözümleriyle İşletmeleri Güçlendirme',
     servicesSubtitle: 'Şirketlerin iletişimi otomatikleştirmesine, müşteri adaylarını yakalamasına ve son teknoloji AI araçlarını kullanarak satışları artırmasına yardımcı oluyoruz.',
