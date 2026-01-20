@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Linkedin, ArrowUp } from 'lucide-react';
+import { Github, Linkedin, ArrowUp, Instagram, Facebook } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 
@@ -41,23 +41,41 @@ const Footer: React.FC = () => {
               {t.footerDescription}
             </p>
             <div className="flex space-x-4">
-              <a 
-                href="https://github.com/alanholding" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://github.com/alanholding"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2 bg-gray-800 rounded-full hover:bg-blue-600 transition-colors"
                 aria-label="GitHub"
               >
                 <Github size={20} />
               </a>
-              <a 
-                href="https://www.linkedin.com/in/alan-holding-7b8b8b1b8/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://www.linkedin.com/in/alan-holding-7b8b8b1b8/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2 bg-gray-800 rounded-full hover:bg-blue-600 transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin size={20} />
+              </a>
+              <a
+                href="https://www.instagram.com/alanholding.ds/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 bg-gray-800 rounded-full hover:bg-pink-600 transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram size={20} />
+              </a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61571246840990"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 bg-gray-800 rounded-full hover:bg-blue-600 transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook size={20} />
               </a>
             </div>
           </div>

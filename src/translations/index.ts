@@ -129,6 +129,7 @@ export interface Translations {
   bookCall: string;
   quickResponse: string;
   quickResponseDescription: string;
+  followUs: string;
   
   // Footer
   footerDescription: string;
@@ -305,7 +306,8 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
     bookCall: 'Book a Call',
     quickResponse: 'Quick Response Guarantee',
     quickResponseDescription: "I'll get back to you within 24 hours with a personalized response and next steps.",
-    
+    followUs: 'Follow Us',
+
     // Footer
     footerDescription: 'Creating websites that deliver real business results. From concept to completion, I build digital solutions that drive growth and engagement.',
     quickLinks: 'Quick Links',
@@ -479,7 +481,8 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
     bookCall: 'Reservar una Llamada',
     quickResponse: 'Garantía de Respuesta Rápida',
     quickResponseDescription: 'Te responderé dentro de 24 horas con una respuesta personalizada y próximos pasos.',
-    
+    followUs: 'Síguenos',
+
     // Footer
     footerDescription: 'Creando sitios web que entregan resultados comerciales reales. Desde el concepto hasta la finalización, construyo soluciones digitales que impulsan el crecimiento y la participación.',
     quickLinks: 'Enlaces Rápidos',
@@ -653,7 +656,8 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
     bookCall: 'Arama Rezervasyonu Yap',
     quickResponse: 'Hızlı Yanıt Garantisi',
     quickResponseDescription: '24 saat içinde kişiselleştirilmiş yanıt ve sonraki adımlarla size geri döneceğim.',
-    
+    followUs: 'Bizi Takip Edin',
+
     // Footer
     footerDescription: 'Gerçek iş sonuçları sağlayan web siteleri yaratıyorum. Konseptten tamamlanmaya kadar, büyüme ve etkileşimi artıran dijital çözümler inşa ediyorum.',
     quickLinks: 'Hızlı Bağlantılar',

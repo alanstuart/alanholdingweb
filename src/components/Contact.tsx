@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Calendar, Send } from 'lucide-react';
+import { Calendar, Send, Instagram, Facebook } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
@@ -72,7 +72,7 @@ const Contact: React.FC = () => {
   };
 
   const handleBookingClick = () => {
-    window.location.href = `mailto:alan.s.holding@gmail.com?subject=Booking Request&body=Hi Alan, I'd like to schedule a consultation call. Here are my details:%0A%0AName: %0APreferred Date/Time: %0ATimezone: %0AProject Type: %0A%0ABrief Description of Project: %0A%0ALooking forward to speaking with you!`;
+    window.open('https://www.instagram.com/alanholding.ds/', '_blank');
   };
   
   return (
@@ -246,20 +246,56 @@ const Contact: React.FC = () => {
           {/* Contact Information */}
           <div className="lg:col-span-2 space-y-6">
             <div className={`rounded-xl p-6 border shadow-lg ${
-              theme === 'dark' 
-                ? 'bg-gradient-to-br from-gray-900 to-gray-800 border-gray-800' 
+              theme === 'dark'
+                ? 'bg-gradient-to-br from-gray-900 to-gray-800 border-gray-800'
                 : 'bg-white border-gray-200'
             }`}>
-              <h3 className="text-xl font-bold mb-6">{t.contactInformation}</h3>
-              
+              <h3 className="text-xl font-bold mb-6">{t.followUs}</h3>
+
               <div className="space-y-4">
-                <div className="flex items-start">
-                  <div className={`flex-shrink-0 p-2 rounded-lg mr-4 ${
-                    theme === 'dark' 
-                      ? 'bg-blue-900 bg-opacity-20' 
-                      : 'bg-blue-100'
+                <a
+                  href="https://www.instagram.com/alanholding.ds/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start group"
+                >
+                  <div className={`flex-shrink-0 p-2 rounded-lg mr-4 transition-colors ${
+                    theme === 'dark'
+                      ? 'bg-pink-900 bg-opacity-20 group-hover:bg-opacity-30'
+                      : 'bg-pink-100 group-hover:bg-pink-200'
                   }`}>
-                    <Mail size={20} className={`${
+                    <Instagram size={20} className={`${
+                      theme === 'dark' ? 'text-pink-400' : 'text-pink-600'
+                    }`} />
+                  </div>
+                  <div>
+                    <p className={`text-sm ${
+                      theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                    }`}>
+                      Instagram
+                    </p>
+                    <p className={`transition-colors ${
+                      theme === 'dark'
+                        ? 'text-white group-hover:text-pink-400'
+                        : 'text-gray-900 group-hover:text-pink-600'
+                    }`}>
+                      @alanholding.ds
+                    </p>
+                  </div>
+                </a>
+
+                <a
+                  href="https://www.facebook.com/profile.php?id=61571246840990"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start group"
+                >
+                  <div className={`flex-shrink-0 p-2 rounded-lg mr-4 transition-colors ${
+                    theme === 'dark'
+                      ? 'bg-blue-900 bg-opacity-20 group-hover:bg-opacity-30'
+                      : 'bg-blue-100 group-hover:bg-blue-200'
+                  }`}>
+                    <Facebook size={20} className={`${
                       theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
                     }`} />
                   </div>
@@ -267,17 +303,17 @@ const Contact: React.FC = () => {
                     <p className={`text-sm ${
                       theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
                     }`}>
-                      {t.email}
+                      Facebook
                     </p>
-                    <a href="mailto:alan.s.holding@gmail.com" className={`transition-colors ${
-                      theme === 'dark' 
-                        ? 'text-white hover:text-blue-400' 
-                        : 'text-gray-900 hover:text-blue-600'
+                    <p className={`transition-colors ${
+                      theme === 'dark'
+                        ? 'text-white group-hover:text-blue-400'
+                        : 'text-gray-900 group-hover:text-blue-600'
                     }`}>
-                      alan.s.holding@gmail.com
-                    </a>
+                      Alan Holding Digital Solutions
+                    </p>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
             

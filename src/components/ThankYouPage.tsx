@@ -104,7 +104,7 @@ const ThankYouPage: React.FC = () => {
           {/* Additional Note */}
           <div className="text-center mt-8">
             <p className="text-gray-500 text-sm">
-              Need immediate assistance? <a href="mailto:alan.s.holding@gmail.com" className="text-blue-600 hover:text-blue-700 font-medium">Email me directly</a>
+              Need immediate assistance? <a href="https://www.instagram.com/alanholding.ds/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700 font-medium">Contact me on Instagram</a>
             </p>
           </div>
         </div>

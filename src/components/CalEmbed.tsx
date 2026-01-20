@@ -182,11 +182,13 @@ export default function CalEmbed({
           </a>
           <div className="mt-4 pt-4 border-t border-red-200">
             <p className="text-sm text-red-600 mb-2">Alternative booking:</p>
-            <a 
-              href="mailto:alan.s.holding@gmail.com?subject=Consultation Booking&body=Hi Alan, I'd like to schedule a consultation call. Please let me know your available times."
+            <a
+              href="https://www.instagram.com/alanholding.ds/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
             >
-              Email to Book
+              Contact on Instagram
             </a>
           </div>
         </div>

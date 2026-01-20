@@ -8,24 +8,8 @@ const BookingSection: React.FC = () => {
   const { theme } = useTheme();
   const { language } = useLanguage();
 
-  const handleEmailBooking = () => {
-    const subject = encodeURIComponent('Consultation Booking Request');
-    const body = encodeURIComponent(`Hi Alan,
-
-I'd like to schedule a 30-minute consultation call.
-
-My details:
-- Name: 
-- Preferred Date/Time: 
-- Timezone: 
-- Project Type: 
-
-Brief Description:
-
-
-Looking forward to speaking with you!`);
-    
-    window.location.href = `mailto:alan.s.holding@gmail.com?subject=${subject}&body=${body}`;
+  const handleSocialContact = () => {
+    window.open('https://www.instagram.com/alanholding.ds/', '_blank');
   };
 
   return (
@@ -130,13 +114,15 @@ Looking forward to speaking with you!`);
             theme === 'dark' ? 'text-gray-500' : 'text-gray-500'
           }`}>
             Can't find a suitable time?{' '}
-            <a 
-              href="mailto:alan.s.holding@gmail.com" 
+            <a
+              href="https://www.instagram.com/alanholding.ds/"
+              target="_blank"
+              rel="noopener noreferrer"
               className={`font-medium ${
                 theme === 'dark' ? 'text-blue-400 hover:text-blue-300' : 'text-blue-600 hover:text-blue-700'
               }`}
             >
-              Email me directly
+              Contact me on Instagram
             </a>
             {' '}and we'll find a time that works.
           </p>
