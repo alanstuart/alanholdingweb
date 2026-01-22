@@ -185,10 +185,9 @@ const Contact: React.FC = () => {
                 >
                   <option value="" disabled>{t.selectService}</option>
                   <option value="website">{t.serviceOptions.website}</option>
-                  <option value="ecommerce">{t.serviceOptions.ecommerce}</option>
+                  <option value="automation">{t.serviceOptions.automation}</option>
                   <option value="chatbot">{t.serviceOptions.chatbot}</option>
-                  <option value="seo">{t.serviceOptions.seo}</option>
-                  <option value="tech">{t.serviceOptions.tech}</option>
+                  <option value="voiceagent">{t.serviceOptions.voiceagent}</option>
                   <option value="other">{t.serviceOptions.other}</option>
                 </select>
               </div>

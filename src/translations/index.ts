@@ -289,11 +289,10 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
     serviceInterestedIn: 'Service Interested In',
     selectService: 'Select a service',
     serviceOptions: {
-      website: 'Website Development',
-      ecommerce: 'E-commerce Solution',
-      chatbot: 'AI Chatbot Integration',
-      seo: 'SEO Optimization',
-      tech: 'Tech Integration',
+      website: 'Websites with Automation',
+      automation: 'Business Automations',
+      chatbot: 'AI Chat Agents',
+      voiceagent: 'AI Voice Agents with Automation',
       other: 'Other'
     },
     yourMessage: 'Your Message',
@@ -464,11 +463,10 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
     serviceInterestedIn: 'Servicio de Interés',
     selectService: 'Selecciona un servicio',
     serviceOptions: {
-      website: 'Desarrollo de Sitio Web',
-      ecommerce: 'Solución E-commerce',
-      chatbot: 'Integración de Chatbot IA',
-      seo: 'Optimización SEO',
-      tech: 'Integración Tecnológica',
+      website: 'Sitios Web con Automatización',
+      automation: 'Automatizaciones Empresariales',
+      chatbot: 'Agentes de Chat IA',
+      voiceagent: 'Agentes de Voz IA con Automatización',
       other: 'Otro'
     },
     yourMessage: 'Tu Mensaje',
@@ -639,11 +637,10 @@ export const translations: Record<'en' | 'es' | 'tr', Translations> = {
     serviceInterestedIn: 'İlgilendiğiniz Hizmet',
     selectService: 'Bir hizmet seçin',
     serviceOptions: {
-      website: 'Web Sitesi Geliştirme',
-      ecommerce: 'E-ticaret Çözümü',
-      chatbot: 'AI Sohbet Botu Entegrasyonu',
-      seo: 'SEO Optimizasyonu',
-      tech: 'Teknoloji Entegrasyonu',
+      website: 'Otomasyonlu Web Siteleri',
+      automation: 'İş Otomasyonları',
+      chatbot: 'AI Sohbet Ajanları',
+      voiceagent: 'Otomasyonlu AI Ses Ajanları',
       other: 'Diğer'
     },
     yourMessage: 'Mesajınız',

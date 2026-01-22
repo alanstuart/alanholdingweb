@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Laptop, ArrowRight, Sparkles } from 'lucide-react';
+import { Phone, Laptop, ArrowRight, Sparkles, Workflow, Bot } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 const ModernServices: React.FC = () => {
@@ -8,17 +8,31 @@ const ModernServices: React.FC = () => {
   const services = [
     {
       icon: Laptop,
-      title: 'Landing Page Design & Development',
-      description: 'Responsive, ultra-fast websites optimized to convert visitors into customers.',
-      features: ['Conversion Optimized', 'Mobile Responsive', 'Ultra-Fast Loading', 'SEO Ready'],
+      title: 'Websites with Automation',
+      description: 'High-performance sites with integrated workflows that streamline your business operations and convert visitors automatically.',
+      features: ['Automated Workflows', 'High Performance', 'Lead Capture', 'CRM Integration'],
       color: 'from-blue-500 to-cyan-500'
     },
     {
+      icon: Workflow,
+      title: 'Business Automations',
+      description: 'Streamlining manual tasks with custom AI workflows that save time and reduce errors in your daily operations.',
+      features: ['Custom Workflows', 'Task Automation', 'Time Saving', 'Error Reduction'],
+      color: 'from-purple-500 to-pink-500'
+    },
+    {
+      icon: Bot,
+      title: 'AI Chat Agents',
+      description: '24/7 intelligent customer support chatbots that engage visitors, answer questions, and qualify leads instantly.',
+      features: ['24/7 Support', 'Lead Qualification', 'Instant Responses', 'Multi-language'],
+      color: 'from-green-500 to-teal-500'
+    },
+    {
       icon: Phone,
-      title: 'AI Voice Agents (Voice Bots)',
-      description: 'Intelligent systems that handle calls, book appointments, and answer questions 24/7 using natural language.',
-      features: ['24/7 Availability', 'Natural Language', 'Appointment Booking', 'Lead Capture'],
-      color: 'from-teal-500 to-emerald-500'
+      title: 'AI Voice Agents with Automation',
+      description: 'Advanced voice-bots that handle calls, trigger automated actions, and integrate seamlessly with your existing systems.',
+      features: ['Call Handling', 'Action Triggers', 'Appointment Booking', 'System Integration'],
+      color: 'from-orange-500 to-red-500'
     }
   ];
   
@@ -62,7 +76,7 @@ const ModernServices: React.FC = () => {
         </div>
         
         {/* Services Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 max-w-6xl mx-auto">
           {services.map((service, index) => (
             <div 
               key={index}
