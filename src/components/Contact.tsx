@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
 import { Calendar, Send, Instagram, Facebook } from 'lucide-react';
-import { createClient } from '@supabase/supabase-js';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../translations';
 import { useTheme } from '../context/ThemeContext';
-
-// Initialize Supabase client
-const supabase = createClient(
-  'https://adqxqhksrbcsmfgntrjd.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFkcXhxaGtzcmJjc21mZ250cmpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMyMDY5MzEsImV4cCI6MjA2ODc4MjkzMX0.TW6uTyLMUIzkyTKTsuTMF3msmjSCzFcurjj-SNaOrm8'
-);
 
 const Contact: React.FC = () => {
   const { language } = useLanguage();
@@ -35,27 +28,29 @@ const Contact: React.FC = () => {
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     setIsSubmitting(true);
     setSubmitStatus('idle');
-    
-    try {
-      // Submit to Supabase
-      const { error } = await supabase
-        .from('contacts')
-        .insert([
-          {
-            name: formData.name,
-            email: formData.email,
-            service: formData.service,
-            message: formData.message
-          }
-        ]);
 
-      if (error) {
-        throw error;
+    try {
+      // Send to webhook
+      const response = await fetch('https://hook.eu2.make.com/h28tdcme3bf8r18vheot31nujmy2lq21', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          service: formData.service,
+          message: formData.message
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
       }
-      
+
       setSubmitStatus('success');
       setFormData({
         name: '',
